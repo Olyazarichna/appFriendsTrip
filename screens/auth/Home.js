@@ -11,7 +11,7 @@ import {
     Keyboard,
     ImageBackground
 } from 'react-native';
-import { useState } from 'react';
+
 
 export default function Home({ navigation }) { 
     return (
