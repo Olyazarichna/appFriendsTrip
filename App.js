@@ -1,31 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
+// import { StatusBar } from 'expo-status-bar';
+// import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import {store} from './redux/store';
-import RegistrationScreen from './screens/auth/RegistrationScreen';
-import LoginScreen from './screens/auth/LoginScreen';
-import Home from './screens/auth/Home';
+import { store } from './redux/store';
+import { NavigationContainer } from "@react-navigation/native";
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-const AuthStack = createStackNavigator();
+
+import useRoute from './helpers/useRoute';
+
+
 
 export default function App() {
+
+  const isAuth = true;
+
   return (
     // <View style={styles.container}>
     <Provider store={store}>
-      <NavigationContainer>
-      <AuthStack.Navigator>
-        
-        <AuthStack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-        <AuthStack.Screen options={{headerShown: false}} name="Registration" component={RegistrationScreen} />
-          <AuthStack.Screen options={{ headerShown: false }} name="Login" component={LoginScreen} />
-        
-      </AuthStack.Navigator>
-      </NavigationContainer>
-      </Provider>
-    //   <StatusBar style="auto" />
-    //</View> 
+        <SafeAreaProvider>
+        <NavigationContainer>
+        {useRoute(isAuth)}
+        </NavigationContainer>
+        </SafeAreaProvider>
+   </Provider> 
+     /* <StatusBar style="auto" /> */
+    /* //</View>  */
   );
 }
 

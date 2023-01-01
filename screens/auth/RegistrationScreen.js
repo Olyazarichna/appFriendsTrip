@@ -29,7 +29,7 @@ const initialState = {
 
 export default function RegistrationScreen({ navigation }) {
   const [state, setState] = useState(initialState);
-  const [passwordError, setPasswordError] = useState(true);
+  const [passwordError, setPasswordError] = useState(false);
   const [togglePassword, setTogglePassword] = useState(true);
   const [toggleRepeatingPassword, setToggleRepeatingPassword] = useState(true);
 
@@ -38,11 +38,11 @@ export default function RegistrationScreen({ navigation }) {
 
   const handleSubmit = () => {
     const { login, email, phone, password, repeatingPassword } = state;
-    if (password === repeatingPassword) {
+    if (password !== repeatingPassword) {
       setPasswordError(true);
-    } else {
-      setPasswordError(false);
-    }
+      return;
+    } 
+    setPasswordError(false);
     dispatch(signUp(state));
     setState(initialState);
   };
@@ -116,10 +116,10 @@ export default function RegistrationScreen({ navigation }) {
             <AntDesign name="eyeo" size={24} color="black" />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPresst={handleSubmit}>
+        <TouchableOpacity onPress={handleSubmit}>
           <Text>SING UP</Text>
         </TouchableOpacity>
-        {!passwordError && (
+        {passwordError && (
           <Text style={styles.error}>Passwords do not match</Text>
         )}
         <Text>
