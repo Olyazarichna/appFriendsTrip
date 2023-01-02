@@ -1,30 +1,36 @@
 import {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    Platform,
-    KeyboardAvoidingView,
-    TouchableWithoutFeedback,
-    Keyboard,
-    ImageBackground
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Platform,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ImageBackground,
 } from 'react-native';
 
+import ListTrip from '../../components/ListTrip/ListTrip';
+
+import { tripData } from '../../hardcodedData/tripData';
+
 export default function ListTripsScreen() {
-    return (
+  return (
     <View style={styles.container}>
-         <Text>ListTripsScreen</Text>   
+      <Text style={{ paddingTop: 50 }}>ListTripsScreen</Text>
+      <View>
+        <ListTrip trips={tripData} />
+      </View>
     </View>
-)
-};
+  );
+}
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
- backgroundColor: '#fff',
- alignItems: 'center',
- justifyContent: 'center',
- },
- });
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingHorizontal: 10,
+  },
+});
