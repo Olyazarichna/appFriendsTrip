@@ -3,7 +3,7 @@
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider} from 'react-native-safe-area-context';
 
 
 import useRoute from './helpers/useRoute';
