@@ -17,11 +17,12 @@ import ListTrip from '../../components/ListTrip/ListTrip';
 import { tripData } from '../../hardcodedData/tripData';
 
 export default function ListTripsScreen() {
+  const intervals = tripData.length;
   return (
     <View style={styles.container}>
       <Text style={{ paddingTop: 50 }}>ListTripsScreen</Text>
       <View>
-        <ListTrip trips={tripData} />
+        <ListTrip intervals={intervals} trips={tripData} />
       </View>
     </View>
   );
