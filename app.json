@@ -1,5 +1,6 @@
 {
   "expo": {
+    "jsEngine": "hermes",
     "name": "appFriendsTrip",
     "slug": "appFriendsTrip",
     "version": "1.0.0",
@@ -18,6 +19,7 @@
       "**/*"
     ],
     "ios": {
+      "jsEngine": "jsc",
       "supportsTablet": true
     },
     "android": {

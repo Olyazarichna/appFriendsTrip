@@ -14,6 +14,9 @@ import {
 import { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/auth/authOperations";
+
 import handleToggle from "../../helpers/handleToggle";
 
 const initialState = {
@@ -24,14 +27,15 @@ const initialState = {
 export default function LoginScreen({ navigation }) {
   const [state, setState] = useState(initialState);
   const [togglePassword, setTogglePassword] = useState(true);
-
+const dispatch = useDispatch();
   const handleSubmit = () => {
     setState(initialState);
-    console.log(state);
+    console.log('submit',state);
+    dispatch(logIn(state));
   };
 
   return (
-    <View style={styles.conteiner}>
+    <View style={styles.container}>
       <View style={styles.form}>
         <Text>Login</Text>
 
@@ -79,7 +83,7 @@ export default function LoginScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  conteiner: {
+  container: {
     width: "100%",
     flex: 1,
     backgroundColor: "#fff",

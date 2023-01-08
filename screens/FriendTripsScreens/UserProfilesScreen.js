@@ -7,7 +7,7 @@ import CreateTripScreen from './CreateTripScreen';
 
 const AuthStack = createStackNavigator();
 
-export default function UsereProfilesScreen() {
+export default function UserProfilesScreen() {
     return (
                 <AuthStack.Navigator>
                      <AuthStack.Screen
