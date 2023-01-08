@@ -1,15 +1,15 @@
-import { createStackNavigator } from "@react-navigation/stack";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-// auth scrins
-import RegistrationScreen from "../screens/auth/RegistrationScreen";
-import LoginScreen from "../screens/auth/LoginScreen";
-import Home from "../screens/auth/Home";
+// auth screens
+import RegistrationScreen from '../screens/auth/RegistrationScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import Home from '../screens/auth/Home';
 
 // Trips screens
-import UsereProfilesScreen from "../screens/FriendTripsScreens/UserProfilesScreen";
-import ListTripsScreen from "../screens/FriendTripsScreens/ListTripsScreen";
-import CreateTripScreen from "../screens/FriendTripsScreens/CreateTripScreen";
+import UserProfilesScreen from '../screens/FriendTripsScreens/UserProfilesScreen';
+import ListTripsScreen from '../screens/FriendTripsScreens/ListTripsScreen';
+import CreateTripScreen from '../screens/FriendTripsScreens/CreateTripScreen';
 
 const AuthStack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -38,9 +38,9 @@ const useRoute = (isAuth) => {
   }
   return (
     <Tab.Navigator>
-      <Tab.Screen name="ListTrips" component={ListTripsScreen} />
-      <Tab.Screen name="Profilest" component={UsereProfilesScreen} />
-      <Tab.Screen name="CreateTrip" component={CreateTripScreen} />
+      <Tab.Screen name="List Trips" component={ListTripsScreen} />
+      <Tab.Screen name="Profile" component={UserProfilesScreen} />
+      <Tab.Screen name="Create Trip" component={CreateTripScreen} />
     </Tab.Navigator>
   );
 };

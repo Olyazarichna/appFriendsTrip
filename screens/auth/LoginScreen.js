@@ -31,7 +31,7 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.conteiner}>
+    <View style={styles.container}>
       <View style={styles.form}>
         <Text>Login</Text>
 
@@ -79,7 +79,7 @@ export default function LoginScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  conteiner: {
+  container: {
     width: "100%",
     flex: 1,
     backgroundColor: "#fff",
