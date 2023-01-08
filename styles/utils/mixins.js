@@ -2,12 +2,13 @@
 const fonts = (
     fontSize = 12,
     fontWeight = "500",
-    lineHeight) => {
+    lineHeight = 1.3
+) => {
     
     return {
         fontSize: fontSize,
         fontWeight: fontWeight,
-        lineHeight: lineHeight
+        lineHeight: fontSize * lineHeight
 }
 }
 

@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
     text: {
         color: variables.textColor,
        
-        ...fonts(14, "900")
+        ...fonts(14, "900", 1.3)
     }
 });
