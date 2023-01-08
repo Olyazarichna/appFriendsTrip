@@ -1,5 +1,4 @@
-
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from '@react-navigation/stack';
 
 import UserProfilesDefaultScreen from './UserProfilesDefaultScreen';
 import EditDataUserScreen from './EditDataUserScreen';
@@ -29,5 +28,4 @@ export default function UserProfilesScreen() {
             
     )
 };
-
 

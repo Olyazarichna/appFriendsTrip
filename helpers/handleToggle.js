@@ -1,5 +1,5 @@
- const handleToggle = (togle) => {
-   return togle(togle => !togle);
+const handleToggle = (toggle) => {
+  return toggle((toggle) => !toggle);
 };
-    
+
 export default handleToggle;
