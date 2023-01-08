@@ -18,21 +18,22 @@ import Button from '../../components/Button/Button';
 
 export default function Home({ navigation }) { 
     return (
-        <View style={styles.container}>
-            {/* <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Text>Login</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('Registration')}>
-                <Text>Registration</Text>
-            </TouchableOpacity> */}
+        <ImageBackground style={styles.container} source={require("../../assets/images/Subtract.png")}>
 
-            <Text style={styles.text}>Here should be simple text that shortly describe your app and show advantage or tagline</Text>
-        
+           <Image style={styles.imageOne} source={require('../../assets/images/Rectangle2.png')} />
+           <Image style={styles.imageTwo} source={require('../../assets/images/Rectangle1.png')} />
+            
+            <View style={styles.textConteiner}>
+                <Text style={styles.leble}>TRVL</Text>
+                <Text style={styles.title}>Journey with somebody where You Want</Text>
+                <Text style={styles.text}>Here should be simple text that shortly describe your app and show advantage or tagline</Text>
+            </View>
+            
             <Button
                 title={"Log in"}
                 radColOne={variables.gradColorOne}
                 radColTwo={variables.gradColorTwo}
-                marginTop={20}
+                marginTop={180}
                 width={326}
                 borderRadius={20}
                 padBot={20}
@@ -48,33 +49,62 @@ export default function Home({ navigation }) {
                 title={"Register"}
                 radColOne={"#FFF"}
                 radColTwo={"#FFF"}
-                marginTop={20}
+                marginTop={11}
                 width={326}
                 borderRadius={20}
                 borderWidth={1}
-                borderColor={"rgba(69, 124, 247, 1)"}
+                borderColor={variables.lableButtonBlue}
                 padBot={20}
                 padTop={20}
-                color={"rgba(69, 124, 247, 1)"}
+                color={variables.lableButtonBlue}
                 textAlign={"center"}
                 fontSize={15}
                 fontWeight={"700"}
                 click={() => navigation.navigate('Registration')}
             />
-        </View>
+           
+        </ImageBackground>
     )
 };
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-        justifyContent: 'center',
+    justifyContent: 'center',
+    },
+    textConteiner: {
+     width: 301,
+        
+    },
+    leble: {
+        marginTop: 170,
+        color: variables.lableButtonWhite,
+       textAlign: "center", 
+      ...fonts(20, "600", 1.2)  
+    },
+    title: {
+        marginTop: 25,
+        color: variables.lableButtonWhite,
+       textAlign: "center",
+     ...fonts(24, "600", 1.2)   
     },
     text: {
-        color: variables.textColor,
-       
-        ...fonts(14, "900", 1.3)
-    }
+        color: variables.lableButtonWhite,
+        marginTop: 20,
+       textAlign: "center",
+        ...fonts(14, "500", 1.3)
+    },
+    imageOne: {
+        position: "absolute",
+        left: 0,
+        top: 10
+    },
+   imageTwo: {
+        position: "absolute",
+        right: 0,
+        top: 10
+    }, 
 });
