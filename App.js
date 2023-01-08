@@ -12,7 +12,7 @@ import useRoute from './helpers/useRoute';
 
 export default function App() {
 
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     // <View style={styles.container}>
