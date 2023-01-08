@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   ImageBackground,
+  Pressable,
 } from 'react-native';
 
 import ListTrip from '../../components/ListTrip/ListTrip';
@@ -20,7 +21,16 @@ export default function ListTripsScreen() {
   const intervals = tripData.length;
   return (
     <View style={styles.container}>
-      <Text style={{ paddingTop: 50 }}>ListTripsScreen</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>Find your trip</Text>
+        <Text style={styles.title}>TRVL</Text>
+      </View>
+      <View style={styles.search}>
+        <TextInput style={styles.searchInput} placeholder="Search Trip.." />
+        <Pressable style={styles.button}>
+          <Text>Filter</Text>
+        </Pressable>
+      </View>
       <View>
         <ListTrip intervals={intervals} trips={tripData} />
       </View>
@@ -31,7 +41,39 @@ export default function ListTripsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'rgba(15, 23, 42, 0.01)',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 32,
+    paddingHorizontal: 24,
+  },
+  title: {
+    fontSize: 24,
+  },
+  search: {
+    display: 'flex',
+    flexDirection: 'row',
+    paddingTop: 20,
+    paddingHorizontal: 25,
+  },
+  searchInput: {
+    flex: 1,
+    height: 64,
+    marginRight: 16,
+    padding: 10,
+    borderRadius: 20,
     backgroundColor: '#fff',
-    paddingHorizontal: 10,
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    height: 64,
+    width: 64,
+    backgroundColor: 'royalblue',
+    // backgroundColor: 'linear-gradient(95.23deg, #457CF7 0%, #375ABE 100%)',
   },
 });
