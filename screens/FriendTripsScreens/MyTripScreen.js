@@ -12,10 +12,10 @@ import {
     ImageBackground
 } from 'react-native';
 
-export default function ListTripsScreen() {
+export default function MyTripScreen() {
     return (
     <View style={styles.container}>
-         <Text>ListTripsScreen</Text>   
+         <Text>MyTripScreen</Text>   
     </View>
 )
 };

@@ -3,8 +3,6 @@ import {
     Text,
     View,
     Image,
-    TextInput,
-    TouchableOpacity,
     Platform,
     KeyboardAvoidingView,
     TouchableWithoutFeedback,
@@ -14,7 +12,10 @@ import {
 
 import fonts from '../../styles/utils/mixins';
 import variables from '../../styles/utils/variables';
-import Button from '../../components/Button/Button';
+
+import ButtonLongBlue from '../../components/Buttons/ButtonLongBlue';
+import ButtonLongWhite from '../../components/Buttons/ButtonLongWhite';
+
 
 export default function Home({ navigation }) { 
     return (
@@ -28,38 +29,16 @@ export default function Home({ navigation }) {
                 <Text style={styles.title}>Journey with somebody where You Want</Text>
                 <Text style={styles.text}>Here should be simple text that shortly describe your app and show advantage or tagline</Text>
             </View>
-            
-            <Button
+
+            <ButtonLongBlue
                 title={"Log in"}
-                radColOne={variables.gradColorOne}
-                radColTwo={variables.gradColorTwo}
                 marginTop={180}
-                width={326}
-                borderRadius={20}
-                padBot={20}
-                padTop={20}
-                color={"rgba(255, 255, 255, 1)"}
-                textAlign={"center"}
-                fontSize={15}
-                fontWeight={"700"}
                 click={() => navigation.navigate('Login')}
             />
-
-            <Button
+            
+            <ButtonLongWhite
                 title={"Register"}
-                radColOne={"#FFF"}
-                radColTwo={"#FFF"}
-                marginTop={11}
-                width={326}
-                borderRadius={20}
-                borderWidth={1}
-                borderColor={variables.lableButtonBlue}
-                padBot={20}
-                padTop={20}
-                color={variables.lableButtonBlue}
-                textAlign={"center"}
-                fontSize={15}
-                fontWeight={"700"}
+                marginTop={10}
                 click={() => navigation.navigate('Registration')}
             />
            
@@ -89,12 +68,12 @@ const styles = StyleSheet.create({
         marginTop: 25,
         color: variables.lableButtonWhite,
        textAlign: "center",
-     ...fonts(24, "600", 1.2)   
+       ...fonts(24, "600", 1.2)   
     },
     text: {
         color: variables.lableButtonWhite,
         marginTop: 20,
-       textAlign: "center",
+        textAlign: "center",
         ...fonts(14, "500", 1.3)
     },
     imageOne: {
