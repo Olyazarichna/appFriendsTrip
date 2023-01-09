@@ -1,4 +1,4 @@
-import { Text, } from 'react-native';
+import { Text } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
@@ -11,7 +11,7 @@ import Home from "../screens/auth/Home";
 
 // Trips screens
 import HomeTrips from "../screens/FriendTripsScreens/HomeTrips";
-import MyTripScreen from "../screens/FriendTripsScreens/MyTripScreen";
+import CreateTripScreen from "../screens/FriendTripsScreens/CreateTripScreen";
 import InboxScreen from "../screens/FriendTripsScreens/InboxScreen";
 import FavoriteScreen from "../screens/FriendTripsScreens/FavoriteScreen";
 import UsereProfilesScreen from "../screens/FriendTripsScreens/UserProfilesScreen";
@@ -53,8 +53,8 @@ const useRoute = (isAuth) => {
     barStyle={{ backgroundColor: variables.lableButtonWhite, height: 55 }}
     >
       <Tab.Screen name="Home" component={HomeTrips}
-      options={{
-          tabBarLabel: false,
+        options={{
+        tabBarLabel: false,
           tabBarIcon: ({ color }) => (
              <>
             <Ionicons name="home" size={18} color={color} />
@@ -63,7 +63,7 @@ const useRoute = (isAuth) => {
           ),
         }}
       />
-      <Tab.Screen name="My trip" component={MyTripScreen}
+      <Tab.Screen name="My trip" component={CreateTripScreen}
        options={{
           tabBarLabel: false,
           tabBarIcon: ({ color }) => (
