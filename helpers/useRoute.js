@@ -22,6 +22,7 @@ import variables from '../styles/utils/variables';
 const AuthStack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
+
 const useRoute = (isAuth) => {
   if (!isAuth) {
     return (
