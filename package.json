@@ -30,7 +30,8 @@
     "react-redux": "^8.0.5",
     "expo-media-library": "~15.0.0",
     "expo-camera": "~13.1.0",
-    "expo-image-picker": "~14.0.2"
+    "expo-image-picker": "~14.0.2",
+    "expo-linear-gradient": "~12.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

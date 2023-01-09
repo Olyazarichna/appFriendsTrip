@@ -10,6 +10,7 @@ import useRoute from "./helpers/useRoute";
 import { useState } from "react";
 
 export default function App() {
+
   const [user, setUser] = useState(null);
   const auth = getAuth();
 
@@ -24,7 +25,9 @@ export default function App() {
     }
   });
 
+
   const isAuth = true;
+
 
   return (
     // <View style={styles.container}>
