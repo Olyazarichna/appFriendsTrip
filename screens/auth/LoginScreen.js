@@ -36,6 +36,7 @@ export default function LoginScreen({ navigation }) {
   const [state, setState] = useState(initialState);
   const [togglePassword, setTogglePassword] = useState(true);
   const [emailChange, setEmailChange] = useState(false);
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
 
   const dispatch = useDispatch();
@@ -43,14 +44,16 @@ export default function LoginScreen({ navigation }) {
   const handleSubmit = () => {
     setState(initialState);
     setEmailChange(false);
-    console.log('submit',state);
+    Keyboard.dismiss();
+    setIsShowKeyboard(false);
+    console.log('submit', state);
     dispatch(logIn(state));
   };
 
   return (
     <View style={styles.container}>
 
-       <Text style={styles.title}>Hello Again!</Text>
+       <Text style={{...styles.title, marginTop: isShowKeyboard ? 140 : 20}}>Hello Again!</Text>
       <Text style={styles.titleText}>Welcome back. We're glad to see you again</Text>
       
       <View style={styles.socialButtonsConteiner}>
@@ -72,6 +75,7 @@ export default function LoginScreen({ navigation }) {
           <TextInput
             value={state.email}
             style={styles.input}
+            onFocus={() => setIsShowKeyboard(true)}
             onChangeText={(value) =>
               changeInput(value, setState, setEmailChange, 'email')
             }
@@ -85,9 +89,10 @@ export default function LoginScreen({ navigation }) {
           <TextInput
             value={state.password}
             style={styles.input}
+            onFocus={() => setIsShowKeyboard(true)}
             secureTextEntry={togglePassword}
             onChangeText={(value) =>
-              changeInput(value, setState, setEmailChange, 'password')
+              changeInput(value, setState, setEmailChange, 'password', setIsShowKeyboar)
             }
           />
           <TouchableOpacity onPress={() => handleToggle(setTogglePassword)}>
@@ -144,7 +149,7 @@ const styles = StyleSheet.create({
     color: variables.titleColor,
     textAlign: "center",
     marginBottom: 10,
-    marginTop: 140,
+    // marginTop: 140,
   ...fonts(24, "600")
   },
   titleText: {
