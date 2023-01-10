@@ -5,6 +5,8 @@ const variables = {
     textColor: "#848689",
     lableButtonWhite: "rgba(255, 255, 255, 1)",
     lableButtonBlue: "rgba(69, 124, 247, 1)",
+    backgroundColorScreens: "rgba(15, 23, 42, 0.01)",
+    inputColor: "#BEC0C7",
 }
 
 export default variables;
