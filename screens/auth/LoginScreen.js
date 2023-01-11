@@ -9,7 +9,6 @@ import {
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  ImageBackground,
 } from "react-native";
 import { useState } from "react";
 import { Feather, Octicons, AntDesign, Ionicons} from "@expo/vector-icons";
@@ -70,7 +69,7 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.form}>
       
         <View>
-          {emailChange ? <Text style={styles.inputLableOff}>Email</Text> : <Text style={styles.inputLable}>Email</Text>}
+          {emailChange ? <Text style={styles.inputLableOff}>Your Email</Text> : <Text style={styles.inputLable}>Your Email</Text>}
     
           <TextInput
             value={state.email}
@@ -89,10 +88,10 @@ export default function LoginScreen({ navigation }) {
           <TextInput
             value={state.password}
             style={styles.input}
-            onFocus={() => setIsShowKeyboard(true)}
             secureTextEntry={togglePassword}
+            onFocus={() =>  setIsShowKeyboard(true)}
             onChangeText={(value) =>
-              changeInput(value, setState, setEmailChange, 'password', setIsShowKeyboar)
+              changeInput(value, setState, setEmailChange, 'password')
             }
           />
           <TouchableOpacity onPress={() => handleToggle(setTogglePassword)}>
