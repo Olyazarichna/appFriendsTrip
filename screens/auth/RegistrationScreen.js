@@ -40,7 +40,7 @@ export default function RegistrationScreen({ navigation }) {
   const [togglePassword, setTogglePassword] = useState(true);
   const [toggleRepeatingPassword, setToggleRepeatingPassword] = useState(true);
 
-  const [inputChange, setImputChange] = useState(false); 
+  const [inputChange, setInputChange] = useState(false); 
 
   const dispatch = useDispatch();
   console.log("dispatch", dispatch);
@@ -51,7 +51,7 @@ export default function RegistrationScreen({ navigation }) {
       setPasswordError(true);
       return;
     } 
-    setImputChange(false);
+    setInputChange(false);
     setPasswordError(false);
     dispatch(signUp(state));
     setState(initialState);
@@ -61,7 +61,7 @@ export default function RegistrationScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-          <Text style={styles.title}>lets Get Started</Text>
+          <Text style={styles.title}>Lets Get Started</Text>
           <Text style={styles.titleText}>Find new trip and friends in our app</Text>
       <ScrollView>
       <View style={styles.form}>
@@ -73,7 +73,7 @@ export default function RegistrationScreen({ navigation }) {
             value={state.login}
             style={styles.input}
             onChangeText={(value) =>
-            changeInput(value, setState, setImputChange, 'login')
+            changeInput(value, setState, setInputChange, 'login')
             }
             />
             <View style={styles.inputIcon}>
@@ -87,7 +87,7 @@ export default function RegistrationScreen({ navigation }) {
             value={state.phone}
             style={styles.input}
             onChangeText={(value) =>
-             changeInput(value, setState, setImputChange, 'phone')
+             changeInput(value, setState, setInputChange, 'phone')
             }
             />
           <View style={styles.inputIcon}>
@@ -101,7 +101,7 @@ export default function RegistrationScreen({ navigation }) {
             value={state.email}
             style={styles.input}
             onChangeText={(value) =>
-              changeInput(value, setState, setImputChange, 'email')
+              changeInput(value, setState, setInputChange, 'email')
             }
             />
         <View style={styles.inputIcon}>
@@ -116,7 +116,7 @@ export default function RegistrationScreen({ navigation }) {
             style={styles.input}
             secureTextEntry={togglePassword}
             onChangeText={(value) =>
-              changeInput(value, setState, setImputChange, 'password')
+              changeInput(value, setState, setInputChange, 'password')
             }
             />
             
@@ -133,7 +133,7 @@ export default function RegistrationScreen({ navigation }) {
             style={styles.input}
             secureTextEntry={toggleRepeatingPassword}
             onChangeText={(value) =>
-             changeInput(value, setState, setImputChange, 'repeatingPassword')
+             changeInput(value, setState, setInputChange, 'repeatingPassword')
             }
           />
           <TouchableOpacity
