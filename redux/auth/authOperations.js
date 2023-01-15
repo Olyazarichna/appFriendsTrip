@@ -1,6 +1,7 @@
 import { async } from "@firebase/util";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { updateUserProfile, logout } from "./authReducer";
+import app from "../../firebase/config";
 
 const auth = getAuth();
 
