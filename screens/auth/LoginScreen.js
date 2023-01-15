@@ -23,7 +23,7 @@ import handleToggle from "../../helpers/handleToggle";
 import changeInput from "../../helpers/changeInput";
 
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
-
+import validation from '../../helpers/validation/validation';
 
 
 const initialState = {
@@ -32,15 +32,28 @@ const initialState = {
 };
 
 export default function LoginScreen({ navigation }) {
+
   const [state, setState] = useState(initialState);
+
   const [togglePassword, setTogglePassword] = useState(true);
   const [emailChange, setEmailChange] = useState(false);
+  const [passwordChange, setPasswordChange] = useState(false);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+  const [checkValidEmail, setCheckValidEmail] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+
 
 
   const dispatch = useDispatch();
   
   const handleSubmit = () => {
+
+  if (!checkValidEmail) {
+      setErrorEmail(true);
+      return;
+    }
+    setErrorEmail(false)
     setState(initialState);
     setEmailChange(false);
     Keyboard.dismiss();
@@ -70,13 +83,19 @@ export default function LoginScreen({ navigation }) {
       
         <View>
           {emailChange ? <Text style={styles.inputLableOff}>Your Email</Text> : <Text style={styles.inputLable}>Your Email</Text>}
-    
+          
+          {errorEmail && <View style={styles.stailsNotCorect}>
+            {state.email === '' ? <Text style={styles.stailsNotCorectText}>You have not entered an email</Text> :
+            <Text style={styles.stailsNotCorectText}>You have entered an incorrect email</Text>}
+            
+          </View>}
+          
           <TextInput
             value={state.email}
             style={styles.input}
             onFocus={() => setIsShowKeyboard(true)}
             onChangeText={(value) =>
-              changeInput(value, setState, setEmailChange, 'email')
+              changeInput(value, setState, setEmailChange, 'email', validation.email, setCheckValidEmail)
             }
           />
           <View style={styles.inputIconMail}>
@@ -84,14 +103,14 @@ export default function LoginScreen({ navigation }) {
           </View>
         </View>
         <View>
-          {emailChange ? <Text style={styles.inputLableOff}>Password</Text> : <Text style={styles.inputLable}>Password</Text>}
+          {passwordChange ? <Text style={styles.inputLableOff}>Password</Text> : <Text style={styles.inputLable}>Password</Text>}
           <TextInput
             value={state.password}
             style={styles.input}
             secureTextEntry={togglePassword}
             onFocus={() =>  setIsShowKeyboard(true)}
             onChangeText={(value) =>
-              changeInput(value, setState, setEmailChange, 'password')
+              changeInput(value, setState, setPasswordChange, 'password')
             }
           />
           <TouchableOpacity onPress={() => handleToggle(setTogglePassword)}>
@@ -123,7 +142,7 @@ export default function LoginScreen({ navigation }) {
             Sign in
           </Text>
         </Text>
-
+        
       </View>
       <TouchableOpacity style={styles.buttonHome} onPress={() => navigation.navigate("Home")}>
           <Ionicons name="md-home" size={24} color={variables.lableButtonBlue} />
@@ -238,7 +257,19 @@ inputLableOff: {
   ...fonts(14, "500")
   },
   buttonRegister: {
-    color: "#375ABE",
-    
+    color: "#375ABE", 
+  },
+  stailsNotCorect: {
+    position: "absolute",
+    top: 60,
+    left: 50,
+    zIndex: 1,
+    padding: 3,
+    // borderRadius: 5,
+    // backgroundColor: variables.lableButtonBlue,  
+  },
+  stailsNotCorectText: {
+    color: "red",
+   ...fonts(10, "400") 
   }
   });
