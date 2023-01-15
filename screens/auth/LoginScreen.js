@@ -58,7 +58,7 @@ export default function LoginScreen({ navigation }) {
     setEmailChange(false);
     Keyboard.dismiss();
     setIsShowKeyboard(false);
-    console.log('submit', state);
+    console.log('Login succesfull', state);
     dispatch(logIn(state));
   };
 

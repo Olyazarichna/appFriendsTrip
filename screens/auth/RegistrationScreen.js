@@ -11,7 +11,7 @@ import {
   Keyboard,
 } from "react-native";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { signUp } from "../../redux/auth/authOperations";
 
 import { Octicons, Ionicons, Feather } from "@expo/vector-icons";
@@ -26,7 +26,7 @@ import validation from "../../helpers/validation/validation";
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 
 const initialState = {
-  login: "",
+  name: "",
   email: "",
   phone: "",
   password: "",
@@ -34,7 +34,10 @@ const initialState = {
 };
 
 export default function RegistrationScreen({ navigation }) {
+  const redaxState = useSelector((state) => state);
+  console.log("redaxState", redaxState);
   const [state, setState] = useState(initialState);
+  console.log("state", state);
   const [passwordError, setPasswordError] = useState(false);
   const [togglePassword, setTogglePassword] = useState(true);
   const [toggleRepeatingPassword, setToggleRepeatingPassword] = useState(true);
@@ -53,7 +56,6 @@ export default function RegistrationScreen({ navigation }) {
   const [errorMassage, setErrorMassage] = useState('');
 
   const dispatch = useDispatch();
-  console.log("dispatch", dispatch);
 
   const handleSubmit = () => {
     const { login, email, phone, password, repeatingPassword } = state;
@@ -98,14 +100,17 @@ if (
     setPasswordChange(false);
     setconfirmPasChange(false);
 
-    setPasswordError(false);
+  
+    console.log('state', state);
     dispatch(signUp(state));
+    setInputChange(false);
+    setPasswordError(false);
     setState(initialState);
     Keyboard.dismiss();
-    console.log(state);
+    console.log('stateHandleSubmit',state);
   };
 
-  return (
+   return (
     <View style={styles.container}>
           <Text style={styles.title}>Lets Get Started</Text>
           <Text style={styles.titleText}>Find new trip and friends in our app</Text>
