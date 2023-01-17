@@ -21,7 +21,7 @@ import fonts from "../../styles/utils/mixins";
 
 import handleToggle from "../../helpers/handleToggle";
 import changeInput from "../../helpers/changeInput";
-import validation from "../../helpers/validation/validation";
+import {validation} from "../../helpers/validation/validation";
 
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 
@@ -54,6 +54,8 @@ export default function RegistrationScreen({ navigation }) {
   const [errorEmail, setErrorEmail] = useState(false);
 
   const [errorMassage, setErrorMassage] = useState('');
+  
+
 
   const dispatch = useDispatch();
 
@@ -68,7 +70,7 @@ if (
       repeatingPassword === ''
     )
     {
-      setErrorMassage('eroor');
+  setErrorMassage('all fields must be filled');
       return;
    }
 
@@ -102,9 +104,8 @@ if (
 
   
     console.log('state', state);
-    dispatch(signUp(state));
-    setInputChange(false);
     setPasswordError(false);
+    dispatch(signUp(state));
     setState(initialState);
     Keyboard.dismiss();
     console.log('stateHandleSubmit',state);
@@ -147,6 +148,7 @@ if (
             onChangeText={(value) =>
              changeInput(value, setState, setPhoneChange, 'phone',  validation.phone, setCheckValidPhone)
             }
+               //
             />
           <View style={styles.inputIcon}>
             <Feather name="phone" size={24} color={variables.inputColor} />
@@ -169,6 +171,7 @@ if (
             onChangeText={(value) =>
               changeInput(value, setState, setEmailChange, 'email', validation.email, setCheckValidEmail)
             }
+               //
             />
         <View style={styles.inputIcon}>
             <Octicons name="mail" size={24} color={variables.inputColor} />

@@ -3,6 +3,8 @@ import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 import { FontAwesome, Ionicons, AntDesign } from '@expo/vector-icons';
 
 import handleToggle from '../../helpers/handleToggle';
+import variables from '../../styles/utils/variables';
+import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
 export default function GallertProlileComponents({
   setGallery,
@@ -15,25 +17,51 @@ export default function GallertProlileComponents({
 }) {
   return (
     <View style={styles.addAvatar}>
-      <TouchableOpacity
-        onPress={() => {
-          handleToggle(setGallery);
-          setAdd(false);
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <Ionicons name="md-close-circle-outline" size={24} color="blackf" />
-      </TouchableOpacity>
+     
+      <View style={{position: "absolute", top: 0, left: 25}}>
+          <ButtonRoundBlue
+                title={<AntDesign name="close" size={17} color={variables.lableButtonWhite} />}
+                width={40}
+                height={40}
+                marginTop={37}
+                click={
+                 () => {
+                 handleToggle(setGallery);
+                 setAdd(false);
+                 setModalVisible(!modalVisible);
+                 }} />
+            </View>
+
+      
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <TouchableOpacity onPress={pickImage}>
-          <FontAwesome name="image" size={24} color="black" />
-        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', marginBottom: 10}}> 
+          <View>
+              <ButtonRoundBlue
+                title={<FontAwesome name="image" size={17} color={variables.lableButtonWhite} />}
+                width={40}
+                height={40}
+                // marginTop={37}
+              click={pickImage} />
+          <Text style={{color: variables.lableButtonBlue, marginLeft: "auto", marginRight: "auto"}}>Find</Text>
+          </View>
+          <View>
+          <ButtonRoundBlue
+                title={<AntDesign name="addfile" size={17} color={variables.lableButtonWhite} />}
+                width={40}
+            height={40}
+            marginLeft={10}
+                // marginTop={37}
+              click={() => takeGallery(image)} />
+          <Text style={{color: variables.lableButtonBlue, marginLeft: "auto", marginRight: "auto"}}>Add</Text>
+          </View>
+                </View>
+        <View style={styles.avatarContainer}>
         {image && (
-          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
-        )}
-        <TouchableOpacity onPress={() => takeGallery(image)}>
-          <AntDesign name="addfile" size={24} color="black" />
-        </TouchableOpacity>
+          
+          <Image source={{ uri: image }} style={styles.avatarContainer} />
+          )}
+        </View >
+        
       </View>
     </View>
   );
@@ -46,6 +74,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: 'yellow',
+    backgroundColor: variables.lableButtonWhite,
   },
+  avatarContainer: {
+        width: 150,
+        height: 160,
+        backgroundColor: "#E3E5E8",
+        borderRadius: 70,
+    },
 });
