@@ -8,6 +8,7 @@ import {
     Modal,
     Keyboard,
 } from "react-native";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { AntDesign, MaterialCommunityIcons, EvilIcons } from '@expo/vector-icons';
@@ -308,14 +309,19 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                  <View style={{ flexDirection: 'row', }}>
                         <View>
                             <Text style={styles.textTitle}>About me:
-                            </Text>
+                        </Text>
+                        <View>
                             <TextInput
                                 value={localState.about}
                                 editable={dataCheckAbout}
                                 style={styles.aboutText}
+                                underlineColorAndroid="transparent"
+                                numberOfLines={3}
+                                multiline={true}
                                 onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
                                 onChangeText={(value) =>  setLocalState((prevState) => ({ ...prevState, about: value }))}
-                            />
+                        />
+                </View>
                     </View>
                                     
                     <TouchableOpacity onPress={() => { handleToggle(setDataCheckAbout); handleInput()}} style={styles.checkButton}>
