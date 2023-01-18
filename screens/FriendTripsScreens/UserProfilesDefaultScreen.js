@@ -6,6 +6,7 @@ import {
     TextInput,
     TouchableOpacity,
     Modal,
+    Keyboard,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -47,6 +48,8 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     about: '',
     }
 
+    const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
     const [dataCheckName, setDataCheckName] = useState(false);
     const [dataCheckEmail, setDataCheckEmail] = useState(false);
     const [dataCheckPhone, setDataCheckPhone] = useState(false);
@@ -84,13 +87,14 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             !dataCheckAbout
 
         ) {
-   
+            if (isShowKeyboard) {
+                setIsShowKeyboard(false);  
+        }
+       
        console.log('localState:', localState) 
     }
 }
-
-    
-    
+ 
 
     console.log('stateDefault', state)
     const auth = getAuth();
@@ -175,7 +179,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                     />
             </View>
             
-            <View style={styles.avatarContainer}>
+            <View style={{...styles.avatarContainer, marginTop: isShowKeyboard ? 200 : 0}}>
                 <View>
                 <Image style={styles.avatarContainer}  source={{uri: localState.avatar}}></Image>
                 </View> 
@@ -224,6 +228,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                             value={localState.name} 
                             editable={dataCheckName}
                             style={styles.input}
+                            onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
                             onChangeText={(value) =>  changeInputForProfiles(value, setLocalState, 'name') }
                             />
                     </View>
@@ -247,6 +252,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                                 value={localState.email}
                                 editable={dataCheckEmail}
                                 style={styles.input}
+                                onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
                                 onChangeText={(value) => changeInputForProfiles(value, setLocalState, 'email', validation.email, setCheckValidEmail) }
                         />
                         
@@ -269,8 +275,8 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                                 value={localState.phone}
                                 editable={dataCheckPhone}
                                 style={styles.input}
+                                onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
                                 onChangeText={(value) => changeInputForProfiles(value, setLocalState, 'phone', validation.phone, setCheckValidPhone)  }
-                            //setLocalState((prevState) => ({ ...prevState, phone: value }))
                             />
                     </View>
                                     
@@ -288,6 +294,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                                 value={localState.location}
                                 editable={dataCheckLocation}
                                 style={styles.input}
+                                onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
                                 onChangeText={(value) =>  setLocalState((prevState) => ({ ...prevState, location: value }))}
                             />
                     </View>
@@ -306,6 +313,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                                 value={localState.about}
                                 editable={dataCheckAbout}
                                 style={styles.aboutText}
+                                onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
                                 onChangeText={(value) =>  setLocalState((prevState) => ({ ...prevState, about: value }))}
                             />
                     </View>
@@ -411,9 +419,7 @@ const styles = StyleSheet.create({
     top: 35,
     left: 10,
     zIndex: 1,
-    padding: 3,
-    // borderRadius: 5,
-    // backgroundColor: variables.lableButtonBlue,  
+    padding: 3,  
   },
   stailsNotCorectText: {
     color: "red",
