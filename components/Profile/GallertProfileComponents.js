@@ -6,7 +6,7 @@ import handleToggle from '../../helpers/handleToggle';
 import variables from '../../styles/utils/variables';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
-export default function GallertProlileComponents({
+export default function GallertProfileComponents({
   setGallery,
   setAdd,
   setModalVisible,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   avatarContainer: {
         width: 150,
-        height: 160,
+        height: 150,
         backgroundColor: "#E3E5E8",
         borderRadius: 70,
     },

@@ -8,7 +8,7 @@ import handleToggle from '../../helpers/handleToggle';
 import variables from '../../styles/utils/variables';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
-export default function CameraProlileComponents({
+export default function CameraProfileComponents({
   setCamera,
   setAdd,
   setSnap,

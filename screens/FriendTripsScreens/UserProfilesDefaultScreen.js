@@ -26,8 +26,8 @@ import handleToggle from "../../helpers/handleToggle";
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 
-import CameraProlileComponents from '../../components/Prolile/CameraProlileComponents';
-import GallertProlileComponents from '../../components/Prolile/GallertProlileComponents';
+import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
+import GallertProfileComponents from '../../components/Profile/GallertProfileComponents';
 
 
 
@@ -319,7 +319,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                 <>
     {gallery && (
           
-        <GallertProlileComponents
+        <GallertProfileComponents
             setGallery={setGallery}
             setAdd={setAdd}
             setModalVisible={setModalVisible}
@@ -329,7 +329,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             takeGallery={takeGallery}/>
                     )}  
     {camera && (
-        <CameraProlileComponents
+        <CameraProfileComponents
             setCamera={setCamera}
             setAdd={setAdd}
             setSnap={setSnap}

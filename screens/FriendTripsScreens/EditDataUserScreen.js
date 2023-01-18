@@ -22,8 +22,8 @@ import { Camera, CameraType } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 
 import handleToggle from '../../helpers/handleToggle';
-import CameraProlileComponents from '../../components/Prolile/CameraProlileComponents';
-import GallertProlileComponents from '../../components/Prolile/GallertProlileComponents';
+import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
+import GallertProfileComponents from '../../components/Profile/GallertProfileComponents';
 
 import { async } from '@firebase/util';
 
@@ -154,7 +154,7 @@ export default function EditDataUserScreen({ navigation }) {
                 <>
     {gallery && (
           
-        <GallertProlileComponents
+        <GallertProfileComponents
             setGallery={setGallery}
             setAdd={setAdd}
             setModalVisible={setModalVisible}
@@ -164,7 +164,7 @@ export default function EditDataUserScreen({ navigation }) {
             takeGallery={takeGallery}/>
                     )}  
     {camera && (
-        <CameraProlileComponents
+        <CameraProfileComponents
             setCamera={setCamera}
             setAdd={setAdd}
             setSnap={setSnap}
