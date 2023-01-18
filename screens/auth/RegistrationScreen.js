@@ -125,7 +125,7 @@ if (
             value={state.login}
             style={styles.input}
             onChangeText={(value) =>
-            changeInput(value, setState, setLoginChange, 'login')
+            changeInput(value, setState, 'login', setLoginChange)
             }
             />
             <View style={styles.inputIcon}>
@@ -146,7 +146,7 @@ if (
             value={state.phone}
             style={styles.input}
             onChangeText={(value) =>
-             changeInput(value, setState, setPhoneChange, 'phone',  validation.phone, setCheckValidPhone)
+             changeInput(value, setState, 'phone', setPhoneChange,  validation.phone, setCheckValidPhone)
             }
                //
             />
@@ -169,7 +169,7 @@ if (
             value={state.email}
             style={styles.input}
             onChangeText={(value) =>
-              changeInput(value, setState, setEmailChange, 'email', validation.email, setCheckValidEmail)
+              changeInput(value, setState, 'email', setEmailChange, validation.email, setCheckValidEmail)
             }
                //
             />
@@ -185,7 +185,7 @@ if (
             style={styles.input}
             secureTextEntry={togglePassword}
             onChangeText={(value) =>
-              changeInput(value, setState, setPasswordChange, 'password')
+              changeInput(value, setState, 'password', setPasswordChange)
             }
             />
             
@@ -202,7 +202,7 @@ if (
             style={styles.input}
             secureTextEntry={toggleRepeatingPassword}
             onChangeText={(value) =>
-             changeInput(value, setState, setconfirmPasChange, 'repeatingPassword')
+             changeInput(value, setState, 'repeatingPassword', setconfirmPasChange)
             }
           />
           <TouchableOpacity

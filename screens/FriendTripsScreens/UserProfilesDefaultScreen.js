@@ -20,8 +20,10 @@ import { useState, useEffect } from "react";
 
 import variables from "../../styles/utils/variables";
 import fonts from "../../styles/utils/mixins";
+import { validation } from "../../helpers/validation/validation";
 
 import handleToggle from "../../helpers/handleToggle";
+import changeInputForProfiles from "../../helpers/changeInputForProfiles";
 
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
@@ -51,14 +53,18 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     const [dataCheckLocation, setDataCheckLocation] = useState(false);
     const [dataCheckAbout, setDataCheckAbout] = useState(false);
 
+    const [checkValidEmail, setCheckValidEmail] = useState(true);
+    const [checkValidPhone, setCheckValidPhone] = useState(true);
+
+
     const [add, setAdd] = useState(false);
 
     const [localState, setLocalState] = useState(initialLocalState);
 
     const [modalVisible, setModalVisible] = useState(false);
 
-    const [camera, setCamera] = useState(false);
-    const [gallery, setGallery] = useState(false);
+    const [camera, setCamera] = useState(true);
+    const [gallery, setGallery] = useState(true);
 
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(CameraType.back);
@@ -78,6 +84,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             !dataCheckAbout
 
         ) {
+   
        console.log('localState:', localState) 
     }
 }
@@ -217,8 +224,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                             value={localState.name} 
                             editable={dataCheckName}
                             style={styles.input}
-                            onChangeText={(value) =>  setLocalState((prevState) => ({ ...prevState, name: value }))}
-                            
+                            onChangeText={(value) =>  changeInputForProfiles(value, setLocalState, 'name') }
                             />
                     </View>
                   
@@ -232,12 +238,18 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                    
                         <View style={{ flexDirection: 'row', }}>
                         <Text style={styles.textTitle}>Email:</Text>
+
+                         {!checkValidEmail && <View style={styles.stailsNotCorect}>
+                         {localState.email === '' ? <Text style={styles.stailsNotCorectText}>You have not entered an email</Text> :
+                        <Text style={styles.stailsNotCorectText}>You have entered an incorrect email</Text>}
+                        </View>}
                             <TextInput
                                 value={localState.email}
                                 editable={dataCheckEmail}
                                 style={styles.input}
-                                onChangeText={(value) =>  setLocalState((prevState) => ({ ...prevState, email: value }))}
-                            />
+                                onChangeText={(value) => changeInputForProfiles(value, setLocalState, 'email', validation.email, setCheckValidEmail) }
+                        />
+                        
                     </View>
                    
                                     
@@ -248,13 +260,17 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
                  <View style={{ flexDirection: 'row', }}>
                         <View style={{ flexDirection: 'row', }}>
-                            <Text style={styles.textTitle}>Phone:
-                            </Text>
+                        <Text style={styles.textTitle}>Phone:</Text>
+                         {!checkValidPhone && <View style={styles.stailsNotCorect}>
+                         {localState.phone === '' ? <Text style={styles.stailsNotCorectText}>You have not entered an phone</Text> :
+                        <Text style={styles.stailsNotCorectText}>Enter the phone number in the format  "+38 (067) 22-222-22"</Text>}
+                        </View>}
                             <TextInput
                                 value={localState.phone}
                                 editable={dataCheckPhone}
                                 style={styles.input}
-                                onChangeText={(value) =>  setLocalState((prevState) => ({ ...prevState, phone: value }))}
+                                onChangeText={(value) => changeInputForProfiles(value, setLocalState, 'phone', validation.phone, setCheckValidPhone)  }
+                            //setLocalState((prevState) => ({ ...prevState, phone: value }))
                             />
                     </View>
                                     
@@ -390,5 +406,18 @@ const styles = StyleSheet.create({
       color: variables.textColor,
         ...fonts(12, "500")   
     },
+    stailsNotCorect: {
+    position: "absolute",
+    top: 35,
+    left: 10,
+    zIndex: 1,
+    padding: 3,
+    // borderRadius: 5,
+    // backgroundColor: variables.lableButtonBlue,  
+  },
+  stailsNotCorectText: {
+    color: "red",
+   ...fonts(10, "400") 
+  },
 
 });

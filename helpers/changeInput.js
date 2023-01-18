@@ -1,13 +1,11 @@
-const changeInput = (value = '', setState, setChange, key, validObj, setCheckValid) => {
+const changeInput = (value = '', setState, key, setChange, validObj, setCheckValid, ) => {
  
-   if (value === '') {
-    setChange(false);
-  }
-  
   setChange(true);
   setState((prevState) => ({ ...prevState, [key]: value }));
   
- 
+   if (value === '') {
+    setChange(false);
+  }
    if (validObj) {
   
   if (validObj.re.test(value) ) {
