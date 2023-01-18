@@ -1,4 +1,4 @@
-const validation = {
+export const validation = {
     email: {
         re: /\S+@\S+\.\S+/,
     },
@@ -9,4 +9,4 @@ const validation = {
 
 };
 
-export default validation; 
+// export default validation; 

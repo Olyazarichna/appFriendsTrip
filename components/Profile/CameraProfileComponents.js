@@ -1,12 +1,14 @@
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image,} from 'react-native';
 
 import { Camera, CameraType } from 'expo-camera';
 
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, MaterialIcons, AntDesign } from '@expo/vector-icons';
 
 import handleToggle from '../../helpers/handleToggle';
+import variables from '../../styles/utils/variables';
+import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
-export default function CameraProlileComponents({
+export default function CameraProfileComponents({
   setCamera,
   setAdd,
   setSnap,
@@ -18,15 +20,20 @@ export default function CameraProlileComponents({
 }) {
   return (
     <View style={styles.addAvatar}>
-      <TouchableOpacity
-        onPress={() => {
-          handleToggle(setCamera);
-          setAdd(false);
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <Ionicons name="md-close-circle-outline" size={24} color="black" />
-      </TouchableOpacity>
+      <View style={{position: "absolute", top: 0, left: 25}}>
+          <ButtonRoundBlue
+                title={<AntDesign name="close" size={17} color={variables.lableButtonWhite} />}
+                width={40}
+                height={40}
+                marginTop={37}
+                click={
+                      () => {
+                      handleToggle(setCamera);
+                      setAdd(false);
+                      setModalVisible(!modalVisible);
+                      }}  
+                    />
+            </View>
 
       <Camera style={styles.camera} ref={setSnap} type={type}>
         <View style={styles.buttonContainer}>
@@ -45,31 +52,25 @@ export default function CameraProlileComponents({
           </TouchableOpacity>
         </View>
       </Camera>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  avatarConteiner: {
-    width: 150,
-    height: 150,
-    backgroundColor: 'red',
-    borderRadius: 10,
-  },
-  avatarButton: {
-    color: 'white',
-  },
+
   addAvatar: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: 'yellow',
+    backgroundColor: variables.lableButtonWhite,
   },
   camera: {
     width: '90%',
     height: 300,
+  
   },
   buttonContainer: {
     flex: 1,
