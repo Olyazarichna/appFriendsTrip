@@ -14,6 +14,7 @@ export default function ButtonRoundBlue({
   width,
   height,
   click,
+  style,
 }) {
   return (
     <LinearGradient
@@ -25,6 +26,7 @@ export default function ButtonRoundBlue({
         marginLeft: marginLeft,
         marginRight: marginRight,
         height: height,
+        ...style,
       }}
       colors={[variables.gradColorOne, variables.gradColorTwo]}
     >
