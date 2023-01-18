@@ -23,7 +23,7 @@ import handleToggle from "../../helpers/handleToggle";
 import changeInput from "../../helpers/changeInput";
 
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
-import validation from '../../helpers/validation/validation';
+import {validation} from '../../helpers/validation/validation';
 
 
 const initialState = {
@@ -62,6 +62,8 @@ export default function LoginScreen({ navigation }) {
     dispatch(logIn(state));
   };
 
+
+
   return (
     <View style={styles.container}>
 
@@ -95,8 +97,9 @@ export default function LoginScreen({ navigation }) {
             style={styles.input}
             onFocus={() => setIsShowKeyboard(true)}
             onChangeText={(value) =>
-              changeInput(value, setState, setEmailChange, 'email', validation.email, setCheckValidEmail)
+              changeInput(value, setState, 'email', setEmailChange,  validation.email, setCheckValidEmail)
             }
+          
           />
           <View style={styles.inputIconMail}>
             <Octicons name="mail" size={24} color={variables.inputColor} />
@@ -110,7 +113,7 @@ export default function LoginScreen({ navigation }) {
             secureTextEntry={togglePassword}
             onFocus={() =>  setIsShowKeyboard(true)}
             onChangeText={(value) =>
-              changeInput(value, setState, setPasswordChange, 'password')
+              changeInput(value, setState, 'password', setPasswordChange)
             }
           />
           <TouchableOpacity onPress={() => handleToggle(setTogglePassword)}>

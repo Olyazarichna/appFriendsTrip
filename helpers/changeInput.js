@@ -1,7 +1,10 @@
-const changeInput = (value = '', setState, setChange, key, validObj, setCheckValid) => {
+const changeInput = (value = '', setState, key, setChange, validObj, setCheckValid, ) => {
  
+  setChange(true);
+  setState((prevState) => ({ ...prevState, [key]: value }));
+  
    if (value === '') {
-  setChange(false);  
+    setChange(false);
   }
    if (validObj) {
   
@@ -13,9 +16,7 @@ const changeInput = (value = '', setState, setChange, key, validObj, setCheckVal
     }
   }
   
-  setChange(true);
-  setState((prevState) => ({ ...prevState, [key]: value }));
- 
+
 
 }
 

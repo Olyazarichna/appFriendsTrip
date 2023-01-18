@@ -1,25 +1,46 @@
 import { Text, TouchableOpacity } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign } from '@expo/vector-icons';
 
 import variables from '../../styles/utils/variables';
+import fonts from '../../styles/utils/mixins';
 
-export default function ButtonRoundBlue({ style, click }) {
+export default function ButtonRoundBlue({
+  title,
+  marginTop,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  width,
+  height,
+  click,
+}) {
   return (
     <LinearGradient
       style={{
-        width: 40,
-        height: 40,
-        borderRadius: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        ...style,
+        width: width,
+        borderRadius: 60,
+        marginTop: marginTop,
+        marginBottom: marginBottom,
+        marginLeft: marginLeft,
+        marginRight: marginRight,
+        height: height,
       }}
       colors={[variables.gradColorOne, variables.gradColorTwo]}
     >
-      <TouchableOpacity onPress={click}>
-        <AntDesign name="arrowright" size={24} color="white" />
+      <TouchableOpacity
+        style={{ marginBottom: 'auto', marginTop: 'auto' }}
+        onPress={click}
+      >
+        <Text
+          style={{
+            color: variables.lableButtonWhite,
+            textAlign: 'center',
+            ...fonts(15, '700'),
+          }}
+        >
+          {title}
+        </Text>
       </TouchableOpacity>
     </LinearGradient>
   );
