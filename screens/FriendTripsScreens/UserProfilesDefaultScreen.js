@@ -179,7 +179,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                     />
             </View>
             
-            <View style={{...styles.avatarContainer, marginTop: isShowKeyboard ? 200 : 0}}>
+            <View style={{...styles.avatarContainer, marginTop: isShowKeyboard ? 120 : 0}}>
                 <View>
                 <Image style={styles.avatarContainer}  source={{uri: localState.avatar}}></Image>
                 </View> 
@@ -425,5 +425,4 @@ const styles = StyleSheet.create({
     color: "red",
    ...fonts(10, "400") 
   },
-
 });
