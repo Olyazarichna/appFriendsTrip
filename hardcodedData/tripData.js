@@ -1,10 +1,21 @@
+import kalahari from '../assets/images/countries/kalahari.jpg';
+import sydney from '../assets/images/countries/sydney.jpg';
+import yusendi from '../assets/images/countries/yusendi.jpg';
+import user1 from '../assets/images/avatars/user1.jpg';
+import user2 from '../assets/images/avatars/user2.jpg';
+import user3 from '../assets/images/avatars/user3.jpg';
+
 export const tripData = [
   {
     id: 1,
     owner: 'Mary',
-    destination: 'Italy',
+    destination: 'Yusendi, Egypt',
     date: '20-01-2023',
     comment: 'Funny trip',
+    avatar: user1,
+    countryImg: yusendi,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 2,
@@ -12,6 +23,10 @@ export const tripData = [
     destination: 'Paris',
     date: '14-02-2023',
     comment: 'Eiffel tower',
+    avatar: user2,
+    countryImg: yusendi,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 3,
@@ -19,13 +34,21 @@ export const tripData = [
     destination: 'Cyprus',
     date: '03-04-2023',
     comment: 'Sea trip',
+    avatar: user3,
+    countryImg: yusendi,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 4,
     owner: 'Mary1',
-    destination: 'Italy',
+    destination: 'Yusendi, Egypt',
     date: '20-01-2023',
     comment: 'Funny trip',
+    avatar: user1,
+    countryImg: sydney,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 5,
@@ -33,6 +56,10 @@ export const tripData = [
     destination: 'Paris',
     date: '14-02-2023',
     comment: 'Eiffel tower',
+    avatar: user2,
+    countryImg: sydney,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 6,
@@ -40,13 +67,21 @@ export const tripData = [
     destination: 'Cyprus',
     date: '03-04-2023',
     comment: 'Sea trip',
+    avatar: user3,
+    countryImg: sydney,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 7,
     owner: 'Mary2',
-    destination: 'Italy',
+    destination: 'Yusendi, Egypt',
     date: '20-01-2023',
     comment: 'Funny trip',
+    avatar: user1,
+    countryImg: kalahari,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 8,
@@ -54,6 +89,10 @@ export const tripData = [
     destination: 'Paris',
     date: '14-02-2023',
     comment: 'Eiffel tower',
+    avatar: user2,
+    countryImg: kalahari,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 9,
@@ -61,13 +100,21 @@ export const tripData = [
     destination: 'Cyprus',
     date: '03-04-2023',
     comment: 'Sea trip',
+    avatar: user3,
+    countryImg: kalahari,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 10,
     owner: 'Mary3',
-    destination: 'Italy',
+    destination: 'Yusendi, Egypt',
     date: '20-01-2023',
     comment: 'Funny trip',
+    avatar: user1,
+    countryImg: yusendi,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 11,
@@ -75,6 +122,10 @@ export const tripData = [
     destination: 'Paris',
     date: '14-02-2023',
     comment: 'Eiffel tower',
+    avatar: user2,
+    countryImg: sydney,
+    rating: 4.4,
+    duration: '3-5',
   },
   {
     id: 12,
@@ -82,5 +133,9 @@ export const tripData = [
     destination: 'Cyprus',
     date: '03-04-2023',
     comment: 'Sea trip',
+    avatar: user3,
+    countryImg: kalahari,
+    rating: 4.4,
+    duration: '3-5',
   },
 ];
