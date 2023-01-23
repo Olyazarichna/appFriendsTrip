@@ -6,6 +6,7 @@ import {
     TextInput,
     TouchableOpacity,
     Modal,
+    Platform,
     Keyboard,
 } from "react-native";
 
@@ -167,213 +168,373 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     setModalVisible(!modalVisible);
     };
 
+    const IOS = Platform.OS === "ios";
+    
+
     return (
-           
-     <View style={styles.container}>
-        <View style={{position: "absolute", top: 0, left: 25}}>
+      <View style={styles.container}>
+        <View style={{ position: "absolute", top: 0, left: 25 }}>
           <ButtonRoundBlue
-                title={<AntDesign name="close" size={17} color={variables.lableButtonWhite} />}
-                width={40}
-                height={40}
-                marginTop={37}
-                click={handleSubmit}  
-                    />
-            </View>
-            
-            <View style={{...styles.avatarContainer, marginTop: isShowKeyboard ? 120 : 0}}>
-                <View>
-                <Image style={styles.avatarContainer}  source={{uri: localState.avatar}}></Image>
-                </View> 
-                <View style={{
-                    position: "absolute",
-                    top: 103,
-                    left: 80,
-                    zIndex: 1
-                }}>
-                 <ButtonRoundBlue
-                title={<AntDesign name="check" size={10} color={variables.lableButtonWhite} />}
-                width={21}
-                height={21}
-                click={() => handleToggle(setAdd)}
-                    />
-                </View>
-                {add &&
-                    <>
-                <View style={{position: "absolute", top: 90, left: 20 }}>
-                    <ButtonRoundBlue
-                    title={<EvilIcons name="image" size={18} color={variables.lableButtonWhite}  />}
-                    width={30}
-                    height={30}
-                    click={showGallery}
-                    /> 
-                   
-                </View>
-                <View style={{ position: "absolute", top: 65, left: 2 }}>
-                    <ButtonRoundBlue
-                    title={<AntDesign name="camerao" size={18} color={variables.lableButtonWhite}  />}
-                    width={30}
-                    height={30}
-                    click={showCamera}
-                    />   
-                </View>
-                </>}
+            title={
+              <AntDesign
+                name="close"
+                size={17}
+                color={variables.lableButtonWhite}
+              />
+            }
+            width={40}
+            height={40}
+            marginTop={37}
+            click={handleSubmit}
+          />
+        </View>
 
-            </View>
-
-            <View style={styles.dataConteiner}>
-                <View style={{ flexDirection: 'row', }}>
-                    
-                        <View style={{ flexDirection: 'row', }}>
-                        <Text style={styles.textTitle}>Name:</Text>
-                            <TextInput
-                            value={localState.name} 
-                            editable={dataCheckName}
-                            style={styles.input}
-                            onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
-                            onChangeText={(value) =>  changeInputForProfiles(value, setLocalState, 'name') }
-                            />
-                    </View>
-                  
-                                    
-                    <TouchableOpacity onPress={() => { handleToggle(setDataCheckName); handleInput()}} style={styles.checkButton}>
-                        <MaterialCommunityIcons name="pencil-outline" size={15} color={variables.textColor} />
-                    </TouchableOpacity>
-                </View>
-
-                  <View style={{ flexDirection: 'row', }}>
-                   
-                        <View style={{ flexDirection: 'row', }}>
-                        <Text style={styles.textTitle}>Email:</Text>
-
-                         {!checkValidEmail && <View style={styles.stailsNotCorect}>
-                         {localState.email === '' ? <Text style={styles.stailsNotCorectText}>You have not entered an email</Text> :
-                        <Text style={styles.stailsNotCorectText}>You have entered an incorrect email</Text>}
-                        </View>}
-                            <TextInput
-                                value={localState.email}
-                                editable={dataCheckEmail}
-                                style={styles.input}
-                                onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
-                                onChangeText={(value) => changeInputForProfiles(value, setLocalState, 'email', validation.email, setCheckValidEmail) }
-                        />
-                        
-                    </View>
-                   
-                                    
-                    <TouchableOpacity onPress={() => { handleToggle(setDataCheckEmail); handleInput()}} style={styles.checkButton}>
-                        <MaterialCommunityIcons name="pencil-outline" size={15} color={variables.textColor} />
-                    </TouchableOpacity>
-                </View>
-
-                 <View style={{ flexDirection: 'row', }}>
-                        <View style={{ flexDirection: 'row', }}>
-                        <Text style={styles.textTitle}>Phone:</Text>
-                         {!checkValidPhone && <View style={styles.stailsNotCorect}>
-                         {localState.phone === '' ? <Text style={styles.stailsNotCorectText}>You have not entered an phone</Text> :
-                        <Text style={styles.stailsNotCorectText}>Enter the phone number in the format  "+38 (067) 22-222-22"</Text>}
-                        </View>}
-                            <TextInput
-                                value={localState.phone}
-                                editable={dataCheckPhone}
-                                style={styles.input}
-                                onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
-                                onChangeText={(value) => changeInputForProfiles(value, setLocalState, 'phone', validation.phone, setCheckValidPhone)  }
-                            />
-                    </View>
-                                    
-                    <TouchableOpacity onPress={() => { handleToggle(setDataCheckPhone);  handleInput()}} style={styles.checkButton}>
-                        <MaterialCommunityIcons name="pencil-outline" size={15} color={variables.textColor} />
-                    </TouchableOpacity>
-                </View>
-
-                <View style={{ flexDirection: 'row', }}>
-                   
-                        <View style={{ flexDirection: 'row', }}>
-                            <Text style={styles.textTitle}>Locations:
-                            </Text>
-                            <TextInput
-                                value={localState.location}
-                                editable={dataCheckLocation}
-                                style={styles.input}
-                                onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
-                                onChangeText={(value) =>  setLocalState((prevState) => ({ ...prevState, location: value }))}
-                            />
-                    </View>
-                   
-                                    
-                    <TouchableOpacity onPress={() => { handleToggle(setDataCheckLocation);  handleInput()}} style={styles.checkButton}>
-                        <MaterialCommunityIcons name="pencil-outline" size={15} color={variables.textColor} />
-                    </TouchableOpacity>
-                </View>
-
-                 <View style={{ flexDirection: 'row', }}>
-                        <View>
-                            <Text style={styles.textTitle}>About me:
-                        </Text>
-                        <View>
-                            <TextInput
-                                value={localState.about}
-                                editable={dataCheckAbout}
-                                style={styles.aboutText}
-                                underlineColorAndroid="transparent"
-                                numberOfLines={3}
-                                multiline={true}
-                                onFocus={() => setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)}
-                                onChangeText={(value) =>  setLocalState((prevState) => ({ ...prevState, about: value }))}
-                        />
-                </View>
-                    </View>
-                                    
-                    <TouchableOpacity onPress={() => { handleToggle(setDataCheckAbout); handleInput()}} style={styles.checkButton}>
-                        <MaterialCommunityIcons name="pencil-outline" size={15} color={variables.textColor} />
-                    </TouchableOpacity>
-                </View>
-              
-            </View>
-            <View>              
-                   <ButtonLongBlue
-                    title="add trip"
-                    click={() => navigation.navigate("CreateTrip")}
+        <View
+          style={{
+            ...styles.avatarContainer,
+            marginTop: isShowKeyboard ? 120 : 0,
+          }}
+        >
+          <View>
+            <Image
+              style={styles.avatarContainer}
+              source={{ uri: localState.avatar }}
+            ></Image>
+          </View>
+          <View
+            style={{
+              position: "absolute",
+              top: 103,
+              left: 80,
+              zIndex: 1,
+            }}
+          >
+            <ButtonRoundBlue
+              title={
+                <AntDesign
+                  name="check"
+                  size={10}
+                  color={variables.lableButtonWhite}
                 />
+              }
+              width={21}
+              height={21}
+              click={() => handleToggle(setAdd)}
+            />
+          </View>
+          {add && (
+            <>
+              <View style={{ position: "absolute", top: 90, left: 20 }}>
+                <ButtonRoundBlue
+                  title={
+                    <EvilIcons
+                      name="image"
+                      size={18}
+                      color={variables.lableButtonWhite}
+                    />
+                  }
+                  width={30}
+                  height={30}
+                  click={showGallery}
+                />
+              </View>
+              <View style={{ position: "absolute", top: 65, left: 2 }}>
+                <ButtonRoundBlue
+                  title={
+                    <AntDesign
+                      name="camerao"
+                      size={18}
+                      color={variables.lableButtonWhite}
+                    />
+                  }
+                  width={30}
+                  height={30}
+                  click={showCamera}
+                />
+              </View>
+            </>
+          )}
+        </View>
+
+        {IOS && (
+          <View
+            style={{
+              marginTop: 9,
+              marginBottom: 26,
+            }}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                marginTop: 8,
+                ...fonts(16, "600"),
+                color: variables.titleColor,
+              }}
+            >
+              {initialLocalState.name}
+            </Text>
+            <Text
+              style={{
+                textAlign: "center",
+                ...fonts(14, "500"),
+                color: variables.textColor,
+              }}
+            >
+              {initialLocalState.location}
+            </Text>
+          </View>
+        )}
+
+        <View style={styles.dataConteiner}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.textTitle}>Name:</Text>
+              <TextInput
+                value={localState.name}
+                editable={dataCheckName}
+                style={styles.input}
+                onFocus={() =>
+                  setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                }
+                onChangeText={(value) =>
+                  changeInputForProfiles(value, setLocalState, "name")
+                }
+              />
             </View>
-            
-            <Modal
-    animationType="slide"
-    transparent={true}
-    visible={modalVisible}
-    onRequestClose={() => {
-    Alert.alert("Modal has been closed.");
-    setModalVisible(!modalVisible);
-        }}
-      >
-                <>
-    {gallery && (
-          
-        <GallertProfileComponents
-            setGallery={setGallery}
-            setAdd={setAdd}
-            setModalVisible={setModalVisible}
-            modalVisible={modalVisible}
-            pickImage={pickImage}
-            image={image}
-            takeGallery={takeGallery}/>
-                    )}  
-    {camera && (
-        <CameraProfileComponents
-            setCamera={setCamera}
-            setAdd={setAdd}
-            setSnap={setSnap}
-            setType={setType}
-            takePhoto={takePhoto}
-            photo={photo}
-            setModalVisible={setModalVisible}
-            modalVisible={modalVisible}
-            type={type} />
-                    )}
-                </>
-      </Modal>
+
+            <TouchableOpacity
+              onPress={() => {
+                handleToggle(setDataCheckName);
+                handleInput();
+              }}
+              style={styles.checkButton}
+            >
+              <MaterialCommunityIcons
+                name="pencil-outline"
+                size={15}
+                color={variables.textColor}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.textTitle}>Email:</Text>
+
+              {!checkValidEmail && (
+                <View style={styles.stailsNotCorect}>
+                  {localState.email === "" ? (
+                    <Text style={styles.stailsNotCorectText}>
+                      You have not entered an email
+                    </Text>
+                  ) : (
+                    <Text style={styles.stailsNotCorectText}>
+                      You have entered an incorrect email
+                    </Text>
+                  )}
                 </View>
-      
+              )}
+              <TextInput
+                value={localState.email}
+                editable={dataCheckEmail}
+                style={styles.input}
+                onFocus={() =>
+                  setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                }
+                onChangeText={(value) =>
+                  changeInputForProfiles(
+                    value,
+                    setLocalState,
+                    "email",
+                    validation.email,
+                    setCheckValidEmail
+                  )
+                }
+              />
+            </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                handleToggle(setDataCheckEmail);
+                handleInput();
+              }}
+              style={styles.checkButton}
+            >
+              <MaterialCommunityIcons
+                name="pencil-outline"
+                size={15}
+                color={variables.textColor}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.textTitle}>Phone:</Text>
+              {!checkValidPhone && (
+                <View style={styles.stailsNotCorect}>
+                  {localState.phone === "" ? (
+                    <Text style={styles.stailsNotCorectText}>
+                      You have not entered an phone
+                    </Text>
+                  ) : (
+                    <Text style={styles.stailsNotCorectText}>
+                      Enter the phone number in the format "+38 (067) 22-222-22"
+                    </Text>
+                  )}
+                </View>
+              )}
+              <TextInput
+                value={localState.phone}
+                editable={dataCheckPhone}
+                style={styles.input}
+                onFocus={() =>
+                  setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                }
+                onChangeText={(value) =>
+                  changeInputForProfiles(
+                    value,
+                    setLocalState,
+                    "phone",
+                    validation.phone,
+                    setCheckValidPhone
+                  )
+                }
+              />
+            </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                handleToggle(setDataCheckPhone);
+                handleInput();
+              }}
+              style={styles.checkButton}
+            >
+              <MaterialCommunityIcons
+                name="pencil-outline"
+                size={15}
+                color={variables.textColor}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.textTitle}>Locations:</Text>
+              <TextInput
+                value={localState.location}
+                editable={dataCheckLocation}
+                style={styles.input}
+                onFocus={() =>
+                  setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                }
+                onChangeText={(value) =>
+                  setLocalState((prevState) => ({
+                    ...prevState,
+                    location: value,
+                  }))
+                }
+              />
+            </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                handleToggle(setDataCheckLocation);
+                handleInput();
+              }}
+              style={styles.checkButton}
+            >
+              <MaterialCommunityIcons
+                name="pencil-outline"
+                size={15}
+                color={variables.textColor}
+              />
+            </TouchableOpacity>
+          </View>
+
+          <View style={{ flexDirection: "row" }}>
+            <View>
+              <Text style={styles.textTitle}>About me:</Text>
+              <View>
+                <TextInput
+                  value={localState.about}
+                  editable={dataCheckAbout}
+                  style={styles.aboutText}
+                  underlineColorAndroid="transparent"
+                  numberOfLines={3}
+                  multiline={true}
+                  onFocus={() =>
+                    setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                  }
+                  onChangeText={(value) =>
+                    setLocalState((prevState) => ({
+                      ...prevState,
+                      about: value,
+                    }))
+                  }
+                />
+              </View>
+            </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                handleToggle(setDataCheckAbout);
+                handleInput();
+              }}
+              style={styles.checkButton}
+            >
+              <MaterialCommunityIcons
+                name="pencil-outline"
+                size={15}
+                color={variables.textColor}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View>
+          <ButtonLongBlue
+            title="add trip"
+            click={() => navigation.navigate("CreateTrip")}
+          />
+        </View>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <>
+            {gallery && (
+              <GallertProfileComponents
+                setGallery={setGallery}
+                setAdd={setAdd}
+                setModalVisible={setModalVisible}
+                modalVisible={modalVisible}
+                pickImage={pickImage}
+                image={image}
+                takeGallery={takeGallery}
+              />
+            )}
+            {camera && (
+              <CameraProfileComponents
+                setCamera={setCamera}
+                setAdd={setAdd}
+                setSnap={setSnap}
+                setType={setType}
+                takePhoto={takePhoto}
+                photo={photo}
+                setModalVisible={setModalVisible}
+                modalVisible={modalVisible}
+                type={type}
+              />
+            )}
+          </>
+        </Modal>
+      </View>
     );
 }
 
