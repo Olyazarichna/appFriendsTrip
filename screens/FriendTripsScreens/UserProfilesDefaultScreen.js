@@ -32,7 +32,7 @@ import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 
 import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
-import GallertProfileComponents from '../../components/Profile/GallertProfileComponents';
+import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
 
 
 
@@ -172,7 +172,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     
 
     return (
-      <View style={styles.container}>
+      <View style={styles.container} onPress={() => Keyboard.dismiss()}>
         <View style={{ position: "absolute", top: 0, left: 25 }}>
           <ButtonRoundBlue
             title={
@@ -509,7 +509,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         >
           <>
             {gallery && (
-              <GallertProfileComponents
+              <GalleryProfileComponents
                 setGallery={setGallery}
                 setAdd={setAdd}
                 setModalVisible={setModalVisible}
