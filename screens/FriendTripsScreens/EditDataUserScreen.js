@@ -23,7 +23,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import handleToggle from '../../helpers/handleToggle';
 import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
-import GallertProfileComponents from '../../components/Profile/GallertProfileComponents';
+import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
 
 import { async } from '@firebase/util';
 
@@ -122,94 +122,114 @@ export default function EditDataUserScreen({ navigation }) {
     
     
     return (
-        <View style={styles.container}>
-            <View style={styles.avatarConteiner}>
-                <TouchableOpacity style={styles.addAvatarButton} onPress={() => handleToggle(setAdd)}>
-                    <Ionicons name="add-circle-outline" size={24} color="white" />   
-                </TouchableOpacity> 
-                {add && (
-                <View style={styles.avatarButtonConteiner}>
-                <TouchableOpacity onPress={showCamera}><Text style={styles.avatarButton}>Camera</Text></TouchableOpacity>
-                <TouchableOpacity onPress={showGallery}><Text style={styles.avatarButton}>Add from the gallery</Text></TouchableOpacity> 
-            </View>    
-               )} 
-                {state.avatar && (
-               <View style={{ borderColor:  '#fff', borderWidth: 1,  }}>
-                <Image style={{zIndex: 100, width: 150, height:150, borderRadius: 10}}  source={{uri: state.avatar}}></Image>
-               </View>      
-            )}
-               
-
-            </View>        
-
-<Modal
-    animationType="slide"
-    transparent={true}
-    visible={modalVisible}
-    onRequestClose={() => {
-    Alert.alert("Modal has been closed.");
-    setModalVisible(!modalVisible);
-        }}
-      >
-                <>
-    {gallery && (
-          
-        <GallertProfileComponents
-            setGallery={setGallery}
-            setAdd={setAdd}
-            setModalVisible={setModalVisible}
-            modalVisible={modalVisible}
-            pickImage={pickImage}
-            image={image}
-            takeGallery={takeGallery}/>
-                    )}  
-    {camera && (
-        <CameraProfileComponents
-            setCamera={setCamera}
-            setAdd={setAdd}
-            setSnap={setSnap}
-            setType={setType}
-            takePhoto={takePhoto}
-            photo={photo}
-            setModalVisible={setModalVisible}
-            modalVisible={modalVisible}
-            type={type} />
-                    )}
-                </>
-      </Modal>
-      
-            <View style={styles.form}>
-                <View>
-                  <Text>Name</Text>
-                  <TextInput
-                  value={state.name}
-                  style={styles.input}
-                  onChangeText={(value) =>
-                  setState((prevState) => ({ ...prevState, name: value }))}/>
-                </View>
-                <View>
-                  <Text>Email</Text>
-                  <TextInput
-                  value={state.email}
-                  style={styles.input}
-                  onChangeText={(value) =>
-                  setState((prevState) => ({ ...prevState, email: value }))}/>
-                </View>
-                <View>
-                  <Text>Phone</Text>
-                  <TextInput
-                  value={state.phone}
-                  style={styles.input}
-                  onChangeText={(value) =>
-                  setState((prevState) => ({ ...prevState, phone: value }))}/>
-                </View>
-
-                <TouchableOpacity onPress={handleSubmit}>
-                <Text>Edit</Text>
-                </TouchableOpacity>    
+      <View style={styles.container}>
+        <View style={styles.avatarConteiner}>
+          <TouchableOpacity
+            style={styles.addAvatarButton}
+            onPress={() => handleToggle(setAdd)}
+          >
+            <Ionicons name="add-circle-outline" size={24} color="white" />
+          </TouchableOpacity>
+          {add && (
+            <View style={styles.avatarButtonConteiner}>
+              <TouchableOpacity onPress={showCamera}>
+                <Text style={styles.avatarButton}>Camera</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={showGallery}>
+                <Text style={styles.avatarButton}>Add from the gallery</Text>
+              </TouchableOpacity>
             </View>
+          )}
+          {state.avatar && (
+            <View style={{ borderColor: "#fff", borderWidth: 1 }}>
+              <Image
+                style={{
+                  zIndex: 100,
+                  width: 150,
+                  height: 150,
+                  borderRadius: 10,
+                }}
+                source={{ uri: state.avatar }}
+              ></Image>
+            </View>
+          )}
         </View>
-    )
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <>
+            {gallery && (
+              <GalleryProfileComponents
+                setGallery={setGallery}
+                setAdd={setAdd}
+                setModalVisible={setModalVisible}
+                modalVisible={modalVisible}
+                pickImage={pickImage}
+                image={image}
+                takeGallery={takeGallery}
+              />
+            )}
+            {camera && (
+              <CameraProfileComponents
+                setCamera={setCamera}
+                setAdd={setAdd}
+                setSnap={setSnap}
+                setType={setType}
+                takePhoto={takePhoto}
+                photo={photo}
+                setModalVisible={setModalVisible}
+                modalVisible={modalVisible}
+                type={type}
+              />
+            )}
+          </>
+        </Modal>
+
+        <View style={styles.form}>
+          <View>
+            <Text>Name</Text>
+            <TextInput
+              value={state.name}
+              style={styles.input}
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, name: value }))
+              }
+            />
+          </View>
+          <View>
+            <Text>Email</Text>
+            <TextInput
+              value={state.email}
+              style={styles.input}
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, email: value }))
+              }
+            />
+          </View>
+          <View>
+            <Text>Phone</Text>
+            <TextInput
+              value={state.phone}
+              style={styles.input}
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, phone: value }))
+              }
+            />
+          </View>
+
+          <TouchableOpacity onPress={handleSubmit}>
+            <Text>Edit</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
 };
 
 const styles = StyleSheet.create({
