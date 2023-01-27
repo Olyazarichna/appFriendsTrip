@@ -14,12 +14,12 @@ import {
   Pressable,
 } from 'react-native';
 
-import ListTrip from '../../components/ListTrip/ListTrip';
+// import ListTrip from '../../components/ListTrip/ListTrip';
 
-import { tripData } from '../../hardcodedData/tripData';
+// import { tripData } from '../../hardcodedData/tripData';
 
 export default function HomeTrips() {
-  const intervals = tripData.length;
+  // const intervals = tripData.length;
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -33,7 +33,7 @@ export default function HomeTrips() {
         </Pressable>
       </View>
       <View style={styles.list}>
-        <ListTrip intervals={intervals} trips={tripData} />
+        {/* <ListTrip intervals={intervals} trips={tripData} /> */}
       </View>
     </View>
   );
