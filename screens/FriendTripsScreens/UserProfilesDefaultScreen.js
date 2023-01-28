@@ -23,7 +23,9 @@ import { useState, useEffect } from "react";
 
 import variables from "../../styles/utils/variables";
 import fonts from "../../styles/utils/mixins";
+import { UserProfilesDefaultScreenStyes } from '../../styles/stylesScreens/UserProfilesDefaultScreenStyes';
 import { validation } from "../../helpers/validation/validation";
+import { ScreenSettings } from "../../styles/utils/ScreenSettings";
 
 import handleToggle from "../../helpers/handleToggle";
 import changeInputForProfiles from "../../helpers/changeInputForProfiles";
@@ -172,7 +174,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     
 
     return (
-      <View style={styles.container} onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
         <View style={{ position: "absolute", top: 0, left: 25 }}>
           <ButtonRoundBlue
             title={
@@ -204,8 +206,8 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           <View
             style={{
               position: "absolute",
-              top: 103,
-              left: 80,
+              top: ScreenSettings.returnParams(103, 170),
+              left: ScreenSettings.returnParams(80, 145),
               zIndex: 1,
             }}
           >
@@ -213,42 +215,50 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               title={
                 <AntDesign
                   name="check"
-                  size={10}
+                  size={ScreenSettings.returnParams(10, 20)}
                   color={variables.lableButtonWhite}
                 />
               }
-              width={21}
-              height={21}
+              width={ScreenSettings.returnParams(21, 31)}
+              height={ScreenSettings.returnParams(21, 31)}
               click={() => handleToggle(setAdd)}
             />
           </View>
           {add && (
             <>
-              <View style={{ position: "absolute", top: 90, left: 20 }}>
+              <View style={{
+                position: "absolute",
+                top: ScreenSettings.returnParams(90, 150),
+                left: ScreenSettings.returnParams(20, 10)
+              }}>
                 <ButtonRoundBlue
                   title={
                     <EvilIcons
                       name="image"
-                      size={18}
+                      size={ScreenSettings.returnParams(18, 25)}
                       color={variables.lableButtonWhite}
                     />
                   }
-                  width={30}
-                  height={30}
+                  width={ScreenSettings.returnParams(30, 40)}
+                  height={ScreenSettings.returnParams(30, 40)}
                   click={showGallery}
                 />
               </View>
-              <View style={{ position: "absolute", top: 65, left: 2 }}>
+              <View style={{
+                position: "absolute",
+                top: ScreenSettings.returnParams(65, 110),
+                left: ScreenSettings.returnParams(2, -10)
+              }}>
                 <ButtonRoundBlue
                   title={
                     <AntDesign
                       name="camerao"
-                      size={18}
+                      size={ScreenSettings.returnParams(18, 22)}
                       color={variables.lableButtonWhite}
                     />
                   }
-                  width={30}
-                  height={30}
+                  width={ScreenSettings.returnParams(30, 40)}
+                  height={ScreenSettings.returnParams(30, 40)}
                   click={showCamera}
                 />
               </View>
@@ -286,7 +296,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         )}
 
         <View style={styles.dataConteiner}>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: ScreenSettings.returnParams(0, 10) }}>
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.textTitle}>Name:</Text>
               <TextInput
@@ -311,13 +321,13 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             >
               <MaterialCommunityIcons
                 name="pencil-outline"
-                size={15}
+                size={ScreenSettings.returnParams(15, 20)}
                 color={variables.textColor}
               />
             </TouchableOpacity>
           </View>
 
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: ScreenSettings.returnParams(0, 10) }}>
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.textTitle}>Email:</Text>
 
@@ -362,13 +372,13 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             >
               <MaterialCommunityIcons
                 name="pencil-outline"
-                size={15}
+                size={ScreenSettings.returnParams(15, 20)}
                 color={variables.textColor}
               />
             </TouchableOpacity>
           </View>
 
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: ScreenSettings.returnParams(0, 10) }}>
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.textTitle}>Phone:</Text>
               {!checkValidPhone && (
@@ -412,13 +422,13 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             >
               <MaterialCommunityIcons
                 name="pencil-outline"
-                size={15}
+                size={ScreenSettings.returnParams(15, 20)}
                 color={variables.textColor}
               />
             </TouchableOpacity>
           </View>
 
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", marginBottom: ScreenSettings.returnParams(0, 10) }}>
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.textTitle}>Locations:</Text>
               <TextInput
@@ -446,7 +456,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             >
               <MaterialCommunityIcons
                 name="pencil-outline"
-                size={15}
+                size={ScreenSettings.returnParams(15, 20)}
                 color={variables.textColor}
               />
             </TouchableOpacity>
@@ -485,7 +495,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             >
               <MaterialCommunityIcons
                 name="pencil-outline"
-                size={15}
+                size={ScreenSettings.returnParams(15, 20)}
                 color={variables.textColor}
               />
             </TouchableOpacity>
@@ -494,6 +504,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         <View>
           <ButtonLongBlue
             title="add trip"
+            marginTop={ScreenSettings.returnParams(0, 40)}
             click={() => navigation.navigate("CreateTrip")}
           />
         </View>
@@ -538,58 +549,5 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    avatarContainer: {
-        width: 120,
-        height: 124,
-        backgroundColor: "#E3E5E8",
-        borderRadius: 65,
-    },
-    dataConteiner: {
-        marginHorizontal: 25,
-        marginBottom: 50,
-    },
-    textTitle: {
-        marginTop: 19,
-        color: variables.titleColor,
-        ...fonts(14, "500")
-    },
-    text: {
-       color: variables.textColor,
-        ...fonts(12, "500") 
-    },
-   
-    input: {
-        marginTop: 14,
-        marginLeft: 5,
-        color: variables.textColor,
-        ...fonts(12, "500") 
-    },
-    checkButton: {
-        marginTop: 18,
-        marginLeft: "auto"
-    },
-    aboutText: {
-        width: 303,
-        marginTop: 7,
-      color: variables.textColor,
-        ...fonts(12, "500")   
-    },
-    stailsNotCorect: {
-    position: "absolute",
-    top: 35,
-    left: 10,
-    zIndex: 1,
-    padding: 3,  
-  },
-  stailsNotCorectText: {
-    color: "red",
-   ...fonts(10, "400") 
-  },
-});
+const styles = StyleSheet.create(UserProfilesDefaultScreenStyes);
+
