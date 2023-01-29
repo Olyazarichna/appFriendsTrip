@@ -7,7 +7,15 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useState } from 'react';
 export default function CreateTripScreen() {
+    const [country, setCountry] = useState(null);
+    const [city, setCity] = useState(null);
+    const [date, setDate] = useState(null);
+    const [duration, setDuration] = useState(null);
+    const [tripDetails, setTripDetails] = useState(null);
+    const [personDetails, setPersonDetails] = useState(null);
+
     const onChangeInput = () => {
         console.log('change input');
     }
@@ -26,8 +34,9 @@ export default function CreateTripScreen() {
                 <TextInput
                     style={styles.input}
                     onChangeText={onChangeInput}
-                    // value={text}
-                    placeholder="Franse,Paris"
+                    value={country}
+                    name={country}
+                    placeholder="France,Paris"
                 />
             </View>
             <View style={styles.formInput}>
