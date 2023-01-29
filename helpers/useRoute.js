@@ -1,4 +1,4 @@
-import { Text } from "react-native";
+import { Text, Platform } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
@@ -55,7 +55,10 @@ const useRoute = (isAuth) => {
       activeColor={variables.lableButtonBlue}
       inactiveColor="black"
       activeBackgroundColor={variables.lableButtonWhite}
-      barStyle={{ backgroundColor: variables.lableButtonWhite, height: 55 }}
+      barStyle={{
+        backgroundColor: variables.lableButtonWhite,
+        height: Platform.OS ? 65 : 55,
+      }}
     >
       <Tab.Screen
         name="Home"
