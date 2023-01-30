@@ -1,6 +1,8 @@
 import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 
 import { FontAwesome, Ionicons, AntDesign } from '@expo/vector-icons';
+import { ScreenSettings } from "../../styles/utils/ScreenSettings";
+import fonts from "../../styles/utils/mixins";
 
 import handleToggle from '../../helpers/handleToggle';
 import variables from '../../styles/utils/variables';
@@ -37,22 +39,33 @@ export default function GalleryProfileComponents({
         <View style={{ flexDirection: 'row', marginBottom: 10}}> 
           <View>
               <ButtonRoundBlue
-                title={<FontAwesome name="image" size={17} color={variables.lableButtonWhite} />}
-                width={40}
-                height={40}
-                // marginTop={37}
+                title={<FontAwesome name="image" size={ScreenSettings.returnParams(17, 20)} color={variables.lableButtonWhite} />}
+                width={ScreenSettings.returnParams(40, 60)}
+                height={ScreenSettings.returnParams(40, 60)}
+                marginRight={30}
               click={pickImage} />
-          <Text style={{color: variables.lableButtonBlue, marginLeft: "auto", marginRight: "auto"}}>Find</Text>
+            <Text style={{
+              color: variables.lableButtonBlue,
+              marginLeft: ScreenSettings.returnParams(10, 15),
+              marginTop: ScreenSettings.returnParams(0, 5),
+              marginRight: "auto",
+              ...fonts(ScreenSettings.returnParams(14, 18), "500")
+            }}>Find</Text>
           </View>
           <View>
           <ButtonRoundBlue
-                title={<AntDesign name="addfile" size={17} color={variables.lableButtonWhite} />}
-                width={40}
-            height={40}
-            marginLeft={10}
+                title={<AntDesign name="addfile" size={ScreenSettings.returnParams(17, 20)} color={variables.lableButtonWhite} />}
+                width={ScreenSettings.returnParams(40, 60)}
+                height={ScreenSettings.returnParams(40, 60)}
                 // marginTop={37}
               click={() => takeGallery(image)} />
-          <Text style={{color: variables.lableButtonBlue, marginLeft: "auto", marginRight: "auto"}}>Add</Text>
+            <Text style={{
+            color: variables.lableButtonBlue,
+              marginLeft: ScreenSettings.returnParams("auto", 15),
+              marginTop: ScreenSettings.returnParams(0, 5),
+              marginRight: "auto",
+              ...fonts(ScreenSettings.returnParams(14, 18), "500")
+          }}>Add</Text>
           </View>
                 </View>
         <View style={styles.avatarContainer}>
@@ -77,9 +90,9 @@ const styles = StyleSheet.create({
     backgroundColor: variables.lableButtonWhite,
   },
   avatarContainer: {
-        width: 150,
-        height: 150,
-        backgroundColor: "#E3E5E8",
-        borderRadius: 70,
+    width: ScreenSettings.returnParams(150, 250),
+    height: ScreenSettings.returnParams(150, 250),
+    backgroundColor: "#E3E5E8",
+    borderRadius: 120,
     },
 });
