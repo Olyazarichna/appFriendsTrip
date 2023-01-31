@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Image,} from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
 
 import { Ionicons, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { ScreenSettings } from "../../styles/utils/ScreenSettings";
 
 import handleToggle from '../../helpers/handleToggle';
 import variables from '../../styles/utils/variables';
@@ -37,18 +38,18 @@ export default function CameraProfileComponents({
 
       <Camera style={styles.camera} ref={setSnap} type={type}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
+          <TouchableOpacity style={{marginRight: 10}}
             onPress={() => {
               setType(
                 type === CameraType.back ? CameraType.front : CameraType.back
               );
             }}
           >
-            <Ionicons name="camera-reverse" size={24} color="#fff" />
+            <Ionicons name="camera-reverse" size={ScreenSettings.returnParams(24, 34)} color="#fff" />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={takePhoto}>
-            <MaterialIcons name="camera-alt" size={24} color="#fff" />
+            <MaterialIcons name="camera-alt" size={ScreenSettings.returnParams(24, 34)} color="#fff" />
           </TouchableOpacity>
         </View>
       </Camera>
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   },
   camera: {
     width: '90%',
-    height: 300,
+    height: ScreenSettings.returnParams(300, 600)
   
   },
   buttonContainer: {
