@@ -14,7 +14,7 @@ import {
 
 export default function SettingScreen() {
     return (
-    <View style={styles.container}>
+        <View style={styles.container}>  
          <Text>SettingScreen</Text>   
     </View>
 )
