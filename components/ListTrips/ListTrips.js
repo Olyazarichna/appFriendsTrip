@@ -1,8 +1,10 @@
 import { ScrollView, Text, View } from 'react-native';
 
-import ListTripItem from '../ListTripItem/ListTripItem';
+import TripItem from '../TripItem/TripItem';
 
-export default function ListTrip({ trips, intervals }) {
+export default function ListTrips({ trips }) {
+  const intervals = trips.length;
+
   return (
     <ScrollView
       style={{
@@ -18,7 +20,7 @@ export default function ListTrip({ trips, intervals }) {
     >
       {trips.length > 0 &&
         trips.map((trip) => {
-          return <ListTripItem data={trip} key={trip.id} />;
+          return <TripItem data={trip} key={trip.id} />;
         })}
     </ScrollView>
   );

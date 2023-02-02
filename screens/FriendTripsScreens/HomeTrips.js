@@ -1,16 +1,21 @@
-import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import ListTrip from '../../components/ListTrip/ListTrip';
-
-import { tripData } from '../../hardcodedData/tripData';
 import FilterIcon from '../../components/FilterIcon/FilterIcon';
+import ListTrips from '../../components/ListTrips/ListTrips';
+import ListCategories from '../../components/ListCategories/ListCategories';
+import tripData from '../../hardcodedData/tripData';
+import categories from '../../hardcodedData/tripCategories';
 
 export default function HomeTrips() {
-  const intervals = tripData.length;
-
   const handleFilterPress = () => {
     console.log('Open filter settings.');
   };
@@ -27,13 +32,16 @@ export default function HomeTrips() {
       </View>
       <View style={styles.search}>
         <View style={styles.searchContainer}>
-          <Pressable style={styles.searchIcon} onPress={handleSearchPress}>
+          <TouchableOpacity
+            style={styles.searchIcon}
+            onPress={handleSearchPress}
+          >
             <Ionicons
               name="ios-search"
               size={20}
               color={'rgba(28, 79, 165, 0.07)'}
             />
-          </Pressable>
+          </TouchableOpacity>
           <TextInput style={styles.searchInput} placeholder="Search Trip.." />
         </View>
         <LinearGradient
@@ -42,13 +50,19 @@ export default function HomeTrips() {
           end={{ x: 0.5, y: 0.5 }}
           colors={['rgb(69, 124, 247)', 'rgb(55, 90, 190)']}
         >
-          <Pressable style={styles.button} onPress={handleFilterPress}>
+          <TouchableOpacity style={styles.button} onPress={handleFilterPress}>
             <FilterIcon />
-          </Pressable>
+          </TouchableOpacity>
         </LinearGradient>
       </View>
       <View style={styles.list}>
-        <ListTrip intervals={intervals} trips={tripData} />
+        <Text style={styles.subTitle}>Categories</Text>
+        <View style={styles.categories}>
+          <ListCategories categories={categories} />
+        </View>
+      </View>
+      <View style={[styles.list, styles.trips]}>
+        <ListTrips trips={tripData} />
       </View>
     </View>
   );
@@ -102,6 +116,16 @@ const styles = StyleSheet.create({
     width: 64,
     // backgroundColor: 'transparent',
     // backgroundColor: 'linear-gradient(95.23deg, #457CF7 0%, #375ABE 100%)',
+  },
+  categories: {
+    marginTop: 24,
+  },
+  trips: {
+    marginTop: 20,
+  },
+  subTitle: {
+    fontSize: 16,
+    fontWeight: 600,
   },
   list: {
     marginTop: 20,

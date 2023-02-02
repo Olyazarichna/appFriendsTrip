@@ -14,7 +14,7 @@ import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
 const { width } = Dimensions.get('screen');
 
-export default function ListTripItem({ data }) {
+export default function TripItem({ data }) {
   const { id, owner, destination, avatar, countryImg, rating } = data;
 
   const handleFavoriteBtn = () => {
