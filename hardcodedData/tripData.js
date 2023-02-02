@@ -5,7 +5,7 @@ import user1 from '../assets/images/avatars/user1.jpg';
 import user2 from '../assets/images/avatars/user2.jpg';
 import user3 from '../assets/images/avatars/user3.jpg';
 
-export const tripData = [
+export default [
   {
     id: 1,
     owner: 'Mary',
