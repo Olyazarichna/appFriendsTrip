@@ -27,36 +27,34 @@ export default function TripItem({ data }) {
   };
 
   return (
-    <View>
-      <TouchableOpacity style={styles.container}>
-        <ImageBackground
-          source={countryImg}
-          resizeMode="cover"
-          style={styles.countryImg}
-        />
-        <TouchableOpacity style={styles.heart} onPress={handleFavoriteBtn}>
-          <Ionicons name="ios-heart" size={20} color="white" />
-        </TouchableOpacity>
-        <View style={styles.card}>
-          <Image style={styles.avatar} source={avatar} />
-          <View style={styles.ratingFlex}>
-            <AntDesign style={styles.star} name="star" size={15} color="gold" />
-            <Text style={styles.rating}>{rating}</Text>
-          </View>
-          <View style={styles.details}>
-            <View>
-              <Text style={styles.owner}>{owner}</Text>
-              <Text style={styles.destination}>{destination}</Text>
-            </View>
-            <ButtonRoundBlue
-              title={<AntDesign name="arrowright" size={20} color="white" />}
-              width={40}
-              height={40}
-              click={handleDetailsBtn}
-            />
-          </View>
-        </View>
+    <View style={styles.container}>
+      <ImageBackground
+        source={countryImg}
+        resizeMode="cover"
+        style={styles.countryImg}
+      />
+      <TouchableOpacity style={styles.heart} onPress={handleFavoriteBtn}>
+        <Ionicons name="ios-heart" size={20} color="white" />
       </TouchableOpacity>
+      <View style={styles.card}>
+        <Image style={styles.avatar} source={avatar} />
+        <View style={styles.ratingFlex}>
+          <AntDesign style={styles.star} name="star" size={15} color="gold" />
+          <Text style={styles.rating}>{rating}</Text>
+        </View>
+        <View style={styles.details}>
+          <View>
+            <Text style={styles.owner}>{owner}</Text>
+            <Text style={styles.destination}>{destination}</Text>
+          </View>
+          <ButtonRoundBlue
+            title={<AntDesign name="arrowright" size={20} color="white" />}
+            width={40}
+            height={40}
+            click={handleDetailsBtn}
+          />
+        </View>
+      </View>
     </View>
   );
 }
