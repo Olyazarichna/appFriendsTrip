@@ -35,7 +35,7 @@ export default function ButtonLongBlue({
                 style={{
                 paddingBottom: 20,
                 paddingTop: 20,
-                color: variables.lableButtonWhite,
+                color: variables.labelButtonWhite,
                 textAlign: "center",
                 ...fonts(15, "700")
                 }}>{title}</Text>

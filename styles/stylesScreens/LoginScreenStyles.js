@@ -7,7 +7,7 @@ export const LoginScreenStyles = {
   container: {
     width: '100%',
     flex: 1,
-    backgroundColor: variables.lableButtonWhite,
+    backgroundColor: variables.labelButtonWhite,
     justifyContent: 'center',
   },
   buttonHome: {
@@ -59,7 +59,7 @@ export const LoginScreenStyles = {
     marginTop: ScreenSettings.returnParams(20, 40),
     marginBottom: ScreenSettings.returnParams(10, 15),
     borderWidth: 1,
-    borderColor: variables.lableButtonWhite,
+    borderColor: variables.labelButtonWhite,
     height: ScreenSettings.returnParams(63, 80),
     paddingLeft: 60,
     borderRadius: 20,

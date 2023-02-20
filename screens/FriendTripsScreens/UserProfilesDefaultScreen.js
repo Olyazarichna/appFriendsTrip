@@ -18,7 +18,7 @@ import { Camera, CameraType } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 
 import { logOut } from "../../redux/auth/authOperations";
-import { getAuth } from "firebase/auth";
+import { ActionCodeURL, getAuth } from "firebase/auth";
 import { useState, useEffect } from "react";
 
 import variables from "../../styles/utils/variables";
@@ -35,6 +35,7 @@ import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 
 import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
 import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
+
 
 
 
@@ -95,7 +96,8 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                 setIsShowKeyboard(false);  
         }
        
-       console.log('localState:', localState) 
+          console.log('localState:', localState);
+       
     }
 }
  
@@ -181,7 +183,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               <AntDesign
                 name="close"
                 size={17}
-                color={variables.lableButtonWhite}
+                color={variables.labelButtonWhite}
               />
             }
             width={40}
@@ -216,7 +218,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                 <AntDesign
                   name="check"
                   size={ScreenSettings.returnParams(10, 20)}
-                  color={variables.lableButtonWhite}
+                  color={variables.labelButtonWhite}
                 />
               }
               width={ScreenSettings.returnParams(21, 31)}
@@ -236,7 +238,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                     <EvilIcons
                       name="image"
                       size={ScreenSettings.returnParams(18, 25)}
-                      color={variables.lableButtonWhite}
+                      color={variables.labelButtonWhite}
                     />
                   }
                   width={ScreenSettings.returnParams(30, 40)}
@@ -254,7 +256,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                     <AntDesign
                       name="camerao"
                       size={ScreenSettings.returnParams(18, 22)}
-                      color={variables.lableButtonWhite}
+                      color={variables.labelButtonWhite}
                     />
                   }
                   width={ScreenSettings.returnParams(30, 40)}
@@ -505,7 +507,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           <ButtonLongBlue
             title="add trip"
             marginTop={ScreenSettings.returnParams(0, 40)}
-            click={() => navigation.navigate("CreateTrip")}
+            click={() =>  navigation.navigate("CreateTrip")}
           />
         </View>
 
@@ -551,3 +553,4 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
 const styles = StyleSheet.create(UserProfilesDefaultScreenStyes);
 
+/// navigation.navigate("CreateTrip",)

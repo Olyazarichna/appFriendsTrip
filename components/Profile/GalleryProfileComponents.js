@@ -22,7 +22,7 @@ export default function GalleryProfileComponents({
      
       <View style={{position: "absolute", top: 0, left: 25}}>
           <ButtonRoundBlue
-                title={<AntDesign name="close" size={17} color={variables.lableButtonWhite} />}
+                title={<AntDesign name="close" size={17} color={variables.labelButtonWhite} />}
                 width={40}
                 height={40}
                 marginTop={37}
@@ -39,13 +39,13 @@ export default function GalleryProfileComponents({
         <View style={{ flexDirection: 'row', marginBottom: 10}}> 
           <View>
               <ButtonRoundBlue
-                title={<FontAwesome name="image" size={ScreenSettings.returnParams(17, 20)} color={variables.lableButtonWhite} />}
+                title={<FontAwesome name="image" size={ScreenSettings.returnParams(17, 20)} color={variables.labelButtonWhite} />}
                 width={ScreenSettings.returnParams(40, 60)}
                 height={ScreenSettings.returnParams(40, 60)}
                 marginRight={30}
               click={pickImage} />
             <Text style={{
-              color: variables.lableButtonBlue,
+              color: variables.labelButtonBlue,
               marginLeft: ScreenSettings.returnParams(10, 15),
               marginTop: ScreenSettings.returnParams(0, 5),
               marginRight: "auto",
@@ -54,13 +54,13 @@ export default function GalleryProfileComponents({
           </View>
           <View>
           <ButtonRoundBlue
-                title={<AntDesign name="addfile" size={ScreenSettings.returnParams(17, 20)} color={variables.lableButtonWhite} />}
+                title={<AntDesign name="addfile" size={ScreenSettings.returnParams(17, 20)} color={variables.labelButtonWhite} />}
                 width={ScreenSettings.returnParams(40, 60)}
                 height={ScreenSettings.returnParams(40, 60)}
                 // marginTop={37}
               click={() => takeGallery(image)} />
             <Text style={{
-            color: variables.lableButtonBlue,
+            color: variables.labelButtonBlue,
               marginLeft: ScreenSettings.returnParams("auto", 15),
               marginTop: ScreenSettings.returnParams(0, 5),
               marginRight: "auto",
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: variables.lableButtonWhite,
+    backgroundColor: variables.labelButtonWhite,
   },
   avatarContainer: {
     width: ScreenSettings.returnParams(150, 250),

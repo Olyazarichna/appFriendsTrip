@@ -14,18 +14,18 @@ export const HomeScreenStyles = {
     },
     leble: {
         marginTop: 170,
-        color: variables.lableButtonWhite,
+        color: variables.labelButtonWhite,
         textAlign: "center", 
         ...fonts(ScreenSettings.returnParams(20, 30), "600", 1.2) 
     },
     title: {
         marginTop: 25,
-        color: variables.lableButtonWhite,
+        color: variables.labelButtonWhite,
        textAlign: "center",
     ...fonts(ScreenSettings.returnParams(24, 34), "600", 1.2)   
     },
     text: {
-        color: variables.lableButtonWhite,
+        color: variables.labelButtonWhite,
         marginTop: 20,
         textAlign: "center",
         ...fonts(ScreenSettings.returnParams(14, 20), "500", 1.3)

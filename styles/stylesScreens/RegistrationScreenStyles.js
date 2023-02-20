@@ -39,7 +39,7 @@ container: {
     marginTop: ScreenSettings.returnParams(20, 40),
     marginBottom: ScreenSettings.returnParams(10, 15),
     borderWidth: 1,
-    borderColor: variables.lableButtonWhite,
+    borderColor: variables.labelButtonWhite,
     height: ScreenSettings.returnParams(63, 80),
     paddingLeft: 60,
     borderRadius: 20,
@@ -75,7 +75,7 @@ inputLableOff: {
   },
   hint: {
     marginLeft: "auto",
-    color: variables.lableButtonBlue,
+    color: variables.labelButtonBlue,
   ...fonts(ScreenSettings.returnParams(10, 13), "400"),
   },
   error: {
