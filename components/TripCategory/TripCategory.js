@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
   active: {
     color: '#fff',
     fontSize: 14,
-    fontWeight: 500,
+    fontWeight: "500",
   },
   inactive: {
     backgroundColor: '#fff',
     color: '#BEC0C7',
     fontSize: 14,
-    fontWeight: 500,
+    fontWeight: "500",
   },
 });

@@ -23,7 +23,7 @@ import HomeTrips from "../screens/FriendTripsScreens/HomeTrips";
 import CreateTripScreen from "../screens/FriendTripsScreens/CreateTripScreen";
 import InboxScreen from "../screens/FriendTripsScreens/InboxScreen";
 import FavoriteScreen from "../screens/FriendTripsScreens/FavoriteScreen";
-import UsereProfilesScreen from "../screens/FriendTripsScreens/UserProfilesScreen";
+import UserProfilesScreen from "../screens/FriendTripsScreens/UserProfilesScreen";
 import SettingScreen from "../screens/FriendTripsScreens/SettingScreen";
 
 import variables from "../styles/utils/variables";
@@ -55,11 +55,11 @@ const useRoute = (isAuth) => {
   }
   return (
     <Tab.Navigator
-      activeColor={variables.lableButtonBlue}
+      activeColor={variables.labelButtonBlue}
       inactiveColor="black"
-      activeBackgroundColor={variables.lableButtonWhite}
+      activeBackgroundColor={variables.labelButtonWhite}
       barStyle={{
-        backgroundColor: variables.lableButtonWhite,
+        backgroundColor: variables.labelButtonWhite,
         height: Platform.OS ? 65 : ScreenSettings.returnParams(55, 90),
       }}
     >
@@ -121,7 +121,7 @@ const useRoute = (isAuth) => {
               <FontAwesome name="inbox" size={ScreenSettings.returnParams(18, 22)} color={color} />
               <Text
                 style={{
-                 width: 50,
+                  width: 50,
                   textAlign: "center",
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
@@ -145,7 +145,7 @@ const useRoute = (isAuth) => {
               <Ionicons name="heart" size={ScreenSettings.returnParams(18, 22)} color={color} />
               <Text
                 style={{
-                 width: 50,
+                  width: 60,
                   textAlign: "center",
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
@@ -161,19 +161,19 @@ const useRoute = (isAuth) => {
       />
       <Tab.Screen
         name="Account"
-        component={UsereProfilesScreen}
+        component={UserProfilesScreen}
         options={{
           tabBarLabel: false,
           tabBarIcon: ({ color }) => (
             <>
               <MaterialCommunityIcons
                 name="account-settings"
-               size={ScreenSettings.returnParams(18, 22)}
+                size={ScreenSettings.returnParams(18, 22)}
                 color={color}
               />
               <Text
                 style={{
-                  width: 50,
+                  width: 60,
                   textAlign: "center",
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
@@ -191,13 +191,13 @@ const useRoute = (isAuth) => {
         name="Setting"
         component={SettingScreen}
         options={{
-        tabBarLabel: false,
+          tabBarLabel: false,
           tabBarIcon: ({ color }) => (
             <>
               <FontAwesome5 name="cog" size={ScreenSettings.returnParams(18, 22)} color={color} />
               <Text
                 style={{
-                 width: 50,
+                  width: 60,
                   textAlign: "center",
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",

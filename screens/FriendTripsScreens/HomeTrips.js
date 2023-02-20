@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 16,
-    fontWeight: 600,
+    fontWeight: "600",
   },
   list: {
     marginTop: 20,
