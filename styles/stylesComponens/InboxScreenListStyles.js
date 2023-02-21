@@ -26,6 +26,11 @@ title: {
     ...fonts(16, "500"),
     color: variables.titleColor
     
+    },
+    lastMessage: {
+    marginLeft: 10,
+    ...fonts(12, "500"),
+    color: variables.titleColor
     }
 };
 
