@@ -23,7 +23,7 @@ export default function CameraProfileComponents({
     <View style={styles.addAvatar}>
       <View style={{position: "absolute", top: 0, left: 25}}>
           <ButtonRoundBlue
-                title={<AntDesign name="close" size={17} color={variables.lableButtonWhite} />}
+                title={<AntDesign name="close" size={17} color={variables.labelButtonWhite} />}
                 width={40}
                 height={40}
                 marginTop={37}
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: variables.lableButtonWhite,
+    backgroundColor: variables.labelButtonWhite,
   },
   camera: {
     width: '90%',

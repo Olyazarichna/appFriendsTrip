@@ -22,8 +22,8 @@ export default function ButtonLongWhite({
                 width: 325,
                 borderRadius: 20,
                 borderWidth: 1,
-                borderColor: variables.lableButtonBlue,
-                backgroundColor: variables.lableButtonWhite,
+                borderColor: variables.labelButtonBlue,
+                backgroundColor: variables.labelButtonWhite,
                 marginTop: marginTop,
                 marginBottom: marginBottom,
                 marginLeft: marginLeft,
@@ -34,7 +34,7 @@ export default function ButtonLongWhite({
                 style={{
                 paddingBottom: 19.5,
                 paddingTop: 19.5,
-                color: variables.lableButtonBlue,
+                color: variables.labelButtonBlue,
                 textAlign: "center",
                 ...fonts(15, "700")
                 }}>{title}</Text>

@@ -228,7 +228,7 @@ export default function LoginScreen({ navigation }) {
         style={styles.buttonHome}
         onPress={() => navigation.navigate("Home")}
       >
-        <Ionicons name="md-home" size={24} color={variables.lableButtonBlue} />
+        <Ionicons name="md-home" size={24} color={variables.labelButtonBlue} />
       </TouchableOpacity>
     </View>
   );
