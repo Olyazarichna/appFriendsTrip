@@ -6,27 +6,27 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Constants from 'expo-constants';
-import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+// import { Ionicons } from '@expo/vector-icons';
+// import { LinearGradient } from 'expo-linear-gradient';
 
-import FilterIcon from '../../components/FilterIcon/FilterIcon';
-import ListTrips from '../../components/ListTrips/ListTrips';
-import ListCategories from '../../components/ListCategories/ListCategories';
-import tripData from '../../hardcodedData/tripData';
-import categories from '../../hardcodedData/tripCategories';
+// import FilterIcon from '../../components/FilterIcon/FilterIcon';
+// import ListTrips from '../../components/ListTrips/ListTrips';
+// import ListCategories from '../../components/ListCategories/ListCategories';
+// import tripData from '../../hardcodedData/tripData';
+// import categories from '../../hardcodedData/tripCategories';
 
 export default function HomeTrips() {
-  const handleFilterPress = () => {
-    console.log('Open filter settings.');
-  };
+  // const handleFilterPress = () => {
+  //   console.log('Open filter settings.');
+  // };
 
-  const handleSearchPress = () => {
-    console.log('Send search query.');
-  };
+  // const handleSearchPress = () => {
+  //   console.log('Send search query.');
+  // };
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <Text style={styles.title}>Find your trip</Text>
         <Text style={styles.title}>TRVL</Text>
       </View>
@@ -63,7 +63,7 @@ export default function HomeTrips() {
       </View>
       <View style={[styles.list, styles.trips]}>
         <ListTrips trips={tripData} />
-      </View>
+      </View> */}
     </View>
   );
 }

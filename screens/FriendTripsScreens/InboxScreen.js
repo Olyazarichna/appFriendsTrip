@@ -2,6 +2,7 @@ import {
     StyleSheet,
     Text,
     View,
+     ScrollView,
     Image,
     TextInput,
     TouchableOpacity,
@@ -12,10 +13,25 @@ import {
     ImageBackground
 } from 'react-native';
 
+import InboxScreenList from "../../components/InboxScreen/InboxScreenList";
+
+import { data } from "../../helpers/data";
+
 export default function InboxScreen() {
     return (
-    <View style={styles.container}>
-         <Text>InboxScreen</Text>   
+        <View style={styles.container}>  
+    <ScrollView>       
+            <View>
+                {data.map(({id, name, avatar}) => 
+                    <InboxScreenList
+                        key={id}
+                        name={name}
+                        avatar={avatar}
+                    />      
+                    )}
+            
+                </View>
+            </ScrollView> 
     </View>
 )
 };
@@ -23,8 +39,7 @@ export default function InboxScreen() {
 const styles = StyleSheet.create({
 container: {
 flex: 1,
- backgroundColor: '#fff',
- alignItems: 'center',
- justifyContent: 'center',
+backgroundColor: '#fff',
+justifyContent: 'flex-start',
  },
  });
