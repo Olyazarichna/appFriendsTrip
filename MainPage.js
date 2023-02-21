@@ -5,6 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import useRoute from "./helpers/useRoute";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserProfile } from './redux/auth/authReducer';
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 export default function MainPage() {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -21,8 +22,10 @@ export default function MainPage() {
         }
     });
     return (
-        <SafeAreaProvider>
-            <NavigationContainer>{useRoute(isLoggedIn)}</NavigationContainer>
-        </SafeAreaProvider>
+        <RootSiblingParent>
+            <SafeAreaProvider>
+                <NavigationContainer>{useRoute(isLoggedIn)}</NavigationContainer>
+            </SafeAreaProvider>
+        </RootSiblingParent>
     );
 }
