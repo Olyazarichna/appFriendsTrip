@@ -11,10 +11,10 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 import { addTrip } from "../../services/addTrip";
 
-import Toast from 'react-native-root-toast';
+import Toast from "react-native-root-toast";
 
 export default function CreateTripScreen() {
     const [place, setPlace] = useState("");
@@ -34,9 +34,9 @@ export default function CreateTripScreen() {
             personDetails,
         };
         if (!trip.place.trim() || !trip.date.trim() || !trip.duration.trim()) {
-            Toast.show('Place, date and duration fields are required', {
+            Toast.show("Place, date and duration fields are required", {
                 duration: Toast.durations.LONG,
-            })
+            });
             return;
         }
         addTrip({ trip });
@@ -69,14 +69,18 @@ export default function CreateTripScreen() {
             <View style={styles.container}>
                 <Text style={styles.heading}>Add Your Trip</Text>
                 <View style={styles.imgContainer}>
-                    {!image ? <TouchableOpacity style={styles.btnImage} onPress={addImages}>
-                        <Text style={styles.textImg}>+</Text>
-                    </TouchableOpacity> : <Image source={{ uri: image }} style={styles.img} />}
+                    {!image ? (
+                        <TouchableOpacity style={styles.btnImage} onPress={addImages}>
+                            <Text style={styles.textImg}>+</Text>
+                        </TouchableOpacity>
+                    ) : (
+                        <Image source={{ uri: image }} style={styles.img} />
+                    )}
                 </View>
                 <KeyboardAvoidingView
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                >
                     <View style={styles.form}>
-
                         <View style={styles.formInput}>
                             <Text style={styles.title}>Place Name</Text>
                             <TextInput
@@ -117,7 +121,10 @@ export default function CreateTripScreen() {
                             />
                         </View>
                         <View style={styles.formInput}>
-                            <Text style={styles.title}> Add more details about companion</Text>
+                            <Text style={styles.title}>
+                                {" "}
+                                Add more details about companion
+                            </Text>
                             <TextInput
                                 style={styles.textArea}
                                 onChangeText={(text) => setPersonDetails(text)}
@@ -135,13 +142,10 @@ export default function CreateTripScreen() {
                                 <Text style={styles.textBtn}>Add My Trip</Text>
                             </TouchableOpacity>
                         </LinearGradient>
-
                     </View>
                 </KeyboardAvoidingView>
-            </View >
-        </TouchableWithoutFeedback >
-
-
+            </View>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -170,17 +174,15 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(214, 214, 214, 1)",
         borderRadius: 30,
         borderWidth: 0,
-
     },
     img: {
-        width: '100%',
-        height: '100%',
+        width: "100%",
+        height: "100%",
         borderRadius: 4,
         borderWidth: 1,
         objectFit: "cover",
         borderRadius: 30,
         borderWidth: 0,
-
     },
     textImg: {
         fontSize: 100,
