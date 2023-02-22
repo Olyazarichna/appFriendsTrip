@@ -8,6 +8,7 @@ import { ScreenSettings } from "../../styles/utils/ScreenSettings";
 import handleToggle from '../../helpers/handleToggle';
 import variables from '../../styles/utils/variables';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
+import { CameraProfileComponentsStyles } from "../../styles/stylesComponents/CameraProfileComponentsStyles";
 
 export default function CameraProfileComponents({
   setCamera,
@@ -21,7 +22,7 @@ export default function CameraProfileComponents({
 }) {
   return (
     <View style={styles.addAvatar}>
-      <View style={{position: "absolute", top: 0, left: 25}}>
+      <View style={styles.closeButton}>
           <ButtonRoundBlue
                 title={<AntDesign name="close" size={17} color={variables.labelButtonWhite} />}
                 width={40}
@@ -35,7 +36,6 @@ export default function CameraProfileComponents({
                       }}  
                     />
             </View>
-
       <Camera style={styles.camera} ref={setSnap} type={type}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={{marginRight: 10}}
@@ -58,25 +58,4 @@ export default function CameraProfileComponents({
   );
 }
 
-const styles = StyleSheet.create({
-
-  addAvatar: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    backgroundColor: variables.labelButtonWhite,
-  },
-  camera: {
-    width: '90%',
-    height: ScreenSettings.returnParams(300, 600)
-  
-  },
-  buttonContainer: {
-    flex: 1,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    margin: 20,
-  },
-});
+const styles = StyleSheet.create(CameraProfileComponentsStyles);
