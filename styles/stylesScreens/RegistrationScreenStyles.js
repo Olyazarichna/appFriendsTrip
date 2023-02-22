@@ -3,14 +3,14 @@ import fonts from "../utils/mixins";
 import { ScreenSettings } from '../utils/ScreenSettings';
 
 export const RegistrationScreenStyles = {
-container: {
+  container: {
     width: "100%",
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "center",
-   
+
   },
-   buttonHome: {
+  buttonHome: {
     position: "absolute",
     top: 35,
     left: 15
@@ -32,7 +32,7 @@ container: {
     ...fonts(ScreenSettings.returnParams(14, 18), "500"),
   },
   form: {
-     marginHorizontal: ScreenSettings.returnParams(24, 60),
+    marginHorizontal: ScreenSettings.returnParams(24, 60),
     marginTop: 5
   },
   input: {
@@ -43,66 +43,66 @@ container: {
     height: ScreenSettings.returnParams(63, 80),
     paddingLeft: 60,
     borderRadius: 20,
-      backgroundColor: "rgba(249, 250, 251, 1)",
+    backgroundColor: "rgba(249, 250, 251, 1)",
     ...fonts(ScreenSettings.returnParams(14, 18), "500"),
     color: variables.inputColor
   },
   inputIcon: {
     position: "absolute",
     top: ScreenSettings.returnParams(35, 65),
-    left: 22,  
+    left: 22,
   },
   inputIconPass: {
-   position: "absolute",
-   top: ScreenSettings.returnParams(-55, -70),
-   left: 22,
+    position: "absolute",
+    top: ScreenSettings.returnParams(-55, -70),
+    left: 22,
   },
-  inputLable: {
-  position: "absolute",
-  zIndex: 1,
-  top: ScreenSettings.returnParams(38, 70),
-  left: 60,
-  color: variables.inputColor,
-  ...fonts(ScreenSettings.returnParams(14, 18), "500")
+  inputLabel: {
+    position: "absolute",
+    zIndex: 1,
+    top: ScreenSettings.returnParams(38, 70),
+    left: 60,
+    color: variables.inputColor,
+    ...fonts(ScreenSettings.returnParams(14, 18), "500")
   },
-inputLableOff: {
-  position: "absolute",
-  zIndex: 1,
-  top: ScreenSettings.returnParams(0, -5),
-  left: 10,
-   color: variables.inputColor,
-   ...fonts(ScreenSettings.returnParams(14, 18), "500")
+  inputLabelOff: {
+    position: "absolute",
+    zIndex: 1,
+    top: ScreenSettings.returnParams(0, -5),
+    left: 10,
+    color: variables.inputColor,
+    ...fonts(ScreenSettings.returnParams(14, 18), "500")
   },
   hint: {
     marginLeft: "auto",
     color: variables.labelButtonBlue,
-  ...fonts(ScreenSettings.returnParams(10, 13), "400"),
+    ...fonts(ScreenSettings.returnParams(10, 13), "400"),
   },
   error: {
     color: "red",
   },
   textRegister: {
-  width: ScreenSettings.returnParams(230, 300),
-  marginTop: ScreenSettings.returnParams(14, 20),
-  marginLeft: "auto",
-  marginRight: "auto",
-  textAlign: "center",
-  color: variables.textColor,
-  marginBottom: 10,
-  ...fonts(ScreenSettings.returnParams(14, 18), "400"),
+    width: ScreenSettings.returnParams(230, 300),
+    marginTop: ScreenSettings.returnParams(14, 20),
+    marginLeft: "auto",
+    marginRight: "auto",
+    textAlign: "center",
+    color: variables.textColor,
+    marginBottom: 10,
+    ...fonts(ScreenSettings.returnParams(14, 18), "400"),
   },
   buttonRegister: {
-    color: "#375ABE",  
+    color: "#375ABE",
   },
-   stailsNotCorect: {
+  stylesNotCorrect: {
     position: "absolute",
     top: ScreenSettings.returnParams(60, 120),
     left: 50,
     zIndex: 1,
-    padding: 3,  
+    padding: 3,
   },
-  stailsNotCorectText: {
+  stylesNotCorrectText: {
     color: "red",
-   ...fonts(ScreenSettings.returnParams(10, 13), "400"),
+    ...fonts(ScreenSettings.returnParams(10, 13), "400"),
   }
 }

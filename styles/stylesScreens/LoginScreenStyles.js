@@ -30,7 +30,7 @@ export const LoginScreenStyles = {
     color: variables.textColor,
     ...fonts(ScreenSettings.returnParams(14, 18), '500'),
   },
-  socialButtonsConteiner: {
+  socialButtonsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginLeft: 'auto',
@@ -77,7 +77,7 @@ export const LoginScreenStyles = {
     top: ScreenSettings.returnParams(35, 65),
     left: 22,
   },
-  inputLable: {
+  inputLabel: {
     position: 'absolute',
     zIndex: 1,
     top: ScreenSettings.returnParams(38, 70),
@@ -85,7 +85,7 @@ export const LoginScreenStyles = {
     color: variables.inputColor,
     ...fonts(ScreenSettings.returnParams(14, 18), '500'),
   },
-  inputLableOff: {
+  inputLabelOff: {
     position: 'absolute',
     zIndex: 1,
     top: ScreenSettings.returnParams(0, -5),
@@ -113,14 +113,14 @@ export const LoginScreenStyles = {
   buttonRegister: {
     color: '#375ABE',
   },
-  stailsNotCorect: {
+  stylesNotCorrect: {
     position: 'absolute',
     top: ScreenSettings.returnParams(60, 120),
     left: 50,
     zIndex: 1,
     padding: 3,
   },
-  stailsNotCorectText: {
+  stylesNotCorrectText: {
     color: 'red',
     ...fonts(ScreenSettings.returnParams(10, 13), '400'),
   },

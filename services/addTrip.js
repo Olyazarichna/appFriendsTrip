@@ -17,8 +17,6 @@ export const addTrip = async ({ trip }) => {
             owner: "fQIjCia5jHbyRdVql25pvUyrYt53",
         });
         Toast.show('Trip successfully added');
-        // console.log("docRef", docRef);
-        // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);
     }

@@ -56,7 +56,7 @@ export default function LoginScreen({ navigation }) {
     setEmailChange(false);
     Keyboard.dismiss();
     setIsShowKeyboard(false);
-    console.log("Login succesfull", state);
+    console.log("Login successful", state);
     dispatch(logIn(state));
   };
 
@@ -78,7 +78,7 @@ export default function LoginScreen({ navigation }) {
             Welcome back. We're glad to see you again
           </Text>
 
-          <View style={styles.socialButtonsConteiner}>
+          <View style={styles.socialButtonsContainer}>
             <TouchableOpacity style={styles.socialButtons}>
               <Image source={require("../../assets/images/google.png")} />
               <Text style={styles.socialButtonsText}>
@@ -133,19 +133,19 @@ export default function LoginScreen({ navigation }) {
           <View style={styles.form}>
             <View>
               {emailChange ? (
-                <Text style={styles.inputLableOff}>Your Email</Text>
+                <Text style={styles.inputLabelOff}>Your Email</Text>
               ) : (
-                <Text style={styles.inputLable}>Your Email</Text>
+                <Text style={styles.inputLabel}>Your Email</Text>
               )}
 
               {errorEmail && (
-                <View style={styles.stailsNotCorect}>
+                <View style={styles.stylesNotCorrect}>
                   {state.email === "" ? (
-                    <Text style={styles.stailsNotCorectText}>
+                    <Text style={styles.stylesNotCorrectText}>
                       You have not entered an email
                     </Text>
                   ) : (
-                    <Text style={styles.stailsNotCorectText}>
+                    <Text style={styles.stylesNotCorrectText}>
                       You have entered an incorrect email
                     </Text>
                   )}
@@ -177,9 +177,9 @@ export default function LoginScreen({ navigation }) {
             </View>
             <View>
               {passwordChange ? (
-                <Text style={styles.inputLableOff}>Password</Text>
+                <Text style={styles.inputLabelOff}>Password</Text>
               ) : (
-                <Text style={styles.inputLable}>Password</Text>
+                <Text style={styles.inputLabel}>Password</Text>
               )}
               <TextInput
                 value={state.password}
@@ -200,7 +200,7 @@ export default function LoginScreen({ navigation }) {
                     />
                   ) : (
                     <Feather
-                      name="unlock"
+                      name="Unlock"
                       size={ScreenSettings.returnParams(24, 29)}
                       color={variables.inputColor}
                     />
@@ -214,7 +214,7 @@ export default function LoginScreen({ navigation }) {
             </TouchableOpacity>
 
             <ButtonLongBlue
-              title={"SING IN"}
+              title={"SIGN IN"}
               marginTop={10}
               marginBottom={10}
               marginLeft={"auto"}
@@ -224,7 +224,7 @@ export default function LoginScreen({ navigation }) {
 
             <Text style={styles.textRegister}>
               By using the application, you agree to the
-              <Text style={styles.buttonRegister}>Terms & Conditons.</Text>
+              <Text style={styles.buttonRegister}>Terms & Conditions.</Text>
             </Text>
 
             <Text style={styles.textRegister}>

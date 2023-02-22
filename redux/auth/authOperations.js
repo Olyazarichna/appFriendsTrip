@@ -11,7 +11,7 @@ export const signUp =
 
             try {
                 const user = await createUserWithEmailAndPassword(auth, email, password);
-
+                console.log('user', user)
                 dispatch(updateUserProfile({ userId: user.uid, name: user.displayName }));
             } catch (error) {
                 console.log("error", error.message);

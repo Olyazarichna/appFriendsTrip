@@ -35,8 +35,6 @@ const initialState = {
 };
 
 export default function RegistrationScreen({ navigation }) {
-  const redaxState = useSelector((state) => state);
-  console.log("redaxState", redaxState);
   const [state, setState] = useState(initialState);
   console.log("state", state);
   const [passwordError, setPasswordError] = useState(false);
@@ -47,7 +45,7 @@ export default function RegistrationScreen({ navigation }) {
   const [phoneChange, setPhoneChange] = useState(false);
   const [emailChange, setEmailChange] = useState(false);
   const [passwordChange, setPasswordChange] = useState(false);
-  const [confirmPasChange, setСonfirmPasChange] = useState(false);
+  const [repeatPas, setRepeatPas] = useState(false);
 
   const [checkValidPhone, setCheckValidPhone] = useState(false);
   const [errorPhone, setErrorPhone] = useState(false);
@@ -97,14 +95,12 @@ export default function RegistrationScreen({ navigation }) {
     setPhoneChange(false);
     setEmailChange(false);
     setPasswordChange(false);
-    setСonfirmPasChange(false);
+    setRepeatPas(false);
 
-    console.log("state", state);
     setPasswordError(false);
     dispatch(signUp(state));
     setState(initialState);
     Keyboard.dismiss();
-    console.log("stateHandleSubmit", state);
   };
 
   return (
@@ -121,9 +117,9 @@ export default function RegistrationScreen({ navigation }) {
             <View style={styles.form}>
               <View>
                 {loginChange ? (
-                  <Text style={styles.inputLableOff}>Name</Text>
+                  <Text style={styles.inputLabelOff}>Name</Text>
                 ) : (
-                  <Text style={styles.inputLable}>Name</Text>
+                  <Text style={styles.inputLabel}>Name</Text>
                 )}
                 <TextInput
                   value={state.login}
@@ -142,19 +138,19 @@ export default function RegistrationScreen({ navigation }) {
               </View>
               <View>
                 {phoneChange ? (
-                  <Text style={styles.inputLableOff}>Phone</Text>
+                  <Text style={styles.inputLabelOff}>Phone</Text>
                 ) : (
-                  <Text style={styles.inputLable}>Phone</Text>
+                  <Text style={styles.inputLabel}>Phone</Text>
                 )}
 
                 {errorPhone && (
-                  <View style={styles.stailsNotCorect}>
+                  <View style={styles.stylesNotCorrect}>
                     {state.phone === "" ? (
-                      <Text style={styles.stailsNotCorectText}>
+                      <Text style={styles.stylesNotCorrectText}>
                         You have not entered an phone
                       </Text>
                     ) : (
-                      <Text style={styles.stailsNotCorectText}>
+                      <Text style={styles.stylesNotCorrectText}>
                         Enter the phone number in the format "+38 (067)
                         22-222-22"
                       </Text>
@@ -175,9 +171,7 @@ export default function RegistrationScreen({ navigation }) {
                       validation.phone,
                       setCheckValidPhone
                     )
-                  }
-                //
-                />
+                  } />
                 <View style={styles.inputIcon}>
                   <Feather
                     name="phone"
@@ -191,19 +185,19 @@ export default function RegistrationScreen({ navigation }) {
               </View>
               <View>
                 {emailChange ? (
-                  <Text style={styles.inputLableOff}>Your Email</Text>
+                  <Text style={styles.inputLabelOff}>Your Email</Text>
                 ) : (
-                  <Text style={styles.inputLable}>Your Email</Text>
+                  <Text style={styles.inputLabel}>Your Email</Text>
                 )}
 
                 {errorEmail && (
-                  <View style={styles.stailsNotCorect}>
+                  <View style={styles.stylesNotCorrect}>
                     {state.email === "" ? (
-                      <Text style={styles.stailsNotCorectText}>
+                      <Text style={styles.stylesNotCorrectText}>
                         You have not entered an email
                       </Text>
                     ) : (
-                      <Text style={styles.stailsNotCorectText}>
+                      <Text style={styles.stylesNotCorrectText}>
                         You have entered an incorrect email
                       </Text>
                     )}
@@ -237,9 +231,9 @@ export default function RegistrationScreen({ navigation }) {
 
               <View>
                 {passwordChange ? (
-                  <Text style={styles.inputLableOff}>Password</Text>
+                  <Text style={styles.inputLabelOff}>Password</Text>
                 ) : (
-                  <Text style={styles.inputLable}>Password</Text>
+                  <Text style={styles.inputLabel}>Password</Text>
                 )}
                 <TextInput
                   value={state.password}
@@ -271,10 +265,10 @@ export default function RegistrationScreen({ navigation }) {
                 </TouchableOpacity>
               </View>
               <View>
-                {confirmPasChange ? (
-                  <Text style={styles.inputLableOff}>Confirm Password</Text>
+                {repeatPas ? (
+                  <Text style={styles.inputLabelOff}>Confirm Password</Text>
                 ) : (
-                  <Text style={styles.inputLable}>Confirm Password</Text>
+                  <Text style={styles.inputLabel}>Confirm Password</Text>
                 )}
                 <TextInput
                   value={state.repeatingPassword}
@@ -285,7 +279,7 @@ export default function RegistrationScreen({ navigation }) {
                       value,
                       setState,
                       "repeatingPassword",
-                      setconfirmPasChange
+                      setRepeatPas
                     )
                   }
                 />
@@ -324,7 +318,7 @@ export default function RegistrationScreen({ navigation }) {
             </View>
             <Text style={styles.textRegister}>
               By using the application, you agree to the
-              <Text style={styles.buttonRegister}>Terms & Conditons.</Text>
+              <Text style={styles.buttonRegister}>Terms & Conditions.</Text>
             </Text>
             <Text style={styles.textRegister}>
               Already have an account?

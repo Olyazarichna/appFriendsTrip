@@ -4,7 +4,7 @@ import { ScreenSettings } from '../utils/ScreenSettings';
 
 
 export const UserProfilesDefaultScreenStyes = {
-container: {
+    container: {
         flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
@@ -17,7 +17,7 @@ container: {
         backgroundColor: "#E3E5E8",
         borderRadius: ScreenSettings.returnParams(65, 100),
     },
-    dataConteiner: {
+    dataContainer: {
         width: ScreenSettings.returnParams(300, 600),
         marginBottom: 50,
     },
@@ -26,9 +26,9 @@ container: {
         color: variables.titleColor,
         ...fonts(ScreenSettings.returnParams(14, 18), "500")
     },
-   
+
     input: {
-         marginTop: ScreenSettings.returnParams(14, 16),
+        marginTop: ScreenSettings.returnParams(14, 16),
         marginLeft: 5,
         color: variables.textColor,
         ...fonts(ScreenSettings.returnParams(12, 16), "500")
@@ -40,19 +40,19 @@ container: {
     aboutText: {
         width: 303,
         marginTop: 7,
-      color: variables.textColor,
-         ...fonts(ScreenSettings.returnParams(12, 16), "500")   
+        color: variables.textColor,
+        ...fonts(ScreenSettings.returnParams(12, 16), "500")
     },
-    stailsNotCorect: {
-    position: "absolute",
-    top: ScreenSettings.returnParams(35, 40),
-    left: 10,
-    zIndex: 1,
-    padding: 3,  
-  },
-  stailsNotCorectText: {
-    color: "red",
+    stylesNotCorrect: {
+        position: "absolute",
+        top: ScreenSettings.returnParams(35, 40),
+        left: 10,
+        zIndex: 1,
+        padding: 3,
+    },
+    stylesNotCorrectText: {
+        color: "red",
 
-      ...fonts(ScreenSettings.returnParams(10, 12), "400") 
-  },
+        ...fonts(ScreenSettings.returnParams(10, 12), "400")
+    },
 }
