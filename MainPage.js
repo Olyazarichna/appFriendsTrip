@@ -1,4 +1,3 @@
-
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -13,6 +12,7 @@ export default function MainPage() {
     const auth = getAuth();
 
     onAuthStateChanged(auth, (user) => {
+        console.log('user', user)
         if (user) {
             dispatch(updateUserProfile({ name: user.displayName, email: user.email, phone: user.phoneNumber }))
             // setUser(user);

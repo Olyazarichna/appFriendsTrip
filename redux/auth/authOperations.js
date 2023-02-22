@@ -11,7 +11,7 @@ export const signUp =
 
             try {
                 const user = await createUserWithEmailAndPassword(auth, email, password);
-                console.log('user', user)
+                console.log('userRegistration', user)
                 dispatch(updateUserProfile({ userId: user.uid, name: user.displayName }));
             } catch (error) {
                 console.log("error", error.message);
@@ -23,6 +23,7 @@ export const logIn =
         async (dispatch, getState) => {
             try {
                 const signIn = await signInWithEmailAndPassword(auth, email, password);
+                console.log('s', signIn)
                 dispatch(updateUserProfile())
 
             } catch (error) {

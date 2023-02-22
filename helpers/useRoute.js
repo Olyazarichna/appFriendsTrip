@@ -10,10 +10,10 @@ import {
   FontAwesome5,
 } from "@expo/vector-icons";
 
-import { ScreenSettings } from '../styles/utils/ScreenSettings';
+import { ScreenSettings } from "../styles/utils/ScreenSettings";
 import fonts from "../styles/utils/mixins";
 
-// auth scrins
+// auth screens
 import RegistrationScreen from "../screens/auth/RegistrationScreen";
 import LoginScreen from "../screens/auth/LoginScreen";
 import Home from "../screens/auth/Home";
@@ -70,7 +70,11 @@ const useRoute = (isAuth) => {
           tabBarLabel: false,
           tabBarIcon: ({ color }) => (
             <>
-              <Ionicons name="home" size={ScreenSettings.returnParams(18, 22)} color={color} />
+              <Ionicons
+                name="home"
+                size={ScreenSettings.returnParams(18, 22)}
+                color={color}
+              />
               <Text
                 style={{
                   width: 50,
@@ -78,7 +82,7 @@ const useRoute = (isAuth) => {
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
                   marginTop: 2,
-                  color: color
+                  color: color,
                 }}
               >
                 Home
@@ -94,7 +98,11 @@ const useRoute = (isAuth) => {
           tabBarLabel: false,
           tabBarIcon: ({ color }) => (
             <>
-              <AntDesign name="plus" size={ScreenSettings.returnParams(18, 22)} color={color} />
+              <AntDesign
+                name="plus"
+                size={ScreenSettings.returnParams(18, 22)}
+                color={color}
+              />
               <Text
                 style={{
                   width: 50,
@@ -102,7 +110,7 @@ const useRoute = (isAuth) => {
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
                   marginTop: 2,
-                  color: color
+                  color: color,
                 }}
               >
                 My trip
@@ -118,7 +126,11 @@ const useRoute = (isAuth) => {
           tabBarLabel: false,
           tabBarIcon: ({ color }) => (
             <>
-              <FontAwesome name="inbox" size={ScreenSettings.returnParams(18, 22)} color={color} />
+              <FontAwesome
+                name="inbox"
+                size={ScreenSettings.returnParams(18, 22)}
+                color={color}
+              />
               <Text
                 style={{
                   width: 50,
@@ -126,7 +138,7 @@ const useRoute = (isAuth) => {
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
                   marginTop: 2,
-                  color: color
+                  color: color,
                 }}
               >
                 Inbox
@@ -142,7 +154,11 @@ const useRoute = (isAuth) => {
           tabBarLabel: false,
           tabBarIcon: ({ color }) => (
             <>
-              <Ionicons name="heart" size={ScreenSettings.returnParams(18, 22)} color={color} />
+              <Ionicons
+                name="heart"
+                size={ScreenSettings.returnParams(18, 22)}
+                color={color}
+              />
               <Text
                 style={{
                   width: 60,
@@ -150,7 +166,7 @@ const useRoute = (isAuth) => {
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
                   marginTop: 2,
-                  color: color
+                  color: color,
                 }}
               >
                 Favorite
@@ -178,7 +194,7 @@ const useRoute = (isAuth) => {
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
                   marginTop: 2,
-                  color: color
+                  color: color,
                 }}
               >
                 Account
@@ -194,7 +210,11 @@ const useRoute = (isAuth) => {
           tabBarLabel: false,
           tabBarIcon: ({ color }) => (
             <>
-              <FontAwesome5 name="cog" size={ScreenSettings.returnParams(18, 22)} color={color} />
+              <FontAwesome5
+                name="cog"
+                size={ScreenSettings.returnParams(18, 22)}
+                color={color}
+              />
               <Text
                 style={{
                   width: 60,
@@ -202,7 +222,7 @@ const useRoute = (isAuth) => {
                   ...fonts(ScreenSettings.returnParams(10, 15), "500"),
                   fontWeight: "500",
                   marginTop: 2,
-                  color: color
+                  color: color,
                 }}
               >
                 Setting
