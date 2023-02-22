@@ -52,7 +52,7 @@ export default function RegistrationScreen({ navigation }) {
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
 
-  const [errorMassage, setErrorMassage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ export default function RegistrationScreen({ navigation }) {
       password === "" &&
       repeatingPassword === ""
     ) {
-      setErrorMassage("all fields must be filled");
+      setErrorMessage("all fields must be filled");
       return;
     }
 

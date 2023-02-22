@@ -1,9 +1,8 @@
-import fonts from '../utils/mixins';
-import variables from '../utils/variables';
-import { ScreenSettings } from '../utils/ScreenSettings';
+import fonts from "../utils/mixins";
+import variables from "../utils/variables";
 
 export const MessageElStyles = {
-    containerMy: {
+  containerMy: {
     width: "95%",
     marginTop: 20,
     marginBottom: 20,
@@ -11,26 +10,21 @@ export const MessageElStyles = {
     padding: 15,
     borderRadius: 20,
     backgroundColor: variables.labelButtonBlue,
-    
-    },
-    containerYou: {
+  },
+  containerYou: {
     width: "95%",
     marginHorizontal: 10,
     padding: 15,
     borderRadius: 20,
     backgroundColor: variables.titleColor,
-    
-    },
-    massage: {
+  },
+  message: {
     ...fonts(14, "500"),
-      color: variables.labelButtonWhite  
-    },
-    data: {
+    color: variables.labelButtonWhite,
+  },
+  data: {
     ...fonts(12, "500"),
-        color: variables.labelButtonWhite,
-        marginTop: 5,
-    },
-
-
-
-}
+    color: variables.labelButtonWhite,
+    marginTop: 5,
+  },
+};

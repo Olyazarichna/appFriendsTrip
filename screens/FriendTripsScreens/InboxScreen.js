@@ -3,15 +3,8 @@ import {
     Text,
     View,
     ScrollView,
-     Modal,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    Platform,
-    KeyboardAvoidingView,
-    TouchableWithoutFeedback,
-    Keyboard,
-    ImageBackground
+    Modal,
+
 } from 'react-native';
 
 import { useState } from 'react';
@@ -26,46 +19,45 @@ import { data } from "../../helpers/data";
 export default function InboxScreen() {
     const [chat, setChat] = useState(false);
     const [user, setUser] = useState({});
-
-const showModal = (id) => {
-const dataId = data?.filter(item => item.id === id);
- setUser(dataId);
-    handleToggle(setChat);
-}
+    console.log('u', user)
+    const showModal = (id) => {
+        const dataId = data?.filter(item => item.id === id);
+        setUser(dataId);
+        handleToggle(setChat);
+    }
 
     return (
         <View style={styles.container}>
-      <ScrollView>       
-            <View>
-                {data.map(({id, name, avatar}) => 
-                    <InboxScreenList
-                        click={showModal}
-                        key={id}
-                        id={id}
-                        name={name}
-                        avatar={avatar}
-                    />      
+            <ScrollView>
+                <View>
+                    {data.map(({ id, name, avatar }) =>
+                        <InboxScreenList
+                            click={showModal}
+                            key={id}
+                            id={id}
+                            name={name}
+                            avatar={avatar}
+                        />
                     )}
-            
+
                 </View>
-            </ScrollView> 
+            </ScrollView>
             <Modal
-          animationType="slide"
-          transparent={true}
-          visible={chat}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-          }}
+                animationType="slide"
+                transparent={true}
+                visible={chat}
+                onRequestClose={() => {
+                    Alert.alert("Modal has been closed.");
+                    setModalVisible(!modalVisible);
+                }}
             ><Messages
-            setChat={setChat}
-            user={user}
+                    setChat={setChat}
+                    user={user}
                 />
-            
+
             </Modal>
-    </View>
-)
+        </View>
+    )
 };
 
 const styles = StyleSheet.create(InboxScreenStyles);
- 
