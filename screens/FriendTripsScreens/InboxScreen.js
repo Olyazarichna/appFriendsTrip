@@ -19,6 +19,7 @@ import { useState } from 'react';
 import InboxScreenList from "../../components/InboxScreen/InboxScreenList";
 import Messages from "../../components/InboxScreen/Messages/Messages";
 import handleToggle from "../../helpers/handleToggle";
+import { InboxScreenStyles } from "../../styles/stylesScreens/InboxScreenStyles";
 
 import { data } from "../../helpers/data";
 
@@ -30,8 +31,6 @@ const showModal = (id) => {
 const dataId = data?.filter(item => item.id === id);
  setUser(dataId);
     handleToggle(setChat);
-    // console.log(user);
-    // console.log(chat)
 }
 
     return (
@@ -68,23 +67,5 @@ const dataId = data?.filter(item => item.id === id);
 )
 };
 
-const styles = StyleSheet.create({
-container: {
-flex: 1,
-backgroundColor: '#fff',
-justifyContent: 'flex-start',
- },
-});
+const styles = StyleSheet.create(InboxScreenStyles);
  
-  {/* <ScrollView>       
-            <View>
-                {data.map(({id, name, avatar}) => 
-                    <InboxScreenList
-                        key={id}
-                        name={name}
-                        avatar={avatar}
-                    />      
-                    )}
-            
-                </View>
-            </ScrollView>  */}

@@ -3,7 +3,7 @@ import variables from '../utils/variables';
 import { ScreenSettings } from '../utils/ScreenSettings';
 
 export const MessageElStyles = {
-    conteinerMy: {
+    containerMy: {
     width: "95%",
     marginTop: 20,
     marginBottom: 20,
@@ -13,7 +13,7 @@ export const MessageElStyles = {
     backgroundColor: variables.labelButtonBlue,
     
     },
-    conteinerYou: {
+    containerYou: {
     width: "95%",
     marginHorizontal: 10,
     padding: 15,

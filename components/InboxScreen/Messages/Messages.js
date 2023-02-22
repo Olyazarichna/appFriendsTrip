@@ -18,7 +18,7 @@ import { Feather, AntDesign } from '@expo/vector-icons';
 
 import { data } from "../../../helpers/data";
 import variables from '../../../styles/utils/variables';
-import { MessagesStyles } from "../../../styles/stylesComponens/MessagesStyles";
+import { MessagesStyles } from "../../../styles/stylesComponents/MessagesStyles";
 import ButtonRoundBlue from "../../Buttons/ButtonRoundBlue";
 import MessageEl from "./MessageEl";
 
@@ -26,7 +26,7 @@ export default function Messages({ setChat, user }) {
     console.log(user[0].masseges)
     const conteiyerMasseges = user[0].masseges;
      return (
-         <View style={styles.conteiner}>
+         <View style={styles.container}>
              <LinearGradient
               style={styles.header}  
              colors={[variables.gradColorOne, variables.gradColorTwo]}

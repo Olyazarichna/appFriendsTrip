@@ -2,7 +2,7 @@ import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 
 import { FontAwesome, Ionicons, AntDesign } from '@expo/vector-icons';
 import { ScreenSettings } from "../../styles/utils/ScreenSettings";
-import fonts from "../../styles/utils/mixins";
+import { GalleryProfileComponentsStyles } from "../../styles/stylesComponents/GalleryProfileComponentsStyles";
 
 import handleToggle from '../../helpers/handleToggle';
 import variables from '../../styles/utils/variables';
@@ -20,7 +20,7 @@ export default function GalleryProfileComponents({
   return (
     <View style={styles.addAvatar}>
      
-      <View style={{position: "absolute", top: 0, left: 25}}>
+      <View style={styles.closeButton}>
           <ButtonRoundBlue
                 title={<AntDesign name="close" size={17} color={variables.labelButtonWhite} />}
                 width={40}
@@ -33,39 +33,25 @@ export default function GalleryProfileComponents({
                  setModalVisible(!modalVisible);
                  }} />
             </View>
-
-      
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <View style={{ flexDirection: 'row', marginBottom: 10}}> 
+      <View style={styles.galleryContainer}>
+        <View style={styles.buttonsContainer}> 
           <View>
               <ButtonRoundBlue
-                title={<FontAwesome name="image" size={ScreenSettings.returnParams(17, 20)} color={variables.labelButtonWhite} />}
-                width={ScreenSettings.returnParams(40, 60)}
-                height={ScreenSettings.returnParams(40, 60)}
-                marginRight={30}
+              title={<FontAwesome name="image" size={ScreenSettings.returnParams(17, 20)}
+              color={variables.labelButtonWhite} />}
+              width={ScreenSettings.returnParams(40, 60)}
+              height={ScreenSettings.returnParams(40, 60)}
+              marginRight={30}
               click={pickImage} />
-            <Text style={{
-              color: variables.labelButtonBlue,
-              marginLeft: ScreenSettings.returnParams(10, 15),
-              marginTop: ScreenSettings.returnParams(0, 5),
-              marginRight: "auto",
-              ...fonts(ScreenSettings.returnParams(14, 18), "500")
-            }}>Find</Text>
+            <Text style={styles.buttonTitleFind}>Find</Text>
           </View>
           <View>
           <ButtonRoundBlue
-                title={<AntDesign name="addfile" size={ScreenSettings.returnParams(17, 20)} color={variables.labelButtonWhite} />}
-                width={ScreenSettings.returnParams(40, 60)}
-                height={ScreenSettings.returnParams(40, 60)}
-                // marginTop={37}
+              title={<AntDesign name="addfile" size={ScreenSettings.returnParams(17, 20)} color={variables.labelButtonWhite} />}
+              width={ScreenSettings.returnParams(40, 60)}
+              height={ScreenSettings.returnParams(40, 60)}
               click={() => takeGallery(image)} />
-            <Text style={{
-            color: variables.labelButtonBlue,
-              marginLeft: ScreenSettings.returnParams("auto", 15),
-              marginTop: ScreenSettings.returnParams(0, 5),
-              marginRight: "auto",
-              ...fonts(ScreenSettings.returnParams(14, 18), "500")
-          }}>Add</Text>
+            <Text style={styles.buttonTitleAdd}>Add</Text>
           </View>
                 </View>
         <View style={styles.avatarContainer}>
@@ -80,19 +66,4 @@ export default function GalleryProfileComponents({
   );
 }
 
-const styles = StyleSheet.create({
-  addAvatar: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    backgroundColor: variables.labelButtonWhite,
-  },
-  avatarContainer: {
-    width: ScreenSettings.returnParams(150, 250),
-    height: ScreenSettings.returnParams(150, 250),
-    backgroundColor: "#E3E5E8",
-    borderRadius: 120,
-    },
-});
+const styles = StyleSheet.create(GalleryProfileComponentsStyles);

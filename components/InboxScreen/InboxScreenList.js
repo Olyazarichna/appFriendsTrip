@@ -13,14 +13,14 @@ import {
     ImageBackground
 } from 'react-native';
 
-import { InboxScreenListStyles } from "../../styles/stylesComponens/InboxScreenListStyles";
+import { InboxScreenListStyles } from "../../styles/stylesComponents/InboxScreenListStyles";
 
 export default function InboxScreenList({id, name, avatar, click}) {
     return (
        <TouchableOpacity onPress={() => click(id)}>
-        <View   style={styles.conteiner}>
+        <View   style={styles.container}>
             
-            <View style={styles.listConteiner}>
+            <View style={styles.listContainer}>
                 <Image 
                  style={styles.Image}
                     source={{ uri: avatar }}

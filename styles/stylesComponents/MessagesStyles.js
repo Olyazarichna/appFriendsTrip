@@ -3,7 +3,7 @@ import variables from '../utils/variables';
 import { ScreenSettings } from '../utils/ScreenSettings';
 
 export const MessagesStyles = {
-    conteiner: {
+    container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
@@ -59,8 +59,6 @@ export const MessagesStyles = {
 
     input: {
     width: 330,
-    
-    
     borderWidth: 1,
     borderColor: variables.labelButtonWhite,
     height: ScreenSettings.returnParams(40, 80),

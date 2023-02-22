@@ -3,14 +3,15 @@ import variables from '../utils/variables';
 import { ScreenSettings } from '../utils/ScreenSettings';
 
 export const InboxScreenListStyles = {
-conteiner: {
+
+container: {
 flexDirection: 'row',
 alignItems: 'center',
 marginTop: 40,
 maginBottom:20,
 marginLeft: 30
 },
-listConteiner: {
+listContainer: {
 borderColor: "#fff",
 borderWidth: 1
     },

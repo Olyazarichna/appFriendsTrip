@@ -12,19 +12,19 @@ import {
     ImageBackground
 } from 'react-native';
 
-import { MessageElStyles } from "../../../styles/stylesComponens/MessageElStyles";
+import { MessageElStyles } from "../../../styles/stylesComponents/MessageElStyles";
 
 export default function MessageEl({ masseges }) {
     const {massege, status} = masseges
     return (
     <>
         {!status ? 
-             (<View style={styles.conteinerMy}>
+             (<View style={styles.containerMy}>
             <Text style={styles.massage}>{massege}</Text>
             <Text style={styles.data}>11:11.25.11.2022</Text>
         </View>)
          :
-         (<View style={styles.conteinerYou}>
+         (<View style={styles.containerYou}>
             <Text style={styles.massage}>{massege}</Text>
             <Text style={styles.data}>11:11.25.11.2022</Text>
         </View>)
