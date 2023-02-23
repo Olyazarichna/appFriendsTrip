@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Modal,
   Platform,
-  Keyboard,
 } from "react-native";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -28,11 +27,11 @@ import { useState, useEffect } from "react";
 import variables from "../../styles/utils/variables";
 import fonts from "../../styles/utils/mixins";
 import { UserProfilesDefaultScreenStyles } from "../../styles/stylesScreens/UserProfilesDefaultScreenStyles";
-import { validation } from "../../helpers/validation/validation";
+// import { validation } from "../../helpers/validation/validation";
 import { ScreenSettings } from "../../styles/utils/ScreenSettings";
 
 import handleToggle from "../../helpers/handleToggle";
-import changeInputForProfiles from "../../helpers/changeInputForProfiles";
+// import changeInputForProfiles from "../../helpers/changeInputForProfiles";
 
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
@@ -44,21 +43,12 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const state = useSelector((state) => state.auth);
   console.log("stateUserDef", state);
 
-  const initialLocalState = {
-    avatar: "",
-    name: state.name,
-    email: state.email,
-    phone: state.phone,
-    location: "",
-    about: "",
-  };
-
-  // const [name, setName] = useState('');
-  // const [avatar, setAvatar] = useState('');
-  // const[email,setEmail] = useState('');
-  // const[phone,setPhone] = useState('');
-  // const[location,setLocation] = useState('');
-  // const[about,setAbout] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [name, setName] = useState(state.name);
+  const[email,setEmail] = useState(state.email);
+  const[phone,setPhone] = useState(state.phone);
+  const[location,setLocation] = useState('');
+  const[about,setAbout] = useState('');
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
@@ -73,7 +63,6 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
   const [add, setAdd] = useState(false);
 
-  const [localState, setLocalState] = useState(initialLocalState);
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -110,7 +99,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   };
 
   const takeGallery = (image) => {
-    setLocalState((prevState) => ({ ...prevState, avatar: image }));
+   setAvatar(image);
     setGallery(false);
     setAdd(false);
     setModalVisible(!modalVisible);
@@ -158,11 +147,12 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const takePhoto = async () => {
     const photo = await snap.takePictureAsync();
     setPhoto(photo?.uri);
-    setLocalState((prevState) => ({ ...prevState, avatar: photo?.uri }));
+   setAvatar( photo?.uri);
     setCamera(false);
     setAdd(false);
     setModalVisible(!modalVisible);
   };
+
 
   const IOS = Platform.OS === "ios";
   return (
@@ -192,7 +182,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         <View>
           <Image
             style={styles.avatarContainer}
-            source={{ uri: localState.avatar }}
+            source={{ uri: avatar }}
           ></Image>
         </View>
         <View
@@ -301,16 +291,13 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.textTitle}>Name:</Text>
             <TextInput
-              value={localState.name}
+              value={name}
               editable={dataCheckName}
               style={styles.input}
-              onFocus={() =>
-                setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+              onFocus={() => setIsShowKeyboard((isShowKeyboard) =>
+                !isShowKeyboard)
               }
-              onChangeText={(value) =>
-                changeInputForProfiles(value, setLocalState, "name")
-              }
-            />
+              onChangeText={(value) => setName(value)}/>
           </View>
 
           <TouchableOpacity
@@ -351,21 +338,13 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               </View>
             )}
             <TextInput
-              value={localState.email}
+              value={email}
               editable={dataCheckEmail}
               style={styles.input}
               onFocus={() =>
                 setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
               }
-              onChangeText={(value) =>
-                changeInputForProfiles(
-                  value,
-                  setLocalState,
-                  "email",
-                  validation.email,
-                  setCheckValidEmail
-                )
-              }
+              onChangeText={(value) => setEmail(value)}
             />
           </View>
 
@@ -406,21 +385,14 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               </View>
             )}
             <TextInput
-              value={localState.phone}
+              value={phone}
               editable={dataCheckPhone}
               style={styles.input}
               onFocus={() =>
                 setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
               }
               onChangeText={(value) =>
-                changeInputForProfiles(
-                  value,
-                  setLocalState,
-                  "phone",
-                  validation.phone,
-                  setCheckValidPhone
-                )
-              }
+                 setPhone(value)}
             />
           </View>
 
@@ -448,18 +420,14 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.textTitle}>Locations:</Text>
             <TextInput
-              value={localState.location}
+              value={location}
               editable={dataCheckLocation}
               style={styles.input}
               onFocus={() =>
                 setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
               }
               onChangeText={(value) =>
-                setLocalState((prevState) => ({
-                  ...prevState,
-                  location: value,
-                }))
-              }
+                setLocation(value)}
             />
           </View>
 
@@ -483,7 +451,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             <Text style={styles.textTitle}>About me:</Text>
             <View>
               <TextInput
-                value={localState.about}
+                value={about}
                 editable={dataCheckAbout}
                 style={styles.aboutText}
                 underlineColorAndroid="transparent"
@@ -493,12 +461,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                   setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
                 }
                 onChangeText={(value) =>
-                  setLocalState((prevState) => ({
-                    ...prevState,
-                    about: value,
-                  }))
-                }
-              />
+                 setAbout(value)}/>
             </View>
           </View>
 
