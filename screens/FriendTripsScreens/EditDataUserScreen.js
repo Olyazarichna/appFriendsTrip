@@ -6,26 +6,17 @@ import {
   TextInput,
   TouchableOpacity,
   Modal,
-  Platform,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  ImageBackground,
-
-} from 'react-native';
+} from "react-native";
 
 import { useState, useEffect } from "react";
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import { Camera, CameraType } from "expo-camera";
+import * as ImagePicker from "expo-image-picker";
+import handleToggle from "../../helpers/handleToggle";
+import CameraProfileComponents from "../../components/Profile/CameraProfileComponents";
+import GalleryProfileComponents from "../../components/Profile/GalleryProfileComponents";
 
-
-import { Camera, CameraType } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
-
-import handleToggle from '../../helpers/handleToggle';
-import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
-import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
-
-import { async } from '@firebase/util';
+import { async } from "@firebase/util";
 
 const initialState = {
   avatar: "",
@@ -36,7 +27,7 @@ const initialState = {
 
 export default function EditDataUserScreen({ navigation }) {
   const [state, setState] = useState(initialState);
-  console.log('stateLOgIn', state);
+  console.log("stateLOgIn", state);
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -46,7 +37,7 @@ export default function EditDataUserScreen({ navigation }) {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(CameraType.back);
-  const [photo, setPhoto] = useState('');
+  const [photo, setPhoto] = useState("");
   const [snap, setSnap] = useState(null);
 
   const [image, setImage] = useState(null);
@@ -66,7 +57,6 @@ export default function EditDataUserScreen({ navigation }) {
       quality: 1,
     });
 
-
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
@@ -75,7 +65,7 @@ export default function EditDataUserScreen({ navigation }) {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
 
@@ -87,13 +77,13 @@ export default function EditDataUserScreen({ navigation }) {
   }
 
   const showCamera = () => {
-    setModalVisible(true)
+    setModalVisible(true);
     setCamera(true);
     setGallery(false);
   };
 
   const showGallery = () => {
-    setModalVisible(true)
+    setModalVisible(true);
     setGallery(true);
     setCamera(false);
   };
@@ -108,7 +98,7 @@ export default function EditDataUserScreen({ navigation }) {
   };
 
   const handleSubmit = () => {
-    navigation.navigate('ProfilesDefault');
+    navigation.navigate("ProfilesDefault");
   };
   return (
     <View style={styles.container}>
@@ -219,48 +209,48 @@ export default function EditDataUserScreen({ navigation }) {
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    justifyContent: "center",
   },
   avatarContainer: {
     width: 150,
     height: 150,
-    backgroundColor: 'red',
+    backgroundColor: "red",
     borderRadius: 10,
   },
   addAvatarButton: {
-    position: 'absolute',
-    zIndex: 100
+    position: "absolute",
+    zIndex: 100,
   },
   avatarButtonContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 25,
-    zIndex: 100
+    zIndex: 100,
   },
   avatarButton: {
-    color: 'white',
+    color: "white",
   },
   addAvatar: {
     justifyContent: "center",
-    alignItems: 'center',
-    position: 'absolute',
+    alignItems: "center",
+    position: "absolute",
     width: "100%",
     height: "100%",
-    backgroundColor: 'yellow'
+    backgroundColor: "yellow",
   },
   camera: {
-    width: '90%',
+    width: "90%",
     height: 300,
   },
   buttonContainer: {
     flex: 1,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
+    backgroundColor: "transparent",
+    flexDirection: "row",
     margin: 20,
   },
   form: {

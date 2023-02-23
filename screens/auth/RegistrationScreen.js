@@ -57,10 +57,11 @@ export default function RegistrationScreen({ navigation }) {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    const { login, email, phone, password, repeatingPassword } = state;
-
+    // const { login, email, phone, password, repeatingPassword } = state;
+    const { name, email, phone, password, repeatingPassword } = state;
     if (
-      login === "" &&
+      // login === "" &&
+      name === "" &&
       email === "" &&
       phone === "" &&
       password === "" &&
@@ -122,10 +123,11 @@ export default function RegistrationScreen({ navigation }) {
                   <Text style={styles.inputLabel}>Name</Text>
                 )}
                 <TextInput
-                  value={state.login}
+                  // value={state.login}
+                  value={state.name}
                   style={styles.input}
                   onChangeText={(value) =>
-                    changeInput(value, setState, "login", setLoginChange)
+                    changeInput(value, setState, "name", setLoginChange)
                   }
                 />
                 <View style={styles.inputIcon}>

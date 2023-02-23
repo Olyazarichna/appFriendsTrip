@@ -40,7 +40,6 @@ export default function LoginScreen({ navigation }) {
   const [emailChange, setEmailChange] = useState(false);
   const [passwordChange, setPasswordChange] = useState(false);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-
   const [checkValidEmail, setCheckValidEmail] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
 

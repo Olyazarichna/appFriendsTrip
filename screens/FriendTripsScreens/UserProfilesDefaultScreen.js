@@ -12,10 +12,14 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { AntDesign, MaterialCommunityIcons, EvilIcons } from '@expo/vector-icons';
+import {
+  AntDesign,
+  MaterialCommunityIcons,
+  EvilIcons,
+} from "@expo/vector-icons";
 
-import { Camera, CameraType } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
+import { Camera, CameraType } from "expo-camera";
+import * as ImagePicker from "expo-image-picker";
 
 import { logOut } from "../../redux/auth/authOperations";
 import { ActionCodeURL, getAuth } from "firebase/auth";
@@ -23,7 +27,7 @@ import { useState, useEffect } from "react";
 
 import variables from "../../styles/utils/variables";
 import fonts from "../../styles/utils/mixins";
-import { UserProfilesDefaultScreenStyes } from '../../styles/stylesScreens/UserProfilesDefaultScreenStyes';
+import { UserProfilesDefaultScreenStyles } from "../../styles/stylesScreens/UserProfilesDefaultScreenStyles";
 import { validation } from "../../helpers/validation/validation";
 import { ScreenSettings } from "../../styles/utils/ScreenSettings";
 
@@ -33,22 +37,28 @@ import changeInputForProfiles from "../../helpers/changeInputForProfiles";
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 
-import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
-import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
-
+import CameraProfileComponents from "../../components/Profile/CameraProfileComponents";
+import GalleryProfileComponents from "../../components/Profile/GalleryProfileComponents";
 
 export default function UserProfilesDefaultScreen({ navigation }) {
+  const state = useSelector((state) => state.auth);
+  console.log("stateUserDef", state);
 
-  const state = useSelector(state => state.auth);
-  console.log('stateUserDef', state);
   const initialLocalState = {
     avatar: "",
     name: state.name,
     email: state.email,
     phone: state.phone,
-    location: '',
-    about: '',
-  }
+    location: "",
+    about: "",
+  };
+
+  // const [name, setName] = useState('');
+  // const [avatar, setAvatar] = useState('');
+  // const[email,setEmail] = useState('');
+  // const[phone,setPhone] = useState('');
+  // const[location,setLocation] = useState('');
+  // const[about,setAbout] = useState('');
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
@@ -72,7 +82,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(CameraType.back);
-  const [photo, setPhoto] = useState('');
+  const [photo, setPhoto] = useState("");
   const [snap, setSnap] = useState(null);
 
   const [image, setImage] = useState(null);
@@ -80,22 +90,17 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const handleInput = () => {
     if (
       !dataCheckName ||
-      !dataCheckEmail &&
-      !dataCheckPhone &&
-      !dataCheckLocation &&
-      !dataCheckAbout
-
+      (!dataCheckEmail &&
+        !dataCheckPhone &&
+        !dataCheckLocation &&
+        !dataCheckAbout)
     ) {
       if (isShowKeyboard) {
         setIsShowKeyboard(false);
       }
-
-      console.log('localState:', localState);
-
     }
-  }
+  };
 
-  console.log('stateDefault', state)
   const auth = getAuth();
 
   const dispatch = useDispatch();
@@ -103,7 +108,6 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const handleSubmit = () => {
     dispatch(logOut());
   };
-
 
   const takeGallery = (image) => {
     setLocalState((prevState) => ({ ...prevState, avatar: image }));
@@ -120,18 +124,15 @@ export default function UserProfilesDefaultScreen({ navigation }) {
       quality: 1,
     });
 
-
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
   };
 
-
-
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
 
@@ -142,16 +143,14 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     return <Text>No access to camera</Text>;
   }
 
-
-
   const showCamera = () => {
-    setModalVisible(true)
+    setModalVisible(true);
     setCamera(true);
     setGallery(false);
   };
 
   const showGallery = () => {
-    setModalVisible(true)
+    setModalVisible(true);
     setGallery(true);
     setCamera(false);
   };
@@ -166,8 +165,6 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   };
 
   const IOS = Platform.OS === "ios";
-
-
   return (
     <View style={styles.container}>
       <View style={{ position: "absolute", top: 0, left: 25 }}>
@@ -221,11 +218,13 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         </View>
         {add && (
           <>
-            <View style={{
-              position: "absolute",
-              top: ScreenSettings.returnParams(90, 150),
-              left: ScreenSettings.returnParams(20, 10)
-            }}>
+            <View
+              style={{
+                position: "absolute",
+                top: ScreenSettings.returnParams(90, 150),
+                left: ScreenSettings.returnParams(20, 10),
+              }}
+            >
               <ButtonRoundBlue
                 title={
                   <EvilIcons
@@ -239,11 +238,13 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                 click={showGallery}
               />
             </View>
-            <View style={{
-              position: "absolute",
-              top: ScreenSettings.returnParams(65, 110),
-              left: ScreenSettings.returnParams(2, -10)
-            }}>
+            <View
+              style={{
+                position: "absolute",
+                top: ScreenSettings.returnParams(65, 110),
+                left: ScreenSettings.returnParams(2, -10),
+              }}
+            >
               <ButtonRoundBlue
                 title={
                   <AntDesign
@@ -291,7 +292,12 @@ export default function UserProfilesDefaultScreen({ navigation }) {
       )}
 
       <View style={styles.dataContainer}>
-        <View style={{ flexDirection: "row", marginBottom: ScreenSettings.returnParams(0, 10) }}>
+        <View
+          style={{
+            flexDirection: "row",
+            marginBottom: ScreenSettings.returnParams(0, 10),
+          }}
+        >
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.textTitle}>Name:</Text>
             <TextInput
@@ -322,7 +328,12 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ flexDirection: "row", marginBottom: ScreenSettings.returnParams(0, 10) }}>
+        <View
+          style={{
+            flexDirection: "row",
+            marginBottom: ScreenSettings.returnParams(0, 10),
+          }}
+        >
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.textTitle}>Email:</Text>
 
@@ -373,7 +384,12 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ flexDirection: "row", marginBottom: ScreenSettings.returnParams(0, 10) }}>
+        <View
+          style={{
+            flexDirection: "row",
+            marginBottom: ScreenSettings.returnParams(0, 10),
+          }}
+        >
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.textTitle}>Phone:</Text>
             {!checkValidPhone && (
@@ -423,7 +439,12 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ flexDirection: "row", marginBottom: ScreenSettings.returnParams(0, 10) }}>
+        <View
+          style={{
+            flexDirection: "row",
+            marginBottom: ScreenSettings.returnParams(0, 10),
+          }}
+        >
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.textTitle}>Locations:</Text>
             <TextInput
@@ -544,6 +565,6 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create(UserProfilesDefaultScreenStyes);
+const styles = StyleSheet.create(UserProfilesDefaultScreenStyles);
 
 /// navigation.navigate("CreateTrip",)

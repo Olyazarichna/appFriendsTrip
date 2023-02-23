@@ -2,8 +2,7 @@ import variables from "../utils/variables";
 import fonts from "../utils/mixins";
 import { ScreenSettings } from '../utils/ScreenSettings';
 
-
-export const UserProfilesDefaultScreenStyes = {
+export const UserProfilesDefaultScreenStyles = {
     container: {
         flex: 1,
         backgroundColor: "#fff",

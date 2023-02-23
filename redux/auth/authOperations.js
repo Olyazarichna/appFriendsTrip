@@ -25,7 +25,6 @@ export const logIn =
                 const signIn = await signInWithEmailAndPassword(auth, email, password);
                 console.log('s', signIn)
                 dispatch(updateUserProfile())
-
             } catch (error) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
