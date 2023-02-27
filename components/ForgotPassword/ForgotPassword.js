@@ -11,16 +11,12 @@ import { HomeScreenStyles } from "../../styles/stylesScreens/HomeScreenStyles";
 import { Ionicons } from "@expo/vector-icons";
 import { resetPassword } from "../../redux/auth/authOperations";
 import variables from "../../styles/utils/variables";
-import { useSelector } from "react-redux";
 
 export const ForgotPassword = ({ navigation }) => {
-    const email = useSelector(state => state.auth.email);
-    const [password, setPassword] = useState(null);
+    const [email, setEmail] = useState(null);
     const btnPress = () => {
-        //get email
-        console.log('press');
-        resetPassword(email);
-        setPassword("");
+        resetPassword({ email });
+        setEmail("");
     };
     return (
         <View style={styles.container}>
@@ -33,19 +29,15 @@ export const ForgotPassword = ({ navigation }) => {
             <Text style={styles.text}>Enter your email</Text>
             <TextInput
                 style={styles.input}
-                onChangeText={(text) => setPassword(text)}
-                value={password}
+                onChangeText={(text) => setEmail(text)}
+                value={email}
             />
 
-            <LinearGradient
-                colors={["#457CF7", "#375ABE"]}
-                style={styles.gradient}
-            >
+            <LinearGradient colors={["#457CF7", "#375ABE"]} style={styles.gradient}>
                 <TouchableOpacity style={styles.btn} onPress={btnPress}>
                     <Text style={styles.textBtn}>Reset password</Text>
                 </TouchableOpacity>
             </LinearGradient>
-
         </View>
     );
 };
@@ -63,8 +55,8 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         color: "#457CF7",
-        fontWeight: '700',
-        textAlign: 'center',
+        fontWeight: "700",
+        textAlign: "center",
     },
     input: {
         marginTop: 20,
@@ -101,9 +93,8 @@ const styles = StyleSheet.create({
         lineHeight: 19,
     },
     btnHome: {
-        position: 'absolute',
+        position: "absolute",
         top: 150,
         left: 20,
-
-    }
+    },
 });

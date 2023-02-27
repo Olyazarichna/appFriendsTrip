@@ -5,7 +5,7 @@ import {
     signInWithEmailAndPassword,
     signOut,
     sendPasswordResetEmail,
-    sendEmailVerification
+    sendEmailVerification,
 } from "firebase/auth";
 
 import app from "../../firebase/config";
@@ -17,8 +17,13 @@ export const signUp =
     ({ name, email, password }) =>
         async (dispatch, getState) => {
             try {
-                const user = await createUserWithEmailAndPassword(auth, email, password, name);
-                console.log('auth.currentUser', auth.currentUser);
+                const user = await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password,
+                    name
+                );
+                console.log("auth.currentUser", auth.currentUser);
                 sendEmailVerification(auth.currentUser);
                 console.log("userRegistration", user);
                 dispatch(updateUserProfile({ userId: user.uid, name: user.displayName }));
@@ -50,16 +55,12 @@ export const logOut = () => async (dispatch, getState) => {
     }
 };
 
-export const resetPassword =
-    () =>
-        async (dispatch, getState) => {
-            try {
-                await sendPasswordResetEmail(auth, email);
-                console.log('trololo', auth)
-            } catch (error) {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(error.message);
-            };
-        };
-
+export const resetPassword = async ({ email }) => {
+    try {
+        await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+    }
+};
