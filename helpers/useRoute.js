@@ -27,6 +27,7 @@ import UserProfilesScreen from "../screens/FriendTripsScreens/UserProfilesScreen
 import SettingScreen from "../screens/FriendTripsScreens/SettingScreen";
 
 import variables from "../styles/utils/variables";
+import { ForgotPassword } from "../components/ForgotPassword/ForgotPassword";
 
 const AuthStack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -49,6 +50,11 @@ const useRoute = (isAuth) => {
           options={{ headerShown: false }}
           name="Login"
           component={LoginScreen}
+        />
+        <AuthStack.Screen
+          options={{ headerShown: false }}
+          name="ForgotPassword"
+          component={ForgotPassword}
         />
       </AuthStack.Navigator>
     );

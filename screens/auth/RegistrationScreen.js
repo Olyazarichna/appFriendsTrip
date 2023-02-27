@@ -117,15 +117,11 @@ export default function RegistrationScreen({ navigation }) {
           <ScrollView>
             <View style={styles.form}>
               <View>
-                {loginChange ? (
-                  <Text style={styles.inputLabelOff}>Name</Text>
-                ) : (
-                  <Text style={styles.inputLabel}>Name</Text>
-                )}
+                {loginChange && <Text style={styles.inputLabelOff}>Name</Text>}
                 <TextInput
-                  // value={state.login}
                   value={state.name}
                   style={styles.input}
+                  placeholder={"Name"}
                   onChangeText={(value) =>
                     changeInput(value, setState, "name", setLoginChange)
                   }
@@ -139,12 +135,7 @@ export default function RegistrationScreen({ navigation }) {
                 </View>
               </View>
               <View>
-                {phoneChange ? (
-                  <Text style={styles.inputLabelOff}>Phone</Text>
-                ) : (
-                  <Text style={styles.inputLabel}>Phone</Text>
-                )}
-
+                {phoneChange && <Text style={styles.inputLabelOff}>Phone</Text>}
                 {errorPhone && (
                   <View style={styles.stylesNotCorrect}>
                     {state.phone === "" ? (
@@ -163,6 +154,7 @@ export default function RegistrationScreen({ navigation }) {
                 <TextInput
                   keyboardType="phone-pad"
                   value={state.phone}
+                  placeholder={"Phone"}
                   style={styles.input}
                   onChangeText={(value) =>
                     changeInput(
@@ -173,7 +165,8 @@ export default function RegistrationScreen({ navigation }) {
                       validation.phone,
                       setCheckValidPhone
                     )
-                  } />
+                  }
+                />
                 <View style={styles.inputIcon}>
                   <Feather
                     name="phone"
@@ -186,12 +179,7 @@ export default function RegistrationScreen({ navigation }) {
                 </Text>
               </View>
               <View>
-                {emailChange ? (
-                  <Text style={styles.inputLabelOff}>Your Email</Text>
-                ) : (
-                  <Text style={styles.inputLabel}>Your Email</Text>
-                )}
-
+                {emailChange && <Text style={styles.inputLabelOff}>Email</Text>}
                 {errorEmail && (
                   <View style={styles.stylesNotCorrect}>
                     {state.email === "" ? (
@@ -209,6 +197,7 @@ export default function RegistrationScreen({ navigation }) {
                 <TextInput
                   keyboardType="email-address"
                   value={state.email}
+                  placeholder={"Email"}
                   style={styles.input}
                   onChangeText={(value) =>
                     changeInput(
@@ -232,14 +221,13 @@ export default function RegistrationScreen({ navigation }) {
               </View>
 
               <View>
-                {passwordChange ? (
+                {passwordChange && (
                   <Text style={styles.inputLabelOff}>Password</Text>
-                ) : (
-                  <Text style={styles.inputLabel}>Password</Text>
                 )}
                 <TextInput
                   value={state.password}
                   style={styles.input}
+                  placeholder={"Password"}
                   secureTextEntry={togglePassword}
                   onChangeText={(value) =>
                     changeInput(value, setState, "password", setPasswordChange)
@@ -267,14 +255,13 @@ export default function RegistrationScreen({ navigation }) {
                 </TouchableOpacity>
               </View>
               <View>
-                {repeatPas ? (
-                  <Text style={styles.inputLabelOff}>Confirm Password</Text>
-                ) : (
-                  <Text style={styles.inputLabel}>Confirm Password</Text>
+                {repeatPas && (
+                  <Text style={styles.inputLabelOff}>Confirm password</Text>
                 )}
                 <TextInput
                   value={state.repeatingPassword}
                   style={styles.input}
+                  placeholder={"Confirm password"}
                   secureTextEntry={toggleRepeatingPassword}
                   onChangeText={(value) =>
                     changeInput(

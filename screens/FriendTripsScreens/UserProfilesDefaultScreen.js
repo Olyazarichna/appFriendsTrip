@@ -39,16 +39,18 @@ import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 import CameraProfileComponents from "../../components/Profile/CameraProfileComponents";
 import GalleryProfileComponents from "../../components/Profile/GalleryProfileComponents";
 
+
 export default function UserProfilesDefaultScreen({ navigation }) {
+
   const state = useSelector((state) => state.auth);
   console.log("stateUserDef", state);
 
   const [avatar, setAvatar] = useState('');
   const [name, setName] = useState(state.name);
-  const[email,setEmail] = useState(state.email);
-  const[phone,setPhone] = useState(state.phone);
-  const[location,setLocation] = useState('');
-  const[about,setAbout] = useState('');
+  const [email, setEmail] = useState(state.email);
+  const [phone, setPhone] = useState(state.phone);
+  const [location, setLocation] = useState('');
+  const [about, setAbout] = useState('');
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
@@ -99,7 +101,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   };
 
   const takeGallery = (image) => {
-   setAvatar(image);
+    setAvatar(image);
     setGallery(false);
     setAdd(false);
     setModalVisible(!modalVisible);
@@ -147,7 +149,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const takePhoto = async () => {
     const photo = await snap.takePictureAsync();
     setPhoto(photo?.uri);
-   setAvatar( photo?.uri);
+    setAvatar(photo?.uri);
     setCamera(false);
     setAdd(false);
     setModalVisible(!modalVisible);
@@ -267,7 +269,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               color: variables.titleColor,
             }}
           >
-            {initialLocalState.name}
+            {name}
           </Text>
           <Text
             style={{
@@ -276,7 +278,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               color: variables.textColor,
             }}
           >
-            {initialLocalState.location}
+            {location}
           </Text>
         </View>
       )}
@@ -297,7 +299,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               onFocus={() => setIsShowKeyboard((isShowKeyboard) =>
                 !isShowKeyboard)
               }
-              onChangeText={(value) => setName(value)}/>
+              onChangeText={(value) => setName(value)} />
           </View>
 
           <TouchableOpacity
@@ -392,7 +394,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                 setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
               }
               onChangeText={(value) =>
-                 setPhone(value)}
+                setPhone(value)}
             />
           </View>
 
@@ -461,7 +463,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                   setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
                 }
                 onChangeText={(value) =>
-                 setAbout(value)}/>
+                  setAbout(value)} />
             </View>
           </View>
 

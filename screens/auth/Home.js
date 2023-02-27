@@ -22,7 +22,7 @@ export default function Home({ navigation }) {
             <View style={styles.textContainer}>
                 <Text style={styles.label}>TRVL</Text>
                 <Text style={styles.title}>Journey with somebody where You Want</Text>
-                <Text style={styles.text}>Here should be simple text that shortly describe your app and show advantage or tagline</Text>
+                <Text style={styles.text}>The application designed  for people to find new friends who share their passion for travel and to explore new places together.</Text>
             </View>
 
             <ButtonLongBlue

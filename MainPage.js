@@ -8,17 +8,18 @@ import { RootSiblingParent } from 'react-native-root-siblings';
 
 export default function MainPage() {
     const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+    console.log('isLoggedIn', isLoggedIn);
     const dispatch = useDispatch();
-    const auth = getAuth();
 
+    const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
-        console.log('user', user)
+        console.log('auth', auth)
         if (user) {
             dispatch(updateUserProfile({ name: user.displayName, email: user.email, phone: user.phoneNumber }))
-            // setUser(user);
-            // const uid = user.uid;
-        } else {
-
+            console.log('user Current', auth.currentUser);
+            console.log('DN', user.displayName);
+            console.log('current', user.currentUser)
+            const uid = user.uid;
         }
     });
     return (

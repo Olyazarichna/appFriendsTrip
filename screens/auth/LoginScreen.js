@@ -55,8 +55,9 @@ export default function LoginScreen({ navigation }) {
     setEmailChange(false);
     Keyboard.dismiss();
     setIsShowKeyboard(false);
-    console.log("Login successful", state);
+
     dispatch(logIn(state));
+    console.log("Login successful", state);
   };
 
   const IOS = Platform.OS === "ios";
@@ -128,13 +129,10 @@ export default function LoginScreen({ navigation }) {
               ></View>
             </View>
           )}
-
           <View style={styles.form}>
             <View>
-              {emailChange ? (
+              {emailChange && (
                 <Text style={styles.inputLabelOff}>Your Email</Text>
-              ) : (
-                <Text style={styles.inputLabel}>Your Email</Text>
               )}
 
               {errorEmail && (
@@ -154,6 +152,7 @@ export default function LoginScreen({ navigation }) {
               <TextInput
                 value={state.email}
                 style={styles.input}
+                placeholder={"Your email"}
                 onFocus={() => setIsShowKeyboard(true)}
                 onChangeText={(value) =>
                   changeInput(
@@ -175,14 +174,13 @@ export default function LoginScreen({ navigation }) {
               </View>
             </View>
             <View>
-              {passwordChange ? (
+              {passwordChange && (
                 <Text style={styles.inputLabelOff}>Password</Text>
-              ) : (
-                <Text style={styles.inputLabel}>Password</Text>
               )}
               <TextInput
                 value={state.password}
                 style={styles.input}
+                placeholder={"Password"}
                 secureTextEntry={togglePassword}
                 onFocus={() => setIsShowKeyboard(true)}
                 onChangeText={(value) =>
@@ -209,7 +207,12 @@ export default function LoginScreen({ navigation }) {
             </View>
 
             <TouchableOpacity>
-              <Text style={styles.ForgotPas}>Forgot Password?</Text>
+              <Text
+                style={styles.forgotPas}
+                onPress={() => navigation.navigate("ForgotPassword")}
+              >
+                Forgot Password?
+              </Text>
             </TouchableOpacity>
 
             <ButtonLongBlue

@@ -57,14 +57,6 @@ export const RegistrationScreenStyles = {
     top: ScreenSettings.returnParams(-55, -70),
     left: 22,
   },
-  inputLabel: {
-    position: "absolute",
-    zIndex: 1,
-    top: ScreenSettings.returnParams(38, 70),
-    left: 60,
-    color: variables.inputColor,
-    ...fonts(ScreenSettings.returnParams(14, 18), "500")
-  },
   inputLabelOff: {
     position: "absolute",
     zIndex: 1,
