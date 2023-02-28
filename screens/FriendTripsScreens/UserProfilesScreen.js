@@ -1,8 +1,8 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from "@react-navigation/stack";
 
-import UserProfilesDefaultScreen from './UserProfilesDefaultScreen';
-import EditDataUserScreen from './EditDataUserScreen';
-import CreateTripScreen from './CreateTripScreen';
+import UserProfilesDefaultScreen from "./UserProfilesDefaultScreen";
+import EditDataUserScreen from "./EditDataUserScreen";
+import CreateTripScreen from "./CreateTripScreen";
 
 const AuthStack = createStackNavigator();
 
@@ -25,6 +25,5 @@ export default function UserProfilesScreen() {
                 component={CreateTripScreen}
             />
         </AuthStack.Navigator>
-    )
-};
-
+    );
+}

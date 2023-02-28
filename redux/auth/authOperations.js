@@ -6,6 +6,7 @@ import {
     signOut,
     sendPasswordResetEmail,
     sendEmailVerification,
+    updateProfile,
 } from "firebase/auth";
 
 import app from "../../firebase/config";
@@ -14,21 +15,19 @@ import { updateUserProfile, logout } from "./authReducer";
 const auth = getAuth();
 console.log("auth", auth);
 export const signUp =
-    ({ name, email, password }) =>
+    ({ email, password, name, phone }) =>
         async (dispatch, getState) => {
             try {
-                const user = await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password,
-                    name
-                );
-                console.log("auth.currentUser", auth.currentUser);
-                sendEmailVerification(auth.currentUser);
-                console.log("userRegistration", user);
-                dispatch(updateUserProfile({ userId: user.uid, name: user.displayName }));
+                await createUserWithEmailAndPassword(auth, email, password);
+                await sendEmailVerification(auth.currentUser);
+                await updateProfile(auth.currentUser, {
+                    displayName: name,
+                    // photoURL: "https://pixabay.com/photos/cat-young-animal-kitten-gray-cat-2083492/"
+                });
+                const { uid } = await auth.currentUser;
+                dispatch(updateUserProfile({ userId: uid, name: name, email, phone }));
             } catch (error) {
-                console.log("error", error.message);
+                alert("error", error.code, error.message);
             }
         };
 
@@ -36,9 +35,7 @@ export const logIn =
     ({ email, password }) =>
         async (dispatch, getState) => {
             try {
-                const signIn = await signInWithEmailAndPassword(auth, email, password);
-                console.log("s", signIn);
-                console.log("auth2", auth);
+                await signInWithEmailAndPassword(auth, email, password);
                 dispatch(updateUserProfile());
             } catch (error) {
                 const errorCode = error.code;

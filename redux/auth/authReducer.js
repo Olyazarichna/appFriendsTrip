@@ -17,6 +17,7 @@ export const authSlice = createSlice({
       userId: payload.userId,
       name: payload.name,
       email: payload.email,
+      phone: payload.phone,
       isLoggedIn: true,
     }),
     logout: (state) => ({ ...initialState }),

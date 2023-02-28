@@ -98,7 +98,7 @@ const useRoute = (isAuth) => {
         }}
       />
       <Tab.Screen
-        name="My trip"
+        name="MyTrip"
         component={CreateTripScreen}
         options={{
           tabBarLabel: false,

@@ -1,6 +1,6 @@
 import variables from "../utils/variables";
 import fonts from "../utils/mixins";
-import { ScreenSettings } from '../utils/ScreenSettings';
+import { ScreenSettings } from "../utils/ScreenSettings";
 
 export const RegistrationScreenStyles = {
   container: {
@@ -8,12 +8,11 @@ export const RegistrationScreenStyles = {
     flex: 1,
     backgroundColor: "#fff",
     justifyContent: "center",
-
   },
   buttonHome: {
     position: "absolute",
     top: 35,
-    left: 15
+    left: 15,
   },
   title: {
     marginTop: 40,
@@ -33,7 +32,7 @@ export const RegistrationScreenStyles = {
   },
   form: {
     marginHorizontal: ScreenSettings.returnParams(24, 60),
-    marginTop: 5
+    marginTop: 5,
   },
   input: {
     marginTop: ScreenSettings.returnParams(20, 40),
@@ -45,11 +44,11 @@ export const RegistrationScreenStyles = {
     borderRadius: 20,
     backgroundColor: "rgba(249, 250, 251, 1)",
     ...fonts(ScreenSettings.returnParams(14, 18), "500"),
-    color: variables.inputColor
+    color: variables.inputColor,
   },
   inputIcon: {
     position: "absolute",
-    top: ScreenSettings.returnParams(35, 65),
+    top: ScreenSettings.returnParams(40, 65),
     left: 22,
   },
   inputIconPass: {
@@ -63,7 +62,7 @@ export const RegistrationScreenStyles = {
     top: ScreenSettings.returnParams(0, -5),
     left: 10,
     color: variables.inputColor,
-    ...fonts(ScreenSettings.returnParams(14, 18), "500")
+    ...fonts(ScreenSettings.returnParams(14, 18), "500"),
   },
   hint: {
     marginLeft: "auto",
@@ -86,15 +85,23 @@ export const RegistrationScreenStyles = {
   buttonRegister: {
     color: "#375ABE",
   },
-  stylesNotCorrect: {
-    position: "absolute",
-    top: ScreenSettings.returnParams(60, 120),
-    left: 50,
-    zIndex: 1,
-    padding: 3,
+  // stylesNotCorrect: {
+  //   position: "absolute",
+  //   top: ScreenSettings.returnParams(60, 120),
+  //   left: 50,
+  //   zIndex: 1,
+  //   padding: 3,
+  // },
+  // stylesNotCorrectText: {
+  //   color: "red",
+  //   ...fonts(ScreenSettings.returnParams(10, 13), "400"),
+  // },
+  valid: {
+    color: "green",
+    marginBottom: 10,
   },
-  stylesNotCorrectText: {
+  invalid: {
     color: "red",
-    ...fonts(ScreenSettings.returnParams(10, 13), "400"),
-  }
-}
+    marginBottom: 10,
+  },
+};

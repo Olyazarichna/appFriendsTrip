@@ -74,7 +74,7 @@ export const LoginScreenStyles = {
   },
   inputIconMail: {
     position: "absolute",
-    top: ScreenSettings.returnParams(35, 65),
+    top: ScreenSettings.returnParams(40, 65),
     left: 22,
   },
   inputLabelOff: {

@@ -21,87 +21,70 @@ import { RegistrationScreenStyles } from "../../styles/stylesScreens/Registratio
 import { ScreenSettings } from "../../styles/utils/ScreenSettings";
 
 import handleToggle from "../../helpers/handleToggle";
-import changeInput from "../../helpers/changeInput";
-import { validation } from "../../helpers/validation/validation";
 
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 
-const initialState = {
-  name: "",
-  email: "",
-  phone: "",
-  password: "",
-  repeatingPassword: "",
-};
-
 export default function RegistrationScreen({ navigation }) {
-  const [state, setState] = useState(initialState);
-  console.log("state", state);
+  const userInfo = useSelector((state) => state.auth);
+
+  const [name, setName] = useState(userInfo.name);
+  const [email, setEmail] = useState(userInfo.email);
+  const [phone, setPhone] = useState(userInfo.phone);
+  const [password, setPassword] = useState(userInfo.password);
+  const [repeatingPassword, setRepeatingPassword] = useState(null);
+
   const [passwordError, setPasswordError] = useState(false);
   const [togglePassword, setTogglePassword] = useState(true);
   const [toggleRepeatingPassword, setToggleRepeatingPassword] = useState(true);
 
-  const [loginChange, setLoginChange] = useState(false);
-  const [phoneChange, setPhoneChange] = useState(false);
-  const [emailChange, setEmailChange] = useState(false);
-  const [passwordChange, setPasswordChange] = useState(false);
-  const [repeatPas, setRepeatPas] = useState(false);
-
-  const [checkValidPhone, setCheckValidPhone] = useState(false);
-  const [errorPhone, setErrorPhone] = useState(false);
-  const [checkValidEmail, setCheckValidEmail] = useState(false);
-  const [errorEmail, setErrorEmail] = useState(false);
-
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isValidPhone, setIsValidPhone] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(false);
 
   const dispatch = useDispatch();
 
+  const handleEmailChange = (email) => {
+    setEmail(email);
+    setIsValidEmail(/\S+@\S+\.\S+/.test(email));
+  };
+  const handlePhoneChange = (phone) => {
+    setPhone(phone);
+    setIsValidPhone(
+      /^\+?\d{1,3}?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/gm.test(phone)
+    );
+  };
   const handleSubmit = () => {
-    // const { login, email, phone, password, repeatingPassword } = state;
-    const { name, email, phone, password, repeatingPassword } = state;
     if (
-      // login === "" &&
-      name === "" &&
-      email === "" &&
-      phone === "" &&
-      password === "" &&
+      name === "" ||
+      email === "" ||
+      phone === "" ||
+      password === "" ||
       repeatingPassword === ""
     ) {
-      setErrorMessage("all fields must be filled");
-      return;
-    }
-
-    if (!checkValidPhone && !checkValidEmail) {
-      setErrorPhone(true);
-      setErrorEmail(true);
-      return;
-    }
-    if (!checkValidPhone && checkValidEmail) {
-      setErrorPhone(true);
-      setErrorEmail(false);
-      return;
-    }
-
-    if (checkValidPhone && !checkValidEmail) {
-      setErrorPhone(false);
-      setErrorEmail(true);
+      alert("All fields must be filled");
       return;
     }
 
     if (password !== repeatingPassword) {
-      setPasswordError(true);
+      setPasswordError("Passwords do not match. Please try again.");
       return;
     }
-    setLoginChange(false);
-    setPhoneChange(false);
-    setEmailChange(false);
-    setPasswordChange(false);
-    setRepeatPas(false);
-
-    setPasswordError(false);
-    dispatch(signUp(state));
-    setState(initialState);
+    const user = {
+      name,
+      email,
+      phone,
+      password,
+    };
+    dispatch(signUp(user));
     Keyboard.dismiss();
+    reset();
+  };
+
+  const reset = () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setPassword("");
+    setRepeatingPassword("");
   };
 
   return (
@@ -117,14 +100,12 @@ export default function RegistrationScreen({ navigation }) {
           <ScrollView>
             <View style={styles.form}>
               <View>
-                {loginChange && <Text style={styles.inputLabelOff}>Name</Text>}
+                {name && <Text style={styles.inputLabelOff}>Name</Text>}
                 <TextInput
-                  value={state.name}
+                  value={name}
                   style={styles.input}
                   placeholder={"Name"}
-                  onChangeText={(value) =>
-                    changeInput(value, setState, "name", setLoginChange)
-                  }
+                  onChangeText={(value) => setName(value)}
                 />
                 <View style={styles.inputIcon}>
                   <Feather
@@ -134,39 +115,22 @@ export default function RegistrationScreen({ navigation }) {
                   />
                 </View>
               </View>
-              <View>
-                {phoneChange && <Text style={styles.inputLabelOff}>Phone</Text>}
-                {errorPhone && (
-                  <View style={styles.stylesNotCorrect}>
-                    {state.phone === "" ? (
-                      <Text style={styles.stylesNotCorrectText}>
-                        You have not entered an phone
-                      </Text>
-                    ) : (
-                      <Text style={styles.stylesNotCorrectText}>
-                        Enter the phone number in the format "+38 (067)
-                        22-222-22"
-                      </Text>
-                    )}
-                  </View>
-                )}
 
+              <View>
+                {phone && <Text style={styles.inputLabelOff}>Phone</Text>}
                 <TextInput
                   keyboardType="phone-pad"
-                  value={state.phone}
+                  value={phone}
                   placeholder={"Phone"}
                   style={styles.input}
-                  onChangeText={(value) =>
-                    changeInput(
-                      value,
-                      setState,
-                      "phone",
-                      setPhoneChange,
-                      validation.phone,
-                      setCheckValidPhone
-                    )
-                  }
+                  onChangeText={handlePhoneChange}
                 />
+                {isValidPhone ? (
+                  <Text style={styles.valid}>Valid phone</Text>
+                ) : (
+                  <Text style={styles.invalid}>Invalid phone</Text>
+                )}
+
                 <View style={styles.inputIcon}>
                   <Feather
                     name="phone"
@@ -175,42 +139,26 @@ export default function RegistrationScreen({ navigation }) {
                   />
                 </View>
                 <Text style={styles.hint}>
-                  Format phone number: "+38 (067) 22-222-22"
+                  Format phone number: "38 (067) 22-222-22"
                 </Text>
               </View>
-              <View>
-                {emailChange && <Text style={styles.inputLabelOff}>Email</Text>}
-                {errorEmail && (
-                  <View style={styles.stylesNotCorrect}>
-                    {state.email === "" ? (
-                      <Text style={styles.stylesNotCorrectText}>
-                        You have not entered an email
-                      </Text>
-                    ) : (
-                      <Text style={styles.stylesNotCorrectText}>
-                        You have entered an incorrect email
-                      </Text>
-                    )}
-                  </View>
-                )}
 
+              <View>
+                {email && <Text style={styles.inputLabelOff}>Email</Text>}
                 <TextInput
                   keyboardType="email-address"
-                  value={state.email}
+                  value={email}
                   placeholder={"Email"}
                   style={styles.input}
-                  onChangeText={(value) =>
-                    changeInput(
-                      value,
-                      setState,
-                      "email",
-                      setEmailChange,
-                      validation.email,
-                      setCheckValidEmail
-                    )
-                  }
-                //
+                  onChangeText={handleEmailChange}
                 />
+
+                {isValidEmail ? (
+                  <Text style={styles.valid}>Valid email address</Text>
+                ) : (
+                  <Text style={styles.invalid}>Invalid email address</Text>
+                )}
+
                 <View style={styles.inputIcon}>
                   <Octicons
                     name="mail"
@@ -221,17 +169,13 @@ export default function RegistrationScreen({ navigation }) {
               </View>
 
               <View>
-                {passwordChange && (
-                  <Text style={styles.inputLabelOff}>Password</Text>
-                )}
+                {password && <Text style={styles.inputLabelOff}>Password</Text>}
                 <TextInput
-                  value={state.password}
+                  value={password}
                   style={styles.input}
                   placeholder={"Password"}
                   secureTextEntry={togglePassword}
-                  onChangeText={(value) =>
-                    changeInput(value, setState, "password", setPasswordChange)
-                  }
+                  onChangeText={(value) => setPassword(value)}
                 />
 
                 <TouchableOpacity
@@ -255,22 +199,15 @@ export default function RegistrationScreen({ navigation }) {
                 </TouchableOpacity>
               </View>
               <View>
-                {repeatPas && (
+                {repeatingPassword && (
                   <Text style={styles.inputLabelOff}>Confirm password</Text>
                 )}
                 <TextInput
-                  value={state.repeatingPassword}
+                  value={repeatingPassword}
                   style={styles.input}
                   placeholder={"Confirm password"}
                   secureTextEntry={toggleRepeatingPassword}
-                  onChangeText={(value) =>
-                    changeInput(
-                      value,
-                      setState,
-                      "repeatingPassword",
-                      setRepeatPas
-                    )
-                  }
+                  onChangeText={(value) => setRepeatingPassword(value)}
                 />
                 <TouchableOpacity
                   onPress={() => handleToggle(setToggleRepeatingPassword)}

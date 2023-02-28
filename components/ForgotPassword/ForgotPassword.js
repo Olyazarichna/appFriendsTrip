@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
-import { HomeScreenStyles } from "../../styles/stylesScreens/HomeScreenStyles";
 import { Ionicons } from "@expo/vector-icons";
 import { resetPassword } from "../../redux/auth/authOperations";
 import variables from "../../styles/utils/variables";
@@ -50,7 +49,6 @@ const styles = StyleSheet.create({
         paddingLeft: 25,
         paddingTop: 45,
         justifyContent: "center",
-        // position: 'relative',
     },
     text: {
         fontSize: 20,
@@ -79,10 +77,8 @@ const styles = StyleSheet.create({
         height: 59,
         paddingTop: 20,
         paddingBottom: 20,
-        // borderWidth: 1,
         borderColor: "rgba(69, 124, 247, 1)",
         alignItems: "center",
-        // justifyContent: "center",
         shadowColor: "rgba(0, 0, 0, 0.25)",
         borderWidth: 0,
     },

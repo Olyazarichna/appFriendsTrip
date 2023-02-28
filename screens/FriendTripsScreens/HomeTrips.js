@@ -46,7 +46,7 @@ export default function HomeTrips() {
         </View>
         <LinearGradient
           style={styles.button}
-          start={{ x: 0.5, y: 0.5 }}
+          // start={{ x: 0.5, y: 0.5 }}
           end={{ x: 0.5, y: 0.5 }}
           colors={['rgb(69, 124, 247)', 'rgb(55, 90, 190)']}
         >

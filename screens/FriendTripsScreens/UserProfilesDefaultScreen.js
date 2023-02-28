@@ -39,18 +39,16 @@ import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 import CameraProfileComponents from "../../components/Profile/CameraProfileComponents";
 import GalleryProfileComponents from "../../components/Profile/GalleryProfileComponents";
 
-
 export default function UserProfilesDefaultScreen({ navigation }) {
-
   const state = useSelector((state) => state.auth);
   console.log("stateUserDef", state);
 
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState("");
   const [name, setName] = useState(state.name);
   const [email, setEmail] = useState(state.email);
   const [phone, setPhone] = useState(state.phone);
-  const [location, setLocation] = useState('');
-  const [about, setAbout] = useState('');
+  const [location, setLocation] = useState("");
+  const [about, setAbout] = useState("");
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
@@ -64,7 +62,6 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const [checkValidPhone, setCheckValidPhone] = useState(true);
 
   const [add, setAdd] = useState(false);
-
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -91,8 +88,6 @@ export default function UserProfilesDefaultScreen({ navigation }) {
       }
     }
   };
-
-  const auth = getAuth();
 
   const dispatch = useDispatch();
 
@@ -155,11 +150,10 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     setModalVisible(!modalVisible);
   };
 
-
   const IOS = Platform.OS === "ios";
   return (
     <View style={styles.container}>
-      <View style={{ position: "absolute", top: 0, left: 25 }}>
+      <View style={{ position: "absolute", top: 10, left: 25 }}>
         <ButtonRoundBlue
           title={
             <AntDesign
@@ -296,10 +290,11 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               value={name}
               editable={dataCheckName}
               style={styles.input}
-              onFocus={() => setIsShowKeyboard((isShowKeyboard) =>
-                !isShowKeyboard)
+              onFocus={() =>
+                setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
               }
-              onChangeText={(value) => setName(value)} />
+              onChangeText={(value) => setName(value)}
+            />
           </View>
 
           <TouchableOpacity
@@ -393,8 +388,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               onFocus={() =>
                 setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
               }
-              onChangeText={(value) =>
-                setPhone(value)}
+              onChangeText={(value) => setPhone(value)}
             />
           </View>
 
@@ -428,8 +422,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               onFocus={() =>
                 setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
               }
-              onChangeText={(value) =>
-                setLocation(value)}
+              onChangeText={(value) => setLocation(value)}
             />
           </View>
 
@@ -462,8 +455,8 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                 onFocus={() =>
                   setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
                 }
-                onChangeText={(value) =>
-                  setAbout(value)} />
+                onChangeText={(value) => setAbout(value)}
+              />
             </View>
           </View>
 
@@ -486,7 +479,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         <ButtonLongBlue
           title="add trip"
           marginTop={ScreenSettings.returnParams(0, 40)}
-          click={() => navigation.navigate("CreateTrip")}
+          click={() => navigation.navigate("MyTrip")}
         />
       </View>
 
