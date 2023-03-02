@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import { Feather, Octicons, AntDesign, Ionicons } from "@expo/vector-icons";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/auth/authOperations";
 
 import variables from "../../styles/utils/variables";
@@ -34,6 +34,8 @@ const initialState = {
 };
 
 export default function LoginScreen({ navigation }) {
+  const userInfo = useSelector((state) => state.auth);
+  console.log('ui', userInfo);
   const [state, setState] = useState(initialState);
 
   const [togglePassword, setTogglePassword] = useState(true);

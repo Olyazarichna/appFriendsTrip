@@ -17,6 +17,8 @@ export const UserProfilesDefaultScreenStyles = {
         borderRadius: ScreenSettings.returnParams(65, 100),
     },
     dataContainer: {
+        marginHorizontal: 15,
+        justifyContent: 'center',
         width: ScreenSettings.returnParams(300, 600),
         marginBottom: 50,
     },
@@ -25,12 +27,20 @@ export const UserProfilesDefaultScreenStyles = {
         color: variables.titleColor,
         ...fonts(ScreenSettings.returnParams(14, 18), "500")
     },
-
     input: {
         marginTop: ScreenSettings.returnParams(14, 16),
         marginLeft: 5,
         color: variables.textColor,
-        ...fonts(ScreenSettings.returnParams(12, 16), "500")
+        ...fonts(ScreenSettings.returnParams(12, 16), "500"),
+    },
+    inputEditable: {
+        width: '75%',
+        borderWidth: 1,
+        marginLeft: 5,
+        borderColor: "rgba(69, 124, 247, 1)",
+        borderRadius: 4,
+        padding: 8,
+        marginTop: 3,
     },
     checkButton: {
         marginTop: 18,
@@ -51,7 +61,6 @@ export const UserProfilesDefaultScreenStyles = {
     },
     stylesNotCorrectText: {
         color: "red",
-
         ...fonts(ScreenSettings.returnParams(10, 12), "400")
     },
 }

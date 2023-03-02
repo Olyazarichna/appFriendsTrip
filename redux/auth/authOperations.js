@@ -36,7 +36,8 @@ export const logIn =
         async (dispatch, getState) => {
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                dispatch(updateUserProfile());
+                console.log('auth', auth);
+                dispatch(updateUserProfile({ userId: auth.currentUser.uid, name: auth.currentUser.displayName, email: auth.currentUser.email }));
             } catch (error) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
