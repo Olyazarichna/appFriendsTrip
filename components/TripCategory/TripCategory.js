@@ -1,15 +1,15 @@
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import variables from '../../styles/utils/variables';
+
 export default function TripCategory({ data, isActive = false }) {
   return (
     <>
       {isActive ? (
         <LinearGradient
           style={styles.button}
-          // start={{ x: 0.5, y: 0.5 }}
-          end={{ x: 0.5, y: 0.5 }}
-          colors={['rgb(69, 124, 247)', 'rgb(55, 90, 190)']}
+          colors={[variables.gradColorOne, variables.gradColorTwo]}
         >
           <Text style={styles.active}> {data.category}</Text>
         </LinearGradient>
@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
   active: {
     color: '#fff',
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: '500',
   },
   inactive: {
     backgroundColor: '#fff',
     color: '#BEC0C7',
     fontSize: 14,
-    fontWeight: "500",
+    fontWeight: '500',
   },
 });

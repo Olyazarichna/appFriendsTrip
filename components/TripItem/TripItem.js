@@ -12,6 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
+
 const { width } = Dimensions.get('screen');
 
 export default function TripItem({ data }) {

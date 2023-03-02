@@ -14,6 +14,7 @@ import ListTrips from '../../components/ListTrips/ListTrips';
 import ListCategories from '../../components/ListCategories/ListCategories';
 import tripData from '../../hardcodedData/tripData';
 import categories from '../../hardcodedData/tripCategories';
+import variables from '../../styles/utils/variables';
 
 export default function HomeTrips() {
   const handleFilterPress = () => {
@@ -46,9 +47,7 @@ export default function HomeTrips() {
         </View>
         <LinearGradient
           style={styles.button}
-          // start={{ x: 0.5, y: 0.5 }}
-          end={{ x: 0.5, y: 0.5 }}
-          colors={['rgb(69, 124, 247)', 'rgb(55, 90, 190)']}
+          colors={[variables.gradColorOne, variables.gradColorTwo]}
         >
           <TouchableOpacity style={styles.button} onPress={handleFilterPress}>
             <FilterIcon />
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   list: {
     marginTop: 20,
