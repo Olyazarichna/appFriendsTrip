@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import {
   StyleSheet,
   Text,
@@ -12,11 +14,31 @@ import { LinearGradient } from 'expo-linear-gradient';
 import FilterIcon from '../../components/FilterIcon/FilterIcon';
 import ListTrips from '../../components/ListTrips/ListTrips';
 import ListCategories from '../../components/ListCategories/ListCategories';
-import tripData from '../../hardcodedData/tripData';
 import categories from '../../hardcodedData/tripCategories';
 import variables from '../../styles/utils/variables';
+import { getTrips } from '../../services/getTrips';
 
 export default function HomeTrips() {
+  const [trips, setTrips] = useState([]);
+  const [lastVisible, setLastVisible] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const { trips: newTrips, lastVisible: newLastVisible } = await getTrips();
+      setTrips(newTrips);
+      setLastVisible(newLastVisible);
+    }
+    fetchData();
+  }, []);
+
+  const loadMore = async () => {
+    const { trips: newTrips, lastVisible: newLastVisible } = await getTrips(
+      lastVisible
+    );
+    setTrips(trips => [...trips, ...newTrips]);
+    setLastVisible(newLastVisible);
+  };
+
   const handleFilterPress = () => {
     console.log('Open filter settings.');
   };
@@ -61,7 +83,7 @@ export default function HomeTrips() {
         </View>
       </View>
       <View style={[styles.list, styles.trips]}>
-        <ListTrips trips={tripData} />
+        <ListTrips trips={trips} />
       </View>
     </View>
   );

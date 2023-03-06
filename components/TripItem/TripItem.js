@@ -12,11 +12,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
-
 const { width } = Dimensions.get('screen');
 
 export default function TripItem({ data }) {
-  const { id, owner, destination, avatar, countryImg, rating } = data;
+  const { id, owner, place, avatar, image, rating } = data;
 
   const handleFavoriteBtn = () => {
     console.log(`Trip with id: ${id} added to favorite`);
@@ -29,11 +28,7 @@ export default function TripItem({ data }) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={countryImg}
-        resizeMode="cover"
-        style={styles.countryImg}
-      />
+      <ImageBackground source={image} resizeMode="cover" style={styles.image} />
       <TouchableOpacity style={styles.heart} onPress={handleFavoriteBtn}>
         <Ionicons name="ios-heart" size={20} color="white" />
       </TouchableOpacity>
@@ -45,8 +40,8 @@ export default function TripItem({ data }) {
         </View>
         <View style={styles.details}>
           <View>
-            <Text style={styles.owner}>{owner}</Text>
-            <Text style={styles.destination}>{destination}</Text>
+            <Text style={styles.owner}>{owner.name}</Text>
+            <Text style={styles.place}>{place}</Text>
           </View>
           <ButtonRoundBlue
             title={<AntDesign name="arrowright" size={20} color="white" />}
@@ -70,7 +65,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginRight: 20,
   },
-  countryImg: {
+  image: {
     flex: 1,
     justifyContent: 'center',
     height: 316,
@@ -126,7 +121,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     lineHeight: 16,
   },
-  destination: {
+  place: {
     marginTop: 8,
     fontSize: 12,
     color: '#848689',
