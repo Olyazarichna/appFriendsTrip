@@ -9,7 +9,7 @@ import {
   Platform,
 } from "react-native";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
   AntDesign,
@@ -20,7 +20,7 @@ import {
 import { Camera, CameraType } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
 
-import { logOut } from "../../redux/auth/authOperations";
+// import { logOut } from "../../redux/auth/authOperations";
 import { useState, useEffect } from "react";
 
 import variables from "../../styles/utils/variables";
@@ -69,8 +69,6 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
   const [image, setImage] = useState(null);
 
-  const dispatch = useDispatch();
-
   const handleInput = (inputName, value) => {
     setIsShowKeyboard(true);
     switch (inputName) {
@@ -104,10 +102,6 @@ export default function UserProfilesDefaultScreen({ navigation }) {
       about,
     };
     createUserProfile(state.userId, { userData });
-  };
-
-  const handleSubmit = () => {
-    dispatch(logOut());
   };
 
   const takeGallery = (image) => {
@@ -180,7 +174,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           width={40}
           height={40}
           marginTop={37}
-          click={handleSubmit}
+          click={() => navigation.navigate("Home")}
         />
       </View>
 

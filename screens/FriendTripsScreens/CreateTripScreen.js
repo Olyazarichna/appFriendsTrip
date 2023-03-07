@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         paddingRight: 25,
         paddingLeft: 25,
-        paddingTop: 45,
+        paddingTop: 50,
         justifyContent: "center",
     },
     imgContainer: {
@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     btnImage: {
-        width: 300,
-        height: 300,
+        width: 250,
+        height: 250,
         borderRadius: 4,
         alignItems: "center",
         justifyContent: "center",
@@ -175,7 +175,6 @@ const styles = StyleSheet.create({
         borderWidth: 0,
     },
     img: {
-        width: "100%",
         height: "100%",
         borderRadius: 4,
         borderWidth: 1,

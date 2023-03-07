@@ -7,12 +7,14 @@ import {
     sendPasswordResetEmail,
     sendEmailVerification,
     updateProfile,
+    deleteUser,
 } from "firebase/auth";
 
 import app from "../../firebase/config";
 import { updateUserProfile, logout } from "./authReducer";
 
 const auth = getAuth();
+
 console.log("auth", auth);
 export const signUp =
     ({ email, password, name, phone }) =>
@@ -62,3 +64,15 @@ export const resetPassword = async ({ email }) => {
         console.log(errorCode, errorMessage);
     }
 };
+
+
+
+export const deleteUserProfile = async () => {
+
+    try {
+        const user = auth.currentUser;
+        await deleteUser(user)
+    } catch (error) {
+        alert('delete', error);
+    };
+}
