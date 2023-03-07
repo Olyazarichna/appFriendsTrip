@@ -74,12 +74,12 @@ const useRoute = (isAuth) => {
         component={HomeTrips}
         options={{
           tabBarLabel: false,
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ color, size }) => (
             <>
               <Ionicons
                 name="home"
-                size={ScreenSettings.returnParams(18, 22)}
                 color={color}
+                size={size}
               />
               <Text
                 style={{
@@ -102,11 +102,11 @@ const useRoute = (isAuth) => {
         component={CreateTripScreen}
         options={{
           tabBarLabel: false,
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ color, size }) => (
             <>
               <AntDesign
                 name="plus"
-                size={ScreenSettings.returnParams(18, 22)}
+                size={size}
                 color={color}
               />
               <Text
@@ -130,11 +130,11 @@ const useRoute = (isAuth) => {
         component={InboxScreen}
         options={{
           tabBarLabel: false,
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ color, size }) => (
             <>
               <FontAwesome
                 name="inbox"
-                size={ScreenSettings.returnParams(18, 22)}
+                size={size}
                 color={color}
               />
               <Text
@@ -158,11 +158,11 @@ const useRoute = (isAuth) => {
         component={FavoriteScreen}
         options={{
           tabBarLabel: false,
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ color, size }) => (
             <>
               <Ionicons
                 name="heart"
-                size={ScreenSettings.returnParams(18, 22)}
+                size={size}
                 color={color}
               />
               <Text
@@ -186,11 +186,11 @@ const useRoute = (isAuth) => {
         component={UserProfilesScreen}
         options={{
           tabBarLabel: false,
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ color, size }) => (
             <>
               <MaterialCommunityIcons
                 name="account-settings"
-                size={ScreenSettings.returnParams(18, 22)}
+                size={size}
                 color={color}
               />
               <Text
@@ -214,11 +214,11 @@ const useRoute = (isAuth) => {
         component={SettingScreen}
         options={{
           tabBarLabel: false,
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({ color, size }) => (
             <>
               <FontAwesome5
                 name="cog"
-                size={ScreenSettings.returnParams(18, 22)}
+                size={size}
                 color={color}
               />
               <Text
