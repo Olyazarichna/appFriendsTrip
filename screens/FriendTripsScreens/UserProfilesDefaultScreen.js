@@ -21,18 +21,14 @@ import { Camera, CameraType } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
 
 import { logOut } from "../../redux/auth/authOperations";
-// import { ActionCodeURL, getAuth } from "firebase/auth";
 import { useState, useEffect } from "react";
 
 import variables from "../../styles/utils/variables";
 import fonts from "../../styles/utils/mixins";
 import { UserProfilesDefaultScreenStyles } from "../../styles/stylesScreens/UserProfilesDefaultScreenStyles";
-// import { validation } from "../../helpers/validation/validation";
 import { ScreenSettings } from "../../styles/utils/ScreenSettings";
 
 import handleToggle from "../../helpers/handleToggle";
-// import changeInputForProfiles from "../../helpers/changeInputForProfiles";
-
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 

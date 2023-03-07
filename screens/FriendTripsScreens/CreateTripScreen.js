@@ -77,10 +77,10 @@ export default function CreateTripScreen() {
                         <Image source={{ uri: image }} style={styles.img} />
                     )}
                 </View>
-                <KeyboardAvoidingView
-                    behavior={Platform.OS === "ios" ? "padding" : "height"}
-                >
-                    <View style={styles.form}>
+                <View style={styles.form}>
+                    <KeyboardAvoidingView
+                        behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    >
                         <View style={styles.formInput}>
                             <Text style={styles.title}>Place Name</Text>
                             <TextInput
@@ -142,8 +142,8 @@ export default function CreateTripScreen() {
                                 <Text style={styles.textBtn}>Add My Trip</Text>
                             </TouchableOpacity>
                         </LinearGradient>
-                    </View>
-                </KeyboardAvoidingView>
+                    </KeyboardAvoidingView>
+                </View>
             </View>
         </TouchableWithoutFeedback>
     );
