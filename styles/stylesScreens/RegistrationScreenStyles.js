@@ -69,9 +69,6 @@ export const RegistrationScreenStyles = {
     color: variables.labelButtonBlue,
     ...fonts(ScreenSettings.returnParams(10, 13), "400"),
   },
-  error: {
-    color: "red",
-  },
   textRegister: {
     width: ScreenSettings.returnParams(230, 300),
     marginTop: ScreenSettings.returnParams(14, 20),
@@ -85,17 +82,6 @@ export const RegistrationScreenStyles = {
   buttonRegister: {
     color: "#375ABE",
   },
-  // stylesNotCorrect: {
-  //   position: "absolute",
-  //   top: ScreenSettings.returnParams(60, 120),
-  //   left: 50,
-  //   zIndex: 1,
-  //   padding: 3,
-  // },
-  // stylesNotCorrectText: {
-  //   color: "red",
-  //   ...fonts(ScreenSettings.returnParams(10, 13), "400"),
-  // },
   valid: {
     color: "green",
     marginBottom: 10,

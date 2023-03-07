@@ -25,13 +25,13 @@ import handleToggle from "../../helpers/handleToggle";
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 
 export default function RegistrationScreen({ navigation }) {
-  const userInfo = useSelector((state) => state.auth);
+  // const userInfo = useSelector((state) => state.auth);
 
-  const [name, setName] = useState(userInfo.name);
-  const [email, setEmail] = useState(userInfo.email);
-  const [phone, setPhone] = useState(userInfo.phone);
-  const [password, setPassword] = useState(userInfo.password);
-  const [repeatingPassword, setRepeatingPassword] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatingPassword, setRepeatingPassword] = useState("");
 
   const [passwordError, setPasswordError] = useState(false);
   const [togglePassword, setTogglePassword] = useState(true);
@@ -41,16 +41,18 @@ export default function RegistrationScreen({ navigation }) {
   const [isValidEmail, setIsValidEmail] = useState(false);
 
   const dispatch = useDispatch();
+  const PHONE_REGEX =
+    /^\+?\d{1,3}?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/gm;
+  const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
-  const handleEmailChange = (email) => {
-    setEmail(email);
-    setIsValidEmail(/\S+@\S+\.\S+/.test(email));
+  const handleEmailChange = (text) => {
+    setEmail(text);
+    setIsValidEmail(EMAIL_REGEX.test(text));
   };
-  const handlePhoneChange = (phone) => {
-    setPhone(phone);
-    setIsValidPhone(
-      /^\+?\d{1,3}?[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/gm.test(phone)
-    );
+
+  const handlePhoneChange = (text) => {
+    setPhone(text);
+    setIsValidPhone(PHONE_REGEX.test(text));
   };
   const handleSubmit = () => {
     if (
@@ -63,7 +65,6 @@ export default function RegistrationScreen({ navigation }) {
       alert("All fields must be filled");
       return;
     }
-
     if (password !== repeatingPassword) {
       setPasswordError("Passwords do not match. Please try again.");
       return;
@@ -74,11 +75,12 @@ export default function RegistrationScreen({ navigation }) {
       phone,
       password,
     };
-    dispatch(signUp(user));
-    Keyboard.dismiss();
-    reset();
+    if (isValidEmail && isValidPhone) {
+      dispatch(signUp(user));
+      Keyboard.dismiss();
+      reset();
+    }
   };
-
   const reset = () => {
     setName("");
     setEmail("");
@@ -86,6 +88,7 @@ export default function RegistrationScreen({ navigation }) {
     setPassword("");
     setRepeatingPassword("");
   };
+  console.log("p", phone);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -125,10 +128,10 @@ export default function RegistrationScreen({ navigation }) {
                   style={styles.input}
                   onChangeText={handlePhoneChange}
                 />
-                {isValidPhone ? (
-                  <Text style={styles.valid}>Valid phone</Text>
-                ) : (
+                {phone && !isValidPhone && (
                   <Text style={styles.invalid}>Invalid phone</Text>
+                  // ) : (
+                  //   <Text style={styles.valid}>Valid</Text>
                 )}
 
                 <View style={styles.inputIcon}>
@@ -139,7 +142,7 @@ export default function RegistrationScreen({ navigation }) {
                   />
                 </View>
                 <Text style={styles.hint}>
-                  Format phone number: "38 (067) 22-222-22"
+                  Format phone number: "38067 22 222 22"
                 </Text>
               </View>
 
@@ -153,10 +156,12 @@ export default function RegistrationScreen({ navigation }) {
                   onChangeText={handleEmailChange}
                 />
 
-                {isValidEmail ? (
-                  <Text style={styles.valid}>Valid email address</Text>
-                ) : (
-                  <Text style={styles.invalid}>Invalid email address</Text>
+                {email && !isValidEmail && (
+                  <Text style={styles.invalid}>
+                    Please enter a valid email address
+                  </Text>
+                  // ) : (
+                  //   <Text style={styles.valid}>Valid</Text>
                 )}
 
                 <View style={styles.inputIcon}>
@@ -239,7 +244,7 @@ export default function RegistrationScreen({ navigation }) {
               />
 
               {passwordError && (
-                <Text style={styles.error}>Passwords do not match</Text>
+                <Text style={styles.invalid}>Passwords do not match</Text>
               )}
             </View>
             <Text style={styles.textRegister}>
