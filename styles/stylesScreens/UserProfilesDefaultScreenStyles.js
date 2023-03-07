@@ -1,6 +1,6 @@
 import variables from "../utils/variables";
 import fonts from "../utils/mixins";
-import { ScreenSettings } from '../utils/ScreenSettings';
+import { ScreenSettings } from "../utils/ScreenSettings";
 
 export const UserProfilesDefaultScreenStyles = {
     container: {
@@ -17,40 +17,36 @@ export const UserProfilesDefaultScreenStyles = {
         borderRadius: ScreenSettings.returnParams(65, 100),
     },
     dataContainer: {
-        marginHorizontal: 15,
-        justifyContent: 'center',
-        width: ScreenSettings.returnParams(300, 600),
+        marginHorizontal: 40,
+        // justifyContent: 'center',
+        // width: ScreenSettings.returnParams(300, 600),
         marginBottom: 50,
     },
     textTitle: {
+        width: "25%",
         marginTop: 19,
         color: variables.titleColor,
-        ...fonts(ScreenSettings.returnParams(14, 18), "500")
+        ...fonts(ScreenSettings.returnParams(14, 18), "500"),
     },
     input: {
         marginTop: ScreenSettings.returnParams(14, 16),
-        marginLeft: 5,
         color: variables.textColor,
         ...fonts(ScreenSettings.returnParams(12, 16), "500"),
+        width: "70%",
+        padding: 5,
     },
     inputEditable: {
-        width: '75%',
+        width: "70%",
         borderWidth: 1,
-        marginLeft: 5,
         borderColor: "rgba(69, 124, 247, 1)",
         borderRadius: 4,
-        padding: 8,
+        padding: 5,
+        marginLeft: 5,
         marginTop: 3,
     },
     checkButton: {
-        marginTop: 18,
-        marginLeft: "auto"
-    },
-    aboutText: {
-        width: 303,
-        marginTop: 7,
-        color: variables.textColor,
-        ...fonts(ScreenSettings.returnParams(12, 16), "500")
+        alignItems: "center",
+        justifyContent: "center",
     },
     stylesNotCorrect: {
         position: "absolute",
@@ -61,6 +57,6 @@ export const UserProfilesDefaultScreenStyles = {
     },
     stylesNotCorrectText: {
         color: "red",
-        ...fonts(ScreenSettings.returnParams(10, 12), "400")
+        ...fonts(ScreenSettings.returnParams(10, 12), "400"),
     },
-}
+};
