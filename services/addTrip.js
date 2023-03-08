@@ -19,9 +19,21 @@ export const addTrip = async ({ trip }) => {
                 minAge: 28,
                 owner: user.uid,
             });
-            Toast.show("Trip successfully added");
+            Toast.show("Trip successfully added", {
+                duration: Toast.durations.LONG,
+                position: Toast.positions.CENTER,
+                backgroundColor: '#375ABE',
+                textColor: "#fff",
+                hideOnPress: true,
+            });
         } catch (e) {
-            console.error("Error adding document: ", e);
+            Toast.show("Error adding document: ", e, {
+                duration: Toast.durations.LONG,
+                position: Toast.positions.CENTER,
+                backgroundColor: 'red',
+                textColor: "#fff",
+                hideOnPress: true,
+            });
         }
     });
 };

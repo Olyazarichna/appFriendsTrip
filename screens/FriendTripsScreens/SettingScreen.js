@@ -1,37 +1,39 @@
-import {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    TextInput,
-    TouchableOpacity,
-
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import { useDispatch } from "react-redux";
-import {
-    AntDesign,
-
-} from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 import variables from "../../styles/utils/variables";
-
 import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 
 import { logOut } from "../../redux/auth/authOperations";
 import { deleteUserProfile } from "../../redux/auth/authOperations";
 
+import ModalWindow from "../../components/Modal/ModalWIndow";
+import { useState } from "react";
+
 export default function SettingScreen({ navigation }) {
     const dispatch = useDispatch();
+    const [modalVisible1, setModalVisible1] = useState(false);
+    const [modalVisible2, setModalVisible2] = useState(false);
+
+    const toggleModal1 = () => {
+        setModalVisible1(!modalVisible1);
+    };
+
+    const toggleModal2 = () => {
+        setModalVisible2(!modalVisible2);
+    };
+    const title1 = <Text>Are you sure you want delete profile?</Text>;
+    const title2 = <Text>Are you sure you want log out?</Text>;
 
     const handleSubmit = () => {
-        alert('do smth');
+        alert("do smth");
     };
     const deleteUser = async () => {
         await deleteUserProfile();
-        console.log('account delete');
         dispatch(logOut());
-    }
+    };
 
     return (
         <View style={styles.container}>
@@ -115,36 +117,57 @@ export default function SettingScreen({ navigation }) {
                 <View style={styles.item}>
                     <Text style={styles.textItem}>Delete account</Text>
 
-                    <ButtonRoundBlue
-                        title={
-                            <AntDesign
-                                name="delete"
-                                size={17}
-                                color={variables.labelButtonWhite}
-                            />
-                        }
-                        width={40}
-                        height={40}
-                        click={deleteUser}
-                    />
+                    <View>
+                        <ButtonRoundBlue
+                            title={
+                                <AntDesign
+                                    name="delete"
+                                    size={17}
+                                    color={variables.labelButtonWhite}
+                                />
+                            }
+                            width={40}
+                            height={40}
+                            click={() => toggleModal1()}
+                        />
+                        <ModalWindow
+                            modalVisible={modalVisible1}
+                            onRequestClose={() => toggleModal1()}
+                            onClose={() => toggleModal1()}
+                            title={title1}
+                            onPress={deleteUser}
+                            textBtnY="Sure"
+                            textBtnN="Cancel"
+                        />
+                    </View>
                 </View>
                 <View style={styles.item}>
                     <Text style={styles.textItem}>Log out</Text>
-                    <ButtonRoundBlue
-                        title={
-                            <AntDesign
-                                name="logout"
-                                size={17}
-                                color={variables.labelButtonWhite}
-                            />
-                        }
-                        width={40}
-                        height={40}
-                        click={() => dispatch(logOut())}
-                    />
+                    <View>
+                        <ButtonRoundBlue
+                            title={
+                                <AntDesign
+                                    name="logout"
+                                    size={17}
+                                    color={variables.labelButtonWhite}
+                                />
+                            }
+                            width={40}
+                            height={40}
+                            click={toggleModal2}
+                        />
+                        <ModalWindow
+                            modalVisible={modalVisible2}
+                            onRequestClose={toggleModal2}
+                            onClose={toggleModal2}
+                            title={title2}
+                            textBtnY="Yes"
+                            onPress={() => dispatch(logOut())}
+                            textBtnN="Cancel"
+                        />
+                    </View>
                 </View>
             </View>
-
         </View>
     );
 }
@@ -158,7 +181,7 @@ const styles = StyleSheet.create({
         padding: 30,
     },
     title: {
-        fontWeight: '600',
+        fontWeight: "600",
         fontSize: 20,
         marginBottom: 30,
         letterSpacing: 2,
@@ -167,14 +190,12 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     item: {
-        flexDirection: 'row',
+        flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: 'center',
+        alignItems: "center",
         marginTop: 10,
     },
     textItem: {
         fontSize: 16,
-
     },
-
 });

@@ -17,6 +17,7 @@ import { addTrip } from "../../services/addTrip";
 import Toast from "react-native-root-toast";
 
 export default function CreateTripScreen() {
+
     const [place, setPlace] = useState("");
     const [image, setImage] = useState(null);
     const [date, setDate] = useState("");
@@ -36,6 +37,10 @@ export default function CreateTripScreen() {
         if (!trip.place.trim() || !trip.date.trim() || !trip.duration.trim()) {
             Toast.show("Place, date and duration fields are required", {
                 duration: Toast.durations.LONG,
+                position: Toast.positions.CENTER,
+                backgroundColor: '#375ABE',
+                textColor: "#fff",
+                hideOnPress: true,
             });
             return;
         }
@@ -133,6 +138,7 @@ export default function CreateTripScreen() {
                                 placeholder="About a person you are looking for this trip"
                             />
                         </View>
+
                         <LinearGradient
                             colors={["#457CF7", "#375ABE"]}
                             end={{ x: 0.5, y: 0.2 }}

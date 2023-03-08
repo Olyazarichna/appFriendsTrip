@@ -53,12 +53,11 @@ export default function LoginScreen({ navigation }) {
       return;
     }
     setErrorEmail(false);
-    setState(initialState);
     setEmailChange(false);
     Keyboard.dismiss();
     setIsShowKeyboard(false);
-
     dispatch(logIn(state));
+    setState(initialState);
     console.log("Login successful", state);
   };
 

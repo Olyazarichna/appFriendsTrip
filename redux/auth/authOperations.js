@@ -12,6 +12,7 @@ import {
 
 import app from "../../firebase/config";
 import { updateUserProfile, logout } from "./authReducer";
+import Toast from "react-native-root-toast";
 
 const auth = getAuth();
 
@@ -38,11 +39,24 @@ export const logIn =
         async (dispatch, getState) => {
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                console.log('auth', auth);
-                dispatch(updateUserProfile({ userId: auth.currentUser.uid, name: auth.currentUser.displayName, email: auth.currentUser.email }));
+                console.log("auth", auth);
+                dispatch(
+                    updateUserProfile({
+                        userId: auth.currentUser.uid,
+                        name: auth.currentUser.displayName,
+                        email: auth.currentUser.email,
+                    })
+                );
             } catch (error) {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                Toast.show("Invalid email or password", {
+                    duration: Toast.durations.LONG,
+                    position: Toast.positions.CENTER,
+                    backgroundColor: "#EE0A37",
+                    textColor: "#fff",
+                    hideOnPress: true,
+                });
             }
         };
 
@@ -65,14 +79,11 @@ export const resetPassword = async ({ email }) => {
     }
 };
 
-
-
 export const deleteUserProfile = async () => {
-
     try {
         const user = auth.currentUser;
-        await deleteUser(user)
+        await deleteUser(user);
     } catch (error) {
-        alert('delete', error);
-    };
-}
+        alert("delete", error);
+    }
+};
