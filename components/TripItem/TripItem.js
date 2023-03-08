@@ -14,8 +14,8 @@ import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
 const { width } = Dimensions.get('screen');
 
-export default function TripItem({ data }) {
-  const { id, owner, place, avatar, image, rating } = data;
+export default function TripItem({ trip }) {
+  const { id, owner, place, image, rating } = trip;
 
   const handleFavoriteBtn = () => {
     console.log(`Trip with id: ${id} added to favorite`);
@@ -33,7 +33,7 @@ export default function TripItem({ data }) {
         <Ionicons name="ios-heart" size={20} color="white" />
       </TouchableOpacity>
       <View style={styles.card}>
-        <Image style={styles.avatar} source={avatar} />
+        <Image style={styles.avatar} source={{ uri: owner.avatar }} />
         <View style={styles.ratingFlex}>
           <AntDesign style={styles.star} name="star" size={15} color="gold" />
           <Text style={styles.rating}>{rating}</Text>
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 30,
     marginRight: 20,
+    // marginLeft: 20,
   },
   image: {
     flex: 1,

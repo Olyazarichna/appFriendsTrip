@@ -1,6 +1,6 @@
-import { Text, Platform } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { Text, Platform } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import {
   Ionicons,
@@ -8,31 +8,31 @@ import {
   FontAwesome,
   MaterialCommunityIcons,
   FontAwesome5,
-} from "@expo/vector-icons";
+} from '@expo/vector-icons';
 
-import { ScreenSettings } from "../styles/utils/ScreenSettings";
-import fonts from "../styles/utils/mixins";
+import { ScreenSettings } from '../styles/utils/ScreenSettings';
+import fonts from '../styles/utils/mixins';
 
 // auth screens
-import RegistrationScreen from "../screens/auth/RegistrationScreen";
-import LoginScreen from "../screens/auth/LoginScreen";
-import Home from "../screens/auth/Home";
+import RegistrationScreen from '../screens/auth/RegistrationScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import Home from '../screens/auth/Home';
 
 // Trips screens
-import HomeTrips from "../screens/FriendTripsScreens/HomeTrips";
-import CreateTripScreen from "../screens/FriendTripsScreens/CreateTripScreen";
-import InboxScreen from "../screens/FriendTripsScreens/InboxScreen";
-import FavoriteScreen from "../screens/FriendTripsScreens/FavoriteScreen";
-import UserProfilesScreen from "../screens/FriendTripsScreens/UserProfilesScreen";
-import SettingScreen from "../screens/FriendTripsScreens/SettingScreen";
+import HomeTrips from '../screens/FriendTripsScreens/HomeTrips';
+import CreateTripScreen from '../screens/FriendTripsScreens/CreateTripScreen';
+import InboxScreen from '../screens/FriendTripsScreens/InboxScreen';
+import FavoriteScreen from '../screens/FriendTripsScreens/FavoriteScreen';
+import UserProfilesScreen from '../screens/FriendTripsScreens/UserProfilesScreen';
+import SettingScreen from '../screens/FriendTripsScreens/SettingScreen';
 
-import variables from "../styles/utils/variables";
-import { ForgotPassword } from "../components/ForgotPassword/ForgotPassword";
+import variables from '../styles/utils/variables';
+import { ForgotPassword } from '../components/ForgotPassword/ForgotPassword';
 
 const AuthStack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
-const useRoute = (isAuth) => {
+const useRoute = isAuth => {
   if (!isAuth) {
     return (
       <AuthStack.Navigator>
@@ -84,9 +84,9 @@ const useRoute = (isAuth) => {
               <Text
                 style={{
                   width: 50,
-                  textAlign: "center",
-                  ...fonts(ScreenSettings.returnParams(10, 15), "500"),
-                  fontWeight: "500",
+                  textAlign: 'center',
+                  ...fonts(ScreenSettings.returnParams(10, 15), '500'),
+                  fontWeight: '500',
                   marginTop: 2,
                   color: color,
                 }}
@@ -112,9 +112,9 @@ const useRoute = (isAuth) => {
               <Text
                 style={{
                   width: 50,
-                  textAlign: "center",
-                  ...fonts(ScreenSettings.returnParams(10, 15), "500"),
-                  fontWeight: "500",
+                  textAlign: 'center',
+                  ...fonts(ScreenSettings.returnParams(10, 15), '500'),
+                  fontWeight: '500',
                   marginTop: 2,
                   color: color,
                 }}
@@ -140,9 +140,9 @@ const useRoute = (isAuth) => {
               <Text
                 style={{
                   width: 50,
-                  textAlign: "center",
-                  ...fonts(ScreenSettings.returnParams(10, 15), "500"),
-                  fontWeight: "500",
+                  textAlign: 'center',
+                  ...fonts(ScreenSettings.returnParams(10, 15), '500'),
+                  fontWeight: '500',
                   marginTop: 2,
                   color: color,
                 }}
@@ -168,9 +168,9 @@ const useRoute = (isAuth) => {
               <Text
                 style={{
                   width: 60,
-                  textAlign: "center",
-                  ...fonts(ScreenSettings.returnParams(10, 15), "500"),
-                  fontWeight: "500",
+                  textAlign: 'center',
+                  ...fonts(ScreenSettings.returnParams(10, 15), '500'),
+                  fontWeight: '500',
                   marginTop: 2,
                   color: color,
                 }}
@@ -196,9 +196,9 @@ const useRoute = (isAuth) => {
               <Text
                 style={{
                   width: 60,
-                  textAlign: "center",
-                  ...fonts(ScreenSettings.returnParams(10, 15), "500"),
-                  fontWeight: "500",
+                  textAlign: 'center',
+                  ...fonts(ScreenSettings.returnParams(10, 15), '500'),
+                  fontWeight: '500',
                   marginTop: 2,
                   color: color,
                 }}
@@ -224,9 +224,9 @@ const useRoute = (isAuth) => {
               <Text
                 style={{
                   width: 60,
-                  textAlign: "center",
-                  ...fonts(ScreenSettings.returnParams(10, 15), "500"),
-                  fontWeight: "500",
+                  textAlign: 'center',
+                  ...fonts(ScreenSettings.returnParams(10, 15), '500'),
+                  fontWeight: '500',
                   marginTop: 2,
                   color: color,
                 }}

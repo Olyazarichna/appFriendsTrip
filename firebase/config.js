@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { collection, getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
 
 // Import the functions you need from the SDKs you need
@@ -25,9 +26,9 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
+export const storage = getStorage(app);
+
 // Initialize Firebase Authentication and get a reference to the service
-// Можна використовувати для перевірки статус аутентифікації користувача
-// Тут або користувач або null
 export const auth = getAuth(app);
 
 // Назви колекцій

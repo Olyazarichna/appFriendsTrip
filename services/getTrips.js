@@ -5,12 +5,12 @@ import {
   limit,
   getDocs,
   getDoc,
-  documentId,
 } from 'firebase/firestore';
+import { getDownloadURL } from 'firebase/storage';
 
-import { tripsRef, usersRef } from '../firebase/config';
+import { tripsRef } from '../firebase/config';
 
-const PAGE_LIMIT = 6;
+const PAGE_LIMIT = 2;
 
 export const getTrips = async lastVisible => {
   try {
@@ -22,11 +22,16 @@ export const getTrips = async lastVisible => {
 
     const trips = await Promise.all(
       snapshot.docs.map(async doc => {
-        const trip = { id: doc.id, ...doc.data() };
-        const ownerRef = trip.owner;
-        const ownerDoc = await getDoc(ownerRef);
-        trip.owner = ownerDoc.data();
-        return trip;
+        try {
+          const trip = { id: doc.id, ...doc.data() };
+          const ownerRef = trip.owner;
+          const ownerDoc = await getDoc(ownerRef);
+          trip.owner = ownerDoc.data();
+          console.log('getTrips ~ trip.owner:', trip.owner);
+          return trip;
+        } catch (error) {
+          console.log(error);
+        }
       })
     );
 

@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 
 const auth = getAuth();
 
-export const createUserProfile = (
+export const updateUserProfile = (
   userId,
   { name, email, phone, avatar, location, about }
 ) => {
