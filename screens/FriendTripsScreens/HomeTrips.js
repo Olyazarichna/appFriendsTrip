@@ -29,7 +29,6 @@ export default function HomeTrips() {
       setLastVisible(newLastVisible);
     }
     fetchData();
-    console.log('TRIPS', trips);
   }, []);
 
   const loadMore = async () => {

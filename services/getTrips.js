@@ -27,7 +27,6 @@ export const getTrips = async lastVisible => {
           const ownerRef = trip.owner;
           const ownerDoc = await getDoc(ownerRef);
           trip.owner = ownerDoc.data();
-          console.log('getTrips ~ trip.owner:', trip.owner);
           return trip;
         } catch (error) {
           console.log(error);
