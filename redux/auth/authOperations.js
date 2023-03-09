@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -16,21 +15,38 @@ import Toast from "react-native-root-toast";
 
 const auth = getAuth();
 
-console.log("auth", auth);
+import { addDoc, doc, setDoc } from 'firebase/firestore';
+
+import { auth, usersRef } from '../../firebase/config';
+
+console.log('auth', auth);
+
 export const signUp =
     ({ email, password, name, phone }) =>
         async (dispatch, getState) => {
             try {
-                await createUserWithEmailAndPassword(auth, email, password);
-                await sendEmailVerification(auth.currentUser);
-                await updateProfile(auth.currentUser, {
+                const { user } = await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+                await sendEmailVerification(user);
+                await updateProfile(user, {
                     displayName: name,
+                    phoneNumber: phone,
                     // photoURL: "https://pixabay.com/photos/cat-young-animal-kitten-gray-cat-2083492/"
                 });
-                const { uid } = await auth.currentUser;
-                dispatch(updateUserProfile({ userId: uid, name: name, email, phone }));
+                const newUser = {
+                    userId: user.uid,
+                    name,
+                    email,
+                    phone,
+                };
+                const userDocRef = doc(usersRef, user.uid);
+                await setDoc(userDocRef, newUser);
+                dispatch(updateUserProfile(newUser));
             } catch (error) {
-                alert("error", error.code, error.message);
+                alert('error', error.code, error.message);
             }
         };
 
@@ -65,7 +81,7 @@ export const logOut = () => async (dispatch, getState) => {
         await signOut(auth);
         dispatch(logout());
     } catch (error) {
-        console.log("error", error.message);
+        console.log('error', error.message);
     }
 };
 

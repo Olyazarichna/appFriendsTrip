@@ -12,11 +12,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
-
 const { width } = Dimensions.get('screen');
 
-export default function TripItem({ data }) {
-  const { id, owner, destination, avatar, countryImg, rating } = data;
+export default function TripItem({ trip }) {
+  const { id, owner, place, image, rating } = trip;
 
   const handleFavoriteBtn = () => {
     console.log(`Trip with id: ${id} added to favorite`);
@@ -29,24 +28,20 @@ export default function TripItem({ data }) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={countryImg}
-        resizeMode="cover"
-        style={styles.countryImg}
-      />
+      <ImageBackground source={image} resizeMode="cover" style={styles.image} />
       <TouchableOpacity style={styles.heart} onPress={handleFavoriteBtn}>
         <Ionicons name="ios-heart" size={20} color="white" />
       </TouchableOpacity>
       <View style={styles.card}>
-        <Image style={styles.avatar} source={avatar} />
+        <Image style={styles.avatar} source={{ uri: owner.avatar }} />
         <View style={styles.ratingFlex}>
           <AntDesign style={styles.star} name="star" size={15} color="gold" />
           <Text style={styles.rating}>{rating}</Text>
         </View>
         <View style={styles.details}>
           <View>
-            <Text style={styles.owner}>{owner}</Text>
-            <Text style={styles.destination}>{destination}</Text>
+            <Text style={styles.owner}>{owner.name}</Text>
+            <Text style={styles.place}>{place}</Text>
           </View>
           <ButtonRoundBlue
             title={<AntDesign name="arrowright" size={20} color="white" />}
@@ -69,8 +64,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 30,
     marginRight: 20,
+    // marginLeft: 20,
   },
-  countryImg: {
+  image: {
     flex: 1,
     justifyContent: 'center',
     height: 316,
@@ -126,7 +122,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     lineHeight: 16,
   },
-  destination: {
+  place: {
     marginTop: 8,
     fontSize: 12,
     color: '#848689',

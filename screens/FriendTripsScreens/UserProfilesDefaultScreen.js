@@ -7,18 +7,18 @@ import {
   TouchableOpacity,
   Modal,
   Platform,
-} from "react-native";
+} from 'react-native';
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   AntDesign,
   MaterialCommunityIcons,
   EvilIcons,
-} from "@expo/vector-icons";
+} from '@expo/vector-icons';
 
-import { Camera, CameraType } from "expo-camera";
-import * as ImagePicker from "expo-image-picker";
+import { Camera, CameraType } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker';
 
 // import { logOut } from "../../redux/auth/authOperations";
 import { useState, useEffect } from "react";
@@ -32,21 +32,21 @@ import handleToggle from "../../helpers/handleToggle";
 import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
 import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
 
-import CameraProfileComponents from "../../components/Profile/CameraProfileComponents";
-import GalleryProfileComponents from "../../components/Profile/GalleryProfileComponents";
+import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
+import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
 
-import { createUserProfile } from "../../services/createUserProfile";
+import { updateUserProfile } from '../../services/updateUserProfile';
 
 export default function UserProfilesDefaultScreen({ navigation }) {
-  const state = useSelector((state) => state.auth);
-  console.log("stateUserDef", state);
+  const state = useSelector(state => state.auth);
+  console.log('stateUserDef', state);
 
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState('');
   const [name, setName] = useState(state.name);
   const [email, setEmail] = useState(state.email);
   const [phone, setPhone] = useState(state.phone);
-  const [location, setLocation] = useState("");
-  const [about, setAbout] = useState("");
+  const [location, setLocation] = useState('');
+  const [about, setAbout] = useState('');
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
@@ -64,7 +64,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(CameraType.back);
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState('');
   const [snap, setSnap] = useState(null);
 
   const [image, setImage] = useState(null);
@@ -72,19 +72,19 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const handleInput = (inputName, value) => {
     setIsShowKeyboard(true);
     switch (inputName) {
-      case "name":
+      case 'name':
         setName(value);
         break;
-      case "email":
+      case 'email':
         setEmail(value);
         break;
-      case "phone":
+      case 'phone':
         setPhone(value);
         break;
-      case "location":
+      case 'location':
         setLocation(value);
         break;
-      case "about":
+      case 'about':
         setAbout(value);
         break;
       default:
@@ -92,7 +92,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     }
   };
   const editInput = () => {
-    setIsEditable((isEditable) => !isEditable);
+    setIsEditable(isEditable => !isEditable);
     const userData = {
       name,
       email,
@@ -101,7 +101,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
       location,
       about,
     };
-    createUserProfile(state.userId, { userData });
+    updateUserProfile(state.userId, { userData });
   };
 
   const takeGallery = (image) => {
@@ -115,7 +115,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [1, 1],
       quality: 1,
     });
 
@@ -127,7 +127,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === "granted");
+      setHasPermission(status === 'granted');
     })();
   }, []);
 
@@ -159,10 +159,10 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     setModalVisible(!modalVisible);
   };
 
-  const IOS = Platform.OS === "ios";
+  const IOS = Platform.OS === 'ios';
   return (
     <View style={styles.container}>
-      <View style={{ position: "absolute", top: 20, left: 25 }}>
+      <View style={{ position: 'absolute', top: 20, left: 25 }}>
         <ButtonRoundBlue
           title={
             <AntDesign
@@ -192,7 +192,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         </View>
         <View
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: ScreenSettings.returnParams(103, 170),
             left: ScreenSettings.returnParams(80, 145),
             zIndex: 1,
@@ -215,7 +215,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           <>
             <View
               style={{
-                position: "absolute",
+                position: 'absolute',
                 top: ScreenSettings.returnParams(90, 150),
                 left: ScreenSettings.returnParams(20, 10),
               }}
@@ -235,7 +235,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             </View>
             <View
               style={{
-                position: "absolute",
+                position: 'absolute',
                 top: ScreenSettings.returnParams(65, 110),
                 left: ScreenSettings.returnParams(2, -10),
               }}
@@ -266,9 +266,9 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         >
           <Text
             style={{
-              textAlign: "center",
+              textAlign: 'center',
               marginTop: 8,
-              ...fonts(16, "600"),
+              ...fonts(16, '600'),
               color: variables.titleColor,
             }}
           >
@@ -276,8 +276,8 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           </Text>
           <Text
             style={{
-              textAlign: "center",
-              ...fonts(14, "500"),
+              textAlign: 'center',
+              ...fonts(14, '500'),
               color: variables.textColor,
             }}
           >
@@ -289,18 +289,18 @@ export default function UserProfilesDefaultScreen({ navigation }) {
       <View style={styles.dataContainer}>
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
             marginBottom: ScreenSettings.returnParams(0, 10),
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: 'row' }}>
             <Text style={styles.textTitle}>Name:</Text>
             <TextInput
               value={name}
               editable={isEditable}
               style={isEditable ? styles.inputEditable : styles.input}
               onFocus={() =>
-                setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
               }
               onChangeText={(value) => handleInput("name", value)}
               maxLength={20}
@@ -321,16 +321,16 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
             marginBottom: ScreenSettings.returnParams(0, 10),
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: 'row' }}>
             <Text style={styles.textTitle}>Email:</Text>
 
             {!checkValidEmail && (
               <View style={styles.stylesNotCorrect}>
-                {localState.email === "" ? (
+                {localState.email === '' ? (
                   <Text style={styles.stylesNotCorrectText}>
                     You have not entered an email
                   </Text>
@@ -346,9 +346,9 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               editable={isEditable}
               style={isEditable ? styles.inputEditable : styles.input}
               onFocus={() =>
-                setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
               }
-              onChangeText={(value) => handleInput("email", value)}
+              onChangeText={value => handleInput('email', value)}
             />
           </View>
 
@@ -366,15 +366,15 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
             marginBottom: ScreenSettings.returnParams(0, 10),
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: 'row' }}>
             <Text style={styles.textTitle}>Phone:</Text>
             {!checkValidPhone && (
               <View style={styles.stylesNotCorrect}>
-                {localState.phone === "" ? (
+                {localState.phone === '' ? (
                   <Text style={styles.stylesNotCorrectText}>
                     You have not entered an phone
                   </Text>
@@ -390,9 +390,9 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               editable={isEditable}
               style={isEditable ? styles.inputEditable : styles.input}
               onFocus={() =>
-                setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
               }
-              onChangeText={(value) => handleInput("phone", value)}
+              onChangeText={value => handleInput('phone', value)}
             />
           </View>
 
@@ -410,20 +410,20 @@ export default function UserProfilesDefaultScreen({ navigation }) {
 
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
             marginBottom: ScreenSettings.returnParams(0, 10),
           }}
         >
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: 'row' }}>
             <Text style={styles.textTitle}>Locations:</Text>
             <TextInput
               value={location}
               editable={isEditable}
               style={isEditable ? styles.inputEditable : styles.input}
               onFocus={() =>
-                setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
               }
-              onChangeText={(value) => handleInput("location", value)}
+              onChangeText={value => handleInput('location', value)}
             />
           </View>
 
@@ -451,9 +451,9 @@ export default function UserProfilesDefaultScreen({ navigation }) {
                 numberOfLines={3}
                 multiline={true}
                 onFocus={() =>
-                  setIsShowKeyboard((isShowKeyboard) => !isShowKeyboard)
+                  setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
                 }
-                onChangeText={(value) => handleInput("about", value)}
+                onChangeText={value => handleInput('about', value)}
               />
             </View>
           </View>
@@ -474,7 +474,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         <ButtonLongBlue
           title="add trip"
           marginTop={ScreenSettings.returnParams(0, 40)}
-          click={() => navigation.navigate("MyTrip")}
+          click={() => navigation.navigate('MyTrip')}
         />
       </View>
 
@@ -483,7 +483,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
+          Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}
       >
