@@ -1,13 +1,14 @@
+import { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import useRoute from './helpers/useRoute';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserProfile } from './redux/auth/authReducer';
 import { RootSiblingParent } from 'react-native-root-siblings';
-import { useState } from 'react';
-import { auth } from './firebase/config';
-import { useEffect } from 'react';
+
+import useRoute from './helpers/useRoute';
+import { updateUserProfile } from './redux/auth/authReducer';
+import { auth, usersRef } from './firebase/config';
 import { Loader } from './components/Loader/Loader';
+import { doc, getDoc } from 'firebase/firestore';
 
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,16 +16,12 @@ export default function MainPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(async user => {
       if (user) {
-        dispatch(
-          updateUserProfile({
-            name: user.displayName,
-            email: user.email,
-            phone: user.phoneNumber,
-          })
-        );
-        const uid = user.uid;
+        const userDocRef = doc(usersRef, user.uid);
+        const userDB = await getDoc(userDocRef);
+        const userData = userDB.data();
+        dispatch(updateUserProfile(userData));
       }
       setIsLoading(false);
     });

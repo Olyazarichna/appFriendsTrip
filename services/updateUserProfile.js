@@ -1,26 +1,44 @@
-import { getDatabase, ref, set, onValue } from 'firebase/database';
-import { getAuth } from 'firebase/auth';
+import { updateProfile } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
-const auth = getAuth();
+import { auth, usersRef } from '../firebase/config';
 
-export const updateUserProfile = (
-  userId,
-  { name, email, phone, avatar, location, about }
-) => {
-  console.log('UserID', userId);
+export const updateUserProfile = async ({
+  name,
+  email,
+  phone,
+  avatar,
+  location,
+  about,
+}) => {
+  const user = auth.currentUser;
+  console.log('userPHONE:', user.phoneNumber);
   try {
-    const db = getDatabase();
-    console.log('DB', db);
-    set(ref(db, 'users/' + userId), {
-      name,
-      email,
-      phone,
-      profile_picture: avatar,
-      location,
-      about,
+    await updateProfile(user, {
+      displayName: name || user.displayName,
+      email: email || user.email,
+      photoURL: avatar || user.photoURL,
+      // Телефон оновлюється окремим методом. Потрібно розібратися.
+      // phoneNumber: phone || user.phoneNumber,
     });
   } catch (error) {
-    console.log('Code', error.code);
-    console.log('Message', error.message);
+    console.log('DB Auth update Code: ', error.code);
+    console.log('DB Auth updateMessage: ', error.message);
+  }
+  try {
+    const userDocRef = doc(usersRef, user.uid);
+    const userDB = await getDoc(userDocRef);
+    const userData = userDB.data();
+    const userUpdate = {
+      name: name || userData.name,
+      email: email || userData.email,
+      phone: phone || userData.phone,
+      location: location || userData.location,
+      about: about || userData.about,
+    };
+    await setDoc(userDocRef, userUpdate, { merge: true });
+  } catch (error) {
+    console.log('DB user update Code: ', error.code);
+    console.log('DB user updateMessage: ', error.message);
   }
 };

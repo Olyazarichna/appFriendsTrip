@@ -5,10 +5,10 @@ import {
   ref,
   uploadBytes,
 } from 'firebase/storage';
+
 import { resizeImage } from '../helpers/resizeImage';
 import { auth, storage, usersRef } from '../firebase/config';
 
-// export const updateAvatar=async(userId, avatarUri)=> {
 export const updateAvatar = async avatarUri => {
   const userId = auth.currentUser.uid;
   const userRef = doc(usersRef, userId);
@@ -19,7 +19,7 @@ export const updateAvatar = async avatarUri => {
 
   // Завантаження нової аватарки
   const resizedAvatar = await resizeImage(avatarUri);
-  const storageRef = ref(storage, `avatars/${userId}/${Date.now()}.jpg`);
+  const storageRef = ref(storage, `${userId}/avatars/${Date.now()}.jpg`);
   const avatarBlob = await fetch(resizedAvatar).then(response =>
     response.blob()
   );
