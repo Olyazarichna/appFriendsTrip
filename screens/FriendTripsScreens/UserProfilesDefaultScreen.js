@@ -21,16 +21,16 @@ import { Camera, CameraType } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 
 // import { logOut } from "../../redux/auth/authOperations";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import variables from "../../styles/utils/variables";
-import fonts from "../../styles/utils/mixins";
-import { UserProfilesDefaultScreenStyles } from "../../styles/stylesScreens/UserProfilesDefaultScreenStyles";
-import { ScreenSettings } from "../../styles/utils/ScreenSettings";
+import variables from '../../styles/utils/variables';
+import fonts from '../../styles/utils/mixins';
+import { UserProfilesDefaultScreenStyles } from '../../styles/stylesScreens/UserProfilesDefaultScreenStyles';
+import { ScreenSettings } from '../../styles/utils/ScreenSettings';
 
-import handleToggle from "../../helpers/handleToggle";
-import ButtonLongBlue from "../../components/Buttons/ButtonLongBlue";
-import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
+import handleToggle from '../../helpers/handleToggle';
+import ButtonLongBlue from '../../components/Buttons/ButtonLongBlue';
+import ButtonRoundBlue from '../../components/Buttons/ButtonRoundBlue';
 
 import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
 import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
@@ -41,12 +41,12 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const state = useSelector(state => state.auth);
   console.log('stateUserDef', state);
 
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState(state.avatar);
   const [name, setName] = useState(state.name);
   const [email, setEmail] = useState(state.email);
   const [phone, setPhone] = useState(state.phone);
-  const [location, setLocation] = useState('');
-  const [about, setAbout] = useState('');
+  const [location, setLocation] = useState(state.location);
+  const [about, setAbout] = useState(state.about);
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
@@ -91,7 +91,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
         break;
     }
   };
-  const editInput = () => {
+  const editInput = async () => {
     setIsEditable(isEditable => !isEditable);
     const userData = {
       name,
@@ -101,10 +101,10 @@ export default function UserProfilesDefaultScreen({ navigation }) {
       location,
       about,
     };
-    updateUserProfile(state.userId, { userData });
+    await updateUserProfile(userData);
   };
 
-  const takeGallery = (image) => {
+  const takeGallery = image => {
     setAvatar(image);
     setGallery(false);
     setAdd(false);
@@ -174,7 +174,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           width={40}
           height={40}
           marginTop={37}
-          click={() => navigation.navigate("Home")}
+          click={() => navigation.navigate('Home')}
         />
       </View>
 
@@ -302,7 +302,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               onFocus={() =>
                 setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
               }
-              onChangeText={(value) => handleInput("name", value)}
+              onChangeText={value => handleInput('name', value)}
               maxLength={20}
             />
           </View>
@@ -439,10 +439,10 @@ export default function UserProfilesDefaultScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row' }}>
             <Text style={styles.textTitle}>About me:</Text>
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: 'row' }}>
               <TextInput
                 value={about}
                 editable={isEditable}
