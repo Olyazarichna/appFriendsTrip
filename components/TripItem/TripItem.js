@@ -15,7 +15,7 @@ import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 const { width } = Dimensions.get('screen');
 
 export default function TripItem({ trip }) {
-  const { id, owner, place, image, rating } = trip;
+  const { id, owner, city, country, image, rating } = trip;
 
   const handleFavoriteBtn = () => {
     console.log(`Trip with id: ${id} added to favorite`);
@@ -41,7 +41,8 @@ export default function TripItem({ trip }) {
         <View style={styles.details}>
           <View>
             <Text style={styles.owner}>{owner.name}</Text>
-            <Text style={styles.place}>{place}</Text>
+            <Text style={styles.place}>{city}</Text>
+            <Text style={styles.place}>{country}</Text>
           </View>
           <ButtonRoundBlue
             title={<AntDesign name="arrowright" size={20} color="white" />}

@@ -25,7 +25,6 @@ import InboxScreen from '../screens/FriendTripsScreens/InboxScreen';
 import FavoriteScreen from '../screens/FriendTripsScreens/FavoriteScreen';
 import UserProfilesScreen from '../screens/FriendTripsScreens/UserProfilesScreen';
 import SettingScreen from '../screens/FriendTripsScreens/SettingScreen';
-
 import variables from '../styles/utils/variables';
 import { ForgotPassword } from '../components/ForgotPassword/ForgotPassword';
 
@@ -237,7 +236,7 @@ const useRoute = isAuth => {
           ),
         }}
       />
-    </Tab.Navigator>
+    </Tab.Navigator >
   );
 };
 
