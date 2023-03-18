@@ -5,7 +5,7 @@ import { auth, tripsRef, usersRef } from '../../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 import variables from '../../styles/utils/variables';
-import { MyTripItem } from './MyTripItem';
+import MyTripItem from './MyTripItem';
 
 export default function MyTrips() {
     const [modalVisible, setModalVisible] = useState(false);
@@ -49,9 +49,12 @@ export default function MyTrips() {
                         />
                     </View>
                     <View style={styles.wrapper}>
+                        <Text style={styles.text}>My Trips</Text>
                         {trips.length > 0 && (
                             <FlatList
                                 data={trips}
+                                contentContainerStyle={styles.list}
+                                numColumns={2}
                                 renderItem={({ item }) => <MyTripItem trip={item} />}
                             />
                         )}
@@ -65,10 +68,18 @@ export default function MyTrips() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+    },
+    list: {
+        flexGrow: 1,
+    },
+    text: {
+        fontSize: 24,
+        fontWeight: '800',
+        marginBottom: 20,
     },
     wrapper: {
         paddingTop: 100,
+        alignItems: 'center',
     },
 });

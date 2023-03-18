@@ -12,19 +12,16 @@ import ButtonRoundBlue from '../../components/Buttons/ButtonRoundBlue';
 import { logOut } from '../../redux/auth/authOperations';
 import { deleteUserProfile } from '../../redux/auth/authOperations';
 
-import ModalWindow from '../../components/Modal/ModalWIndow';
+import ModalWindow from '../../components/Modal/ModalWindow';
 import { useState } from 'react';
 import MyTrips from '../../components/MyTrips/MyTrips';
 
 export default function SettingScreen({ navigation }) {
-
     const dispatch = useDispatch();
     const [modalVisible1, setModalVisible1] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
 
     const [isOpen, setIsOpen] = useState(false);
-
-    console.log('isOpen', isOpen);
 
     const toggleModal1 = () => {
         setModalVisible1(!modalVisible1);
@@ -121,7 +118,6 @@ export default function SettingScreen({ navigation }) {
                         width={40}
                         height={40}
                         click={() => setIsOpen(!isOpen)}
-
                     />
                 </View>
                 <View style={styles.item}>
@@ -138,12 +134,12 @@ export default function SettingScreen({ navigation }) {
                             }
                             width={40}
                             height={40}
-                            click={() => toggleModal1()}
+                            click={toggleModal1}
                         />
                         <ModalWindow
                             modalVisible={modalVisible1}
-                            onRequestClose={() => toggleModal1()}
-                            onClose={() => toggleModal1()}
+                            onRequestClose={toggleModal1}
+                            onClose={toggleModal1}
                             title={title1}
                             onPress={deleteUser}
                             textBtnY="Sure"
@@ -179,7 +175,7 @@ export default function SettingScreen({ navigation }) {
                 </View>
             </View>
             {isOpen && <MyTrips></MyTrips>}
-        </View >
+        </View>
     );
 }
 

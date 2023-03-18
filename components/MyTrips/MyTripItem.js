@@ -3,9 +3,15 @@ import { AntDesign } from '@expo/vector-icons';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 import variables from '../../styles/utils/variables';
 import { removeTrip } from '../../services/removeTrip';
-import { useEffect } from 'react';
+import { useState } from 'react';
+import ModalWindow from '../Modal/ModalWindow';
 
-export const MyTripItem = ({ trip }) => {
+export default function MyTripItem({ trip }) {
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!modalVisible);
+    };
     const deleteTrip = id => {
         removeTrip(id);
         alert(`Trip ${id} deleted`);
@@ -14,41 +20,63 @@ export const MyTripItem = ({ trip }) => {
     return (
         <View style={styles.container}>
             <Image source={{ uri: trip.image }} style={styles.img} />
-            <View>
+            <View style={styles.textWrapper}>
                 <Text style={styles.text}>{trip.city}</Text>
                 <Text style={styles.text}>{trip.country}</Text>
                 <Text style={styles.text}>{trip.date}</Text>
-            </View>
-            <ButtonRoundBlue
-                title={
-                    <AntDesign
-                        name="delete"
-                        size={17}
-                        color={variables.labelButtonWhite}
+                <View style={styles.btn}>
+                    <ButtonRoundBlue
+                        title={
+                            <AntDesign
+                                name="delete"
+                                size={17}
+                                color={variables.labelButtonWhite}
+                            />
+                        }
+                        width={40}
+                        height={40}
+                        click={toggleModal}
                     />
-                }
-                width={40}
-                height={40}
-                click={() => deleteTrip(trip.id)}
-            />
+                    <ModalWindow
+                        modalVisible={modalVisible}
+                        onRequestClose={toggleModal}
+                        onClose={toggleModal}
+                        title="Are you sure you want delete this trip?"
+                        onPress={() => deleteTrip(trip.id)}
+                        textBtnY="Yes"
+                        textBtnN="Cancel"
+                    />
+                </View>
+            </View>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
+        marginBottom: 20,
     },
     img: {
-        width: 100,
-        height: 100,
+        width: 152,
+        height: 186,
         marginRight: 16,
         borderRadius: 30,
     },
+    textWrapper: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: '#fff',
+        position: 'absolute',
+        bottom: 8,
+        borderRadius: 17,
+        width: 152,
+        justifyContent: 'center',
+    },
     text: {
-        fontSize: 18,
-        marginRight: 10,
+        fontSize: 12,
+    },
+    btn: {
+        position: 'absolute',
+        right: 10,
     },
 });
