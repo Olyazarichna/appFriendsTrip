@@ -1,21 +1,30 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-import { useDispatch } from "react-redux";
-import { AntDesign } from "@expo/vector-icons";
+// import { collection, query, where, getDocs } from "firebase/firestore";
+// import { auth, tripsRef, usersRef } from '../../firebase/config';
 
-import variables from "../../styles/utils/variables";
-import ButtonRoundBlue from "../../components/Buttons/ButtonRoundBlue";
+import { useDispatch } from 'react-redux';
+import { AntDesign } from '@expo/vector-icons';
 
-import { logOut } from "../../redux/auth/authOperations";
-import { deleteUserProfile } from "../../redux/auth/authOperations";
+import variables from '../../styles/utils/variables';
+import ButtonRoundBlue from '../../components/Buttons/ButtonRoundBlue';
 
-import ModalWindow from "../../components/Modal/ModalWIndow";
-import { useState } from "react";
+import { logOut } from '../../redux/auth/authOperations';
+import { deleteUserProfile } from '../../redux/auth/authOperations';
+
+import ModalWindow from '../../components/Modal/ModalWIndow';
+import { useState } from 'react';
+import MyTrips from '../../components/MyTrips/MyTrips';
 
 export default function SettingScreen({ navigation }) {
+
     const dispatch = useDispatch();
     const [modalVisible1, setModalVisible1] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    console.log('isOpen', isOpen);
 
     const toggleModal1 = () => {
         setModalVisible1(!modalVisible1);
@@ -27,8 +36,8 @@ export default function SettingScreen({ navigation }) {
     const title1 = <Text>Are you sure you want delete profile?</Text>;
     const title2 = <Text>Are you sure you want log out?</Text>;
 
-    const handleSubmit = () => {
-        alert("do smth");
+    const handleSubmit = async () => {
+        alert('do smth');
     };
     const deleteUser = async () => {
         await deleteUserProfile();
@@ -38,7 +47,7 @@ export default function SettingScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Setting</Text>
-            <View style={{ position: "absolute", top: 20, left: 25 }}>
+            <View style={{ position: 'absolute', top: 20, left: 25 }}>
                 <ButtonRoundBlue
                     title={
                         <AntDesign
@@ -111,7 +120,8 @@ export default function SettingScreen({ navigation }) {
                         }
                         width={40}
                         height={40}
-                        click={handleSubmit}
+                        click={() => setIsOpen(!isOpen)}
+
                     />
                 </View>
                 <View style={styles.item}>
@@ -168,31 +178,32 @@ export default function SettingScreen({ navigation }) {
                     </View>
                 </View>
             </View>
-        </View>
+            {isOpen && <MyTrips></MyTrips>}
+        </View >
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
         padding: 30,
     },
     title: {
-        fontWeight: "600",
+        fontWeight: '600',
         fontSize: 20,
         marginBottom: 30,
         letterSpacing: 2,
     },
     wrapper: {
-        width: "100%",
+        width: '100%',
     },
     item: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginTop: 10,
     },
     textItem: {

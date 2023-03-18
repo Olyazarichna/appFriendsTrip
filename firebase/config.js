@@ -33,8 +33,8 @@ export const auth = getAuth(app);
 
 // Назви колекцій
 const USERS_COLLECTION = 'users';
-const TRIPS_COLECTION = 'trips';
+const TRIPS_COLlECTION = 'trips';
 
 // Посилання на колекції
 export const usersRef = collection(db, USERS_COLLECTION);
-export const tripsRef = collection(db, TRIPS_COLECTION);
+export const tripsRef = collection(db, TRIPS_COLlECTION);

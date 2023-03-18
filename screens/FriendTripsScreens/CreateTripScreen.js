@@ -15,26 +15,36 @@ import * as ImagePicker from 'expo-image-picker';
 import { addTrip } from '../../services/addTrip';
 
 import Toast from 'react-native-root-toast';
+import { useSelector } from 'react-redux';
 
 export default function CreateTripScreen() {
-  const [place, setPlace] = useState('');
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
   const [image, setImage] = useState(null);
   const [date, setDate] = useState('');
   const [duration, setDuration] = useState('');
   const [tripDetails, setTripDetails] = useState('');
   const [personDetails, setPersonDetails] = useState('');
+  const [minAge, setMinAge] = useState('');
+  const [maxAge, setMaxAge] = useState('');
+
+  const user = useSelector(state => state.auth)
 
   const btnPress = () => {
     const trip = {
-      place,
+      city,
+      country,
       image,
       date,
       duration,
       tripDetails,
       personDetails,
+      minAge,
+      maxAge,
+      owner: user.userId,
     };
-    if (!trip.place.trim() || !trip.date.trim() || !trip.duration.trim()) {
-      Toast.show('Place, date and duration fields are required', {
+    if (!trip.city.trim() || !trip.country.trim() || !trip.date.trim() || !trip.duration.trim()) {
+      Toast.show('City, country, date and duration fields are required', {
         duration: Toast.durations.LONG,
         position: Toast.positions.CENTER,
         backgroundColor: '#375ABE',
@@ -47,12 +57,15 @@ export default function CreateTripScreen() {
     reset();
   };
   const reset = () => {
-    setPlace('');
+    setCity('');
+    setCountry('');
     setDate('');
     setDuration('');
     setTripDetails('');
     setPersonDetails('');
     setImage(null);
+    setMinAge('');
+    setMaxAge('');
   };
   const addImages = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -90,9 +103,17 @@ export default function CreateTripScreen() {
               <Text style={styles.title}>Place Name</Text>
               <TextInput
                 style={styles.input}
-                onChangeText={text => setPlace(text)}
-                value={place}
-                placeholder="France,Paris"
+                onChangeText={text => setCity(text)}
+                value={city}
+                placeholder="Paris"
+              />
+            </View>
+            <View style={styles.formInput}>
+              <TextInput
+                style={styles.input}
+                onChangeText={text => setCountry(text)}
+                value={country}
+                placeholder="France"
               />
             </View>
             <View style={styles.formInput}>
@@ -113,6 +134,22 @@ export default function CreateTripScreen() {
                 onChangeText={text => setDuration(text)}
                 value={duration}
                 placeholder="3-5 days"
+              />
+            </View>
+            <View style={styles.formInputRow}>
+              <Text style={styles.title}>Age</Text>
+
+              <TextInput
+                style={styles.rowInput}
+                onChangeText={text => setMinAge(text)}
+                value={minAge}
+                placeholder="Min age"
+              />
+              <TextInput
+                style={styles.rowInput}
+                onChangeText={text => setMaxAge(text)}
+                value={maxAge}
+                placeholder="Max age"
               />
             </View>
             <View style={styles.formInput}>
@@ -161,19 +198,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingRight: 25,
     paddingLeft: 25,
-    paddingTop: 50,
     justifyContent: 'center',
   },
   imgContainer: {
-    paddingTop: 20,
-    paddingBottom: 10,
+    marginTop: 10,
     flex: 1,
     justifyContent: 'center',
   },
   btnImage: {
-    width: 250,
-    height: 250,
-    borderRadius: 4,
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(214, 214, 214, 1)',
@@ -182,8 +216,6 @@ const styles = StyleSheet.create({
   },
   img: {
     height: '100%',
-    borderRadius: 4,
-    borderWidth: 1,
     objectFit: 'cover',
     borderRadius: 30,
     borderWidth: 0,
@@ -201,17 +233,31 @@ const styles = StyleSheet.create({
   formInput: {
     marginTop: 10,
   },
+  formInputRow: {
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   title: {
     fontSize: 18,
     fontWeight: '500',
     lineHeight: 24,
   },
   input: {
-    with: 100,
+    with: "100%",
     padding: 8,
     borderWidth: 1,
     borderColor: 'rgba(69, 124, 247, 1)',
     borderRadius: 4,
+  },
+  rowInput: {
+    width: '43%',
+    marginLeft: 10,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(69, 124, 247, 1)',
+    borderRadius: 4,
+    flexDirection: 'row',
   },
   textArea: {
     padding: 8,

@@ -21,6 +21,7 @@ export default function MainPage() {
         const userDocRef = doc(usersRef, user.uid);
         const userDB = await getDoc(userDocRef);
         const userData = userDB.data();
+        console.log('UD', userData)
         dispatch(updateUserProfile(userData));
       }
       setIsLoading(false);
