@@ -53,7 +53,7 @@ export default function EditDataUserScreen({ navigation }) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [1, 1],
       quality: 1,
     });
 
@@ -188,9 +188,9 @@ export default function EditDataUserScreen({ navigation }) {
             value={state.email}
             style={styles.input}
             editable={false}
-            // onChangeText={(value) =>
-            //   setState((prevState) => ({ ...prevState, email: value }))
-            // }
+          // onChangeText={(value) =>
+          //   setState((prevState) => ({ ...prevState, email: value }))
+          // }
           />
         </View>
         <View>

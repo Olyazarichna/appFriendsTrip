@@ -16,10 +16,10 @@ export default function MyTrips() {
             try {
                 const q = query(tripsRef, where('owner', '==', auth.currentUser.uid));
                 const querySnapshot = await getDocs(q);
-                const trips = [];
+                const tripList = [];
                 querySnapshot.forEach(doc => {
-                    trips.push({ id: doc.id, ...doc.data() });
-                    setTrips(trips);
+                    tripList.push({ id: doc.id, ...doc.data() });
+                    setTrips(tripList);
                 });
             } catch (e) {
                 console.log('error', e);
@@ -55,7 +55,7 @@ export default function MyTrips() {
                                 data={trips}
                                 contentContainerStyle={styles.list}
                                 numColumns={2}
-                                renderItem={({ item }) => <MyTripItem trip={item} />}
+                                renderItem={({ item }) => <MyTripItem trip={item} handleList={setTrips} />}
                             />
                         )}
                     </View>

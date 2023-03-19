@@ -6,14 +6,16 @@ import { removeTrip } from '../../services/removeTrip';
 import { useState } from 'react';
 import ModalWindow from '../Modal/ModalWindow';
 
-export default function MyTripItem({ trip }) {
+export default function MyTripItem({ trip, handleList }) {
     const [modalVisible, setModalVisible] = useState(false);
+
 
     const toggleModal = () => {
         setModalVisible(!modalVisible);
     };
     const deleteTrip = id => {
         removeTrip(id);
+        handleList(trips => trips.filter(trip => trip.id !== id));
         alert(`Trip ${id} deleted`);
     };
 
