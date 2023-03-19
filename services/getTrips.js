@@ -6,11 +6,10 @@ import {
   getDocs,
   getDoc,
 } from 'firebase/firestore';
-import { getDownloadURL } from 'firebase/storage';
 
 import { tripsRef } from '../firebase/config';
 
-const PAGE_LIMIT = 2;
+const PAGE_LIMIT = 4;
 
 export const getTrips = async lastVisible => {
   try {
