@@ -17,6 +17,7 @@ export const addTrip = async ({ trip }) => {
       maxAge: trip.maxAge,
       minAge: trip.minAge,
       owner: auth.currentUser.uid,
+      createdAt: serverTimestamp(),
       // user.uid,
     });
     console.log('docRef', docRef.id)
