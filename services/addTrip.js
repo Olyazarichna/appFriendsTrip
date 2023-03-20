@@ -1,5 +1,4 @@
 import { addDoc, doc, serverTimestamp } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
 import Toast from 'react-native-root-toast';
 
 import { auth, tripsRef, usersRef } from '../firebase/config';

@@ -1,6 +1,6 @@
-import { View, Text, Modal, FlatList, StyleSheet } from 'react-native';
+import { View, Text, Modal, FlatList, StyleSheet, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
-import { query, where, getDocs } from 'firebase/firestore';
+import { query, where, getDocs, doc } from 'firebase/firestore';
 import { auth, tripsRef, usersRef } from '../../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
@@ -14,7 +14,8 @@ export default function MyTrips() {
     useEffect(() => {
         const getTrips = async () => {
             try {
-                const q = query(tripsRef, where('owner', '==', auth.currentUser.uid));
+                const userRef = doc(usersRef, auth.currentUser.uid)
+                const q = query(tripsRef, where('owner', '==', userRef));
                 const querySnapshot = await getDocs(q);
                 const tripList = [];
                 querySnapshot.forEach(doc => {
@@ -50,6 +51,8 @@ export default function MyTrips() {
                     </View>
                     <View style={styles.wrapper}>
                         <Text style={styles.text}>My Trips</Text>
+                        {/* <ScrollView> */}
+
                         {trips.length > 0 && (
                             <FlatList
                                 data={trips}
@@ -58,6 +61,7 @@ export default function MyTrips() {
                                 renderItem={({ item }) => <MyTripItem trip={item} handleList={setTrips} />}
                             />
                         )}
+                        {/* </ScrollView> */}
                     </View>
                 </View>
             </Modal>
