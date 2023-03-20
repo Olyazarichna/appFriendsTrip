@@ -5,6 +5,7 @@ import Toast from 'react-native-root-toast';
 import { auth, tripsRef, usersRef } from '../firebase/config';
 export const addTrip = async ({ trip }) => {
   try {
+    const userRef = doc(usersRef, auth.currentUser.uid);
     const docRef = await addDoc(tripsRef, {
       city: trip.city,
       country: trip.country,
@@ -15,22 +16,22 @@ export const addTrip = async ({ trip }) => {
       image: trip.image,
       maxAge: trip.maxAge,
       minAge: trip.minAge,
-      owner: auth.currentUser.uid,
+      owner: userRef,
       createdAt: serverTimestamp(),
     });
     Toast.show("Trip successfully added", {
       duration: Toast.durations.LONG,
       position: Toast.positions.CENTER,
       backgroundColor: '#375ABE',
-      textColor: "#fff",
+      textColor: '#fff',
       hideOnPress: true,
     });
   } catch (e) {
-    Toast.show("Error adding document: ", e, {
+    Toast.show('Error adding document: ', e, {
       duration: Toast.durations.LONG,
       position: Toast.positions.CENTER,
       backgroundColor: 'red',
-      textColor: "#fff",
+      textColor: '#fff',
       hideOnPress: true,
     });
   }
