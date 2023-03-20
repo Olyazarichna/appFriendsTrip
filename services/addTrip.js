@@ -4,7 +4,6 @@ import Toast from 'react-native-root-toast';
 
 import { auth, tripsRef, usersRef } from '../firebase/config';
 export const addTrip = async ({ trip }) => {
-  // onAuthStateChanged(auth, async (user) => {
   try {
     const docRef = await addDoc(tripsRef, {
       city: trip.city,
@@ -18,9 +17,7 @@ export const addTrip = async ({ trip }) => {
       minAge: trip.minAge,
       owner: auth.currentUser.uid,
       createdAt: serverTimestamp(),
-      // user.uid,
     });
-    console.log('docRef', docRef.id)
     Toast.show("Trip successfully added", {
       duration: Toast.durations.LONG,
       position: Toast.positions.CENTER,
@@ -36,7 +33,5 @@ export const addTrip = async ({ trip }) => {
       textColor: "#fff",
       hideOnPress: true,
     });
-    console.log(e);
   }
-  // });
 };
