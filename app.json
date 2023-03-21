@@ -1,5 +1,11 @@
 {
   "expo": {
+    "packagerOpts": {
+      "ignore": [
+        "/node_modules/"
+      ]
+    },
+
     "jsEngine": "hermes",
     "name": "appFriendsTrip",
     "slug": "appFriendsTrip",

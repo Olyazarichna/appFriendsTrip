@@ -9,7 +9,7 @@ import ButtonRoundBlue from '../../components/Buttons/ButtonRoundBlue';
 import { logOut } from '../../redux/auth/authOperations';
 import { deleteUserProfile } from '../../redux/auth/authOperations';
 
-import ModalWindow from '../../components/Modal/ModalWindow';
+import ReusableModalWindow from '../../components/ReusableModalWindow/ReusableModalWindow';
 import { useState } from 'react';
 import MyTrips from '../../components/MyTrips/MyTrips';
 
@@ -133,7 +133,7 @@ export default function SettingScreen({ navigation }) {
                             height={40}
                             click={toggleModal1}
                         />
-                        <ModalWindow
+                        <ReusableModalWindow
                             modalVisible={modalVisible1}
                             onRequestClose={toggleModal1}
                             onClose={toggleModal1}
@@ -159,7 +159,7 @@ export default function SettingScreen({ navigation }) {
                             height={40}
                             click={toggleModal2}
                         />
-                        <ModalWindow
+                        <ReusableModalWindow
                             modalVisible={modalVisible2}
                             onRequestClose={toggleModal2}
                             onClose={toggleModal2}

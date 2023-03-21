@@ -2,7 +2,7 @@ import { Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import variables from "../../styles/utils/variables";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function ModalWindow({
+export default function ReusableModalWindow({
     modalVisible,
     onRequestClose,
     title,

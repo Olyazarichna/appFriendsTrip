@@ -51,17 +51,15 @@ export default function MyTrips() {
                     </View>
                     <View style={styles.wrapper}>
                         <Text style={styles.text}>My Trips</Text>
-                        {/* <ScrollView> */}
-
                         {trips.length > 0 && (
                             <FlatList
                                 data={trips}
                                 contentContainerStyle={styles.list}
                                 numColumns={2}
                                 renderItem={({ item }) => <MyTripItem trip={item} handleList={setTrips} />}
+
                             />
                         )}
-                        {/* </ScrollView> */}
                     </View>
                 </View>
             </Modal>
@@ -72,10 +70,11 @@ export default function MyTrips() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
     },
     list: {
         flexGrow: 1,
+        // justifyContent: "space-between",
+        // alignContent: "space-between"
     },
     text: {
         fontSize: 24,
@@ -83,7 +82,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     wrapper: {
-        paddingTop: 100,
+        marginTop: 100,
         alignItems: 'center',
     },
 });
