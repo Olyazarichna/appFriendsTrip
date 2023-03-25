@@ -36,6 +36,8 @@ import CameraProfileComponents from '../../components/Profile/CameraProfileCompo
 import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
 
 import { updateUserProfile } from '../../services/updateUserProfile';
+import { updateAvatar } from '../../services/updateAvatar';
+import Toast from 'react-native-root-toast';
 
 export default function UserProfilesDefaultScreen({ navigation }) {
   const state = useSelector(state => state.auth);
@@ -104,7 +106,25 @@ export default function UserProfilesDefaultScreen({ navigation }) {
     await updateUserProfile(userData);
   };
 
-  const takeGallery = image => {
+  const takeGallery = async image => {
+    const isUpdated = await updateAvatar(image);
+    if (!isUpdated) {
+      Toast.show('Failed update avatar: ', e, {
+        duration: Toast.durations.LONG,
+        position: Toast.positions.CENTER,
+        backgroundColor: 'red',
+        textColor: '#fff',
+        hideOnPress: true,
+      });
+      return;
+    }
+    Toast.show('Avatar successfully updated', {
+      duration: Toast.durations.LONG,
+      position: Toast.positions.CENTER,
+      backgroundColor: '#375ABE',
+      textColor: '#fff',
+      hideOnPress: true,
+    });
     setAvatar(image);
     setGallery(false);
     setAdd(false);
@@ -153,6 +173,24 @@ export default function UserProfilesDefaultScreen({ navigation }) {
   const takePhoto = async () => {
     const photo = await snap.takePictureAsync();
     setPhoto(photo?.uri);
+    const isUpdated = await updateAvatar(photo?.uri);
+    if (!isUpdated) {
+      Toast.show('Failed update avatar: ', e, {
+        duration: Toast.durations.LONG,
+        position: Toast.positions.CENTER,
+        backgroundColor: 'red',
+        textColor: '#fff',
+        hideOnPress: true,
+      });
+      return;
+    }
+    Toast.show('Avatar successfully updated', {
+      duration: Toast.durations.LONG,
+      position: Toast.positions.CENTER,
+      backgroundColor: '#375ABE',
+      textColor: '#fff',
+      hideOnPress: true,
+    });
     setAvatar(photo?.uri);
     setCamera(false);
     setAdd(false);

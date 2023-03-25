@@ -38,7 +38,7 @@ export const updateAvatar = async avatarUri => {
     console.warn(
       'Не вдалося зберегти нову аватарку. Видалення попередньої аватарки відмінено.'
     );
-    return;
+    return false;
   }
 
   // Видалення попередньої аватарки
@@ -46,4 +46,5 @@ export const updateAvatar = async avatarUri => {
     const previousStorageRef = ref(storage, previousAvatarUrl);
     await deleteObject(previousStorageRef);
   }
+  return true;
 };
