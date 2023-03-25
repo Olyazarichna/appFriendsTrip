@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import {
   deleteObject,
   getDownloadURL,
@@ -27,7 +27,7 @@ export const updateAvatar = async avatarUri => {
   const newAvatarUrl = await getDownloadURL(snapshot.ref);
 
   // Оновлення БД з URL нової аватарки
-  await setDoc(userRef, { avatar: newAvatarUrl }, { merge: true });
+  await updateDoc(userRef, { avatar: newAvatarUrl });
 
   // Перевірка успішності збереження нової аватарки в БД перед видаленням попередньої аватарки
   const newUserData = await getDoc(userRef);
