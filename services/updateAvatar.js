@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import {
   deleteObject,
   getDownloadURL,
@@ -27,7 +27,7 @@ export const updateAvatar = async avatarUri => {
   const newAvatarUrl = await getDownloadURL(snapshot.ref);
 
   // Оновлення БД з URL нової аватарки
-  await setDoc(userRef, { avatar: newAvatarUrl }, { merge: true });
+  await updateDoc(userRef, { avatar: newAvatarUrl });
 
   // Перевірка успішності збереження нової аватарки в БД перед видаленням попередньої аватарки
   const newUserData = await getDoc(userRef);
@@ -38,7 +38,7 @@ export const updateAvatar = async avatarUri => {
     console.warn(
       'Не вдалося зберегти нову аватарку. Видалення попередньої аватарки відмінено.'
     );
-    return;
+    return false;
   }
 
   // Видалення попередньої аватарки
@@ -46,4 +46,5 @@ export const updateAvatar = async avatarUri => {
     const previousStorageRef = ref(storage, previousAvatarUrl);
     await deleteObject(previousStorageRef);
   }
+  return true;
 };
