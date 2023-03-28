@@ -17,7 +17,6 @@ export default function SettingScreen({ navigation }) {
     const dispatch = useDispatch();
     const [modalVisible1, setModalVisible1] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
-
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleModal1 = () => {
@@ -27,6 +26,7 @@ export default function SettingScreen({ navigation }) {
     const toggleModal2 = () => {
         setModalVisible2(!modalVisible2);
     };
+
     const title1 = <Text>Are you sure you want delete profile?</Text>;
     const title2 = <Text>Are you sure you want log out?</Text>;
 
@@ -131,7 +131,7 @@ export default function SettingScreen({ navigation }) {
                             }
                             width={40}
                             height={40}
-                            click={toggleModal1}
+                            click={modalVisible1}
                         />
                         <ReusableModalWindow
                             modalVisible={modalVisible1}

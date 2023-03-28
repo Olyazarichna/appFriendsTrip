@@ -1,25 +1,23 @@
-import {
-    StyleSheet,
-    View,
-    Text,
-    TextInput,
-    Image,
-    Modal,
-    // TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Text, TextInput, Image, Modal } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 import variables from '../../styles/utils/variables';
 import { removeTrip } from '../../services/removeTrip';
 import { useState } from 'react';
-import ModalWindow from '../ReusableModalWindow/ReusableModalWindow';
+import ReusableModalWindow from '../ReusableModalWindow/ReusableModalWindow';
 // import TripDetails from '../TripDetails/TripDetails';
 
-
 export default function MyTripItem({ trip, handleList }) {
+    const [date, setDate] = useState('');
+    const [duration, setDuration] = useState('');
+    const [tripDetails, setTripDetails] = useState('');
+    const [personDetails, setPersonDetails] = useState('');
+    const [minAge, setMinAge] = useState('');
+    const [maxAge, setMaxAge] = useState('');
 
     const [modalVisible, setModalVisible] = useState(false);
     const [modalDetailsVisible, setModalDetailsVisible] = useState(false);
+    const [isEditable, setIsEditable] = useState(false);
 
     const toggleModal = () => {
         setModalVisible(!modalVisible);
@@ -31,6 +29,31 @@ export default function MyTripItem({ trip, handleList }) {
         removeTrip(id);
         handleList(trips => trips.filter(trip => trip.id !== id));
         alert(`Trip ${id} deleted`);
+    };
+
+    const onInputChange = (inputName, value) => {
+        switch (inputName) {
+            case 'date':
+                setDate(value);
+                break;
+            case 'duration':
+                setDuration(value);
+                break;
+            case 'tripDetails':
+                setTripDetails(value);
+                break;
+            case 'personDetails':
+                setPersonDetails(value);
+                break;
+            case 'minAge':
+                setMinAge(value);
+                break;
+            case 'maxAge':
+                setMaxAge(value);
+                break;
+            default:
+                break;
+        }
     };
 
     return (
@@ -52,6 +75,8 @@ export default function MyTripItem({ trip, handleList }) {
                     height={40}
                     click={openDetails}
                 />
+
+                {/* MYTRIPS */}
                 <Modal
                     animationType="slide"
                     visible={modalDetailsVisible}
@@ -59,7 +84,6 @@ export default function MyTripItem({ trip, handleList }) {
                         setModalVisible(!modalDetailsVisible);
                     }}
                 >
-
                     <View style={styles.detailsContainer}>
                         <Text style={styles.heading}>Trip Details</Text>
 
@@ -67,47 +91,96 @@ export default function MyTripItem({ trip, handleList }) {
                             <View style={styles.imgContainer}>
                                 <Image style={styles.imgDetails} source={{ uri: trip.image }} />
                             </View>
-                            <View style={{ flexDirection: 'row' }}>
-
-                                <TextInput style={styles.description}>{trip.country}, </TextInput>
-                                <TextInput style={styles.description}>{trip.city}</TextInput>
-
+                            {/* 1 */}
+                            <View style={styles.infoWrapper}>
+                                <Text
+                                    style={styles.description}
+                                >{`${trip.country}, ${trip.city}`}</Text>
+                                {/* <TextInput style={styles.description}>
+                                    {trip.country},{' '}
+                                </TextInput>
+                                <TextInput style={styles.description}>{trip.city}</TextInput> */}
                             </View>
-
-                            <View style={styles.containerDetails
-
-                            }>
-                                <View style={{ flexDirection: 'row', alignContent: 'center' }}>
+                            {/* 2 */}
+                            <View style={styles.containerDetails}>
+                                <View style={styles.infoWrapper}>
                                     <Text style={styles.description}>Date:</Text>
-                                    <TextInput style={styles.input}> {trip.date}</TextInput>
+                                    <TextInput
+                                        value={date}
+                                        editable={isEditable}
+                                        style={isEditable ? styles.editableInput : styles.input}
+                                        // onChangeText={value => handleInput('date', value)}
+                                        onChangeText={onInputChange}
+                                    >
+                                        {trip.date}
+                                    </TextInput>
                                 </View>
 
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <View style={styles.infoWrapper}>
                                     <Text style={styles.description}>Duration: </Text>
-                                    <TextInput style={styles.input}> {trip.duration}</TextInput>
-
+                                    <TextInput
+                                        value={duration}
+                                        editable={isEditable}
+                                        style={isEditable ? styles.editableInput : styles.input}
+                                        onChangeText={onInputChange}
+                                        keyboardType="numeric"
+                                    >
+                                        {trip.duration}
+                                    </TextInput>
                                     <Text style={styles.description}> days</Text>
                                 </View>
                             </View>
-
-                            <View>
+                            {/* 3 */}
+                            <View style={styles.infoWrapper}>
                                 <Text style={styles.description}>More: </Text>
-                                <TextInput style={styles.input}>
+                                <TextInput
+                                    value={tripDetails}
+                                    editable={isEditable}
+                                    style={isEditable ? styles.editableInput : styles.input}
+                                    onChangeText={onInputChange}
+                                    multiline={true}
+                                >
                                     {trip.detailsAboutTrip}
                                 </TextInput>
                             </View>
-
-                            <View>
+                            {/* 4 */}
+                            <View style={styles.infoWrapper}>
                                 <Text style={styles.description}>Age: </Text>
-                                <TextInput style={styles.input}>{`${trip.minAge} - ${trip.maxAge}`}</TextInput>
+                                <TextInput
+                                    value={minAge}
+                                    editable={isEditable}
+                                    style={isEditable ? styles.editableInput : styles.input}
+                                    onChangeText={onInputChange}
+                                    keyboardType="numeric"
+                                >
+                                    {trip.minAge}
+                                </TextInput>
+                                <TextInput
+                                    value={maxAge}
+                                    editable={isEditable}
+                                    style={isEditable ? styles.editableInput : styles.input}
+                                    onChangeText={onInputChange}
+                                    keyboardType="numeric"
+                                >
+                                    -{trip.maxAge}
+                                </TextInput>
+                                <Text style={styles.description}>years old </Text>
                             </View>
-
-                            <View>
+                            {/* 5 */}
+                            <View style={styles.infoWrapper}>
                                 <Text style={styles.description}>About companion: </Text>
-                                <TextInput style={styles.input}>{trip.detailsAboutCompanion}</TextInput>
-
+                                <TextInput
+                                    value={personDetails}
+                                    editable={isEditable}
+                                    style={isEditable ? styles.editableInput : styles.input}
+                                    onChangeText={onInputChange}
+                                    multiline={true}
+                                >
+                                    {trip.detailsAboutCompanion}
+                                </TextInput>
                             </View>
-                            {/* <TripDetails trip={trip}>{trip}</TripDetails> */}
+
+                            {/* <TripDetails trip={trip}/>*/}
                         </View>
                         <View style={{ position: 'absolute', top: -40, right: 0 }}>
                             <ButtonRoundBlue
@@ -126,7 +199,7 @@ export default function MyTripItem({ trip, handleList }) {
                         </View>
                     </View>
                 </Modal>
-            </View >
+            </View>
             <View style={styles.textWrapper}>
                 <Text style={styles.text}>{trip.city}</Text>
                 <Text style={styles.text}>{trip.country}</Text>
@@ -144,7 +217,7 @@ export default function MyTripItem({ trip, handleList }) {
                         height={40}
                         click={toggleModal}
                     />
-                    <ModalWindow
+                    <ReusableModalWindow
                         modalVisible={modalVisible}
                         onRequestClose={toggleModal}
                         onClose={toggleModal}
@@ -155,7 +228,7 @@ export default function MyTripItem({ trip, handleList }) {
                     />
                 </View>
             </View>
-        </View >
+        </View>
     );
 }
 
@@ -203,26 +276,33 @@ const styles = StyleSheet.create({
         height: 318,
         resizeMode: 'cover',
     },
+    infoWrapper: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+    },
     containerDetails: {
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between',
-        // alignItems: 'center',
     },
     description: {
         fontSize: 14,
         fontWeight: '500',
-        marginBottom: 10,
-        // alignItems: 'center'
     },
     input: {
         color: '#848689',
-        alignItems: 'center',
+        paddingRight: 5,
+        paddingVertical: 7,
+    },
+    editableInput: {
+        borderWidth: 1,
+        borderColor: 'rgba(69, 124, 247, 1)',
+        borderRadius: 4,
     },
     detailsContainer: {
-        // flex: 1,
         marginVertical: 50,
         marginHorizontal: 20,
-
     },
     heading: {
         fontWeight: '600',
@@ -240,6 +320,4 @@ const styles = StyleSheet.create({
         width: 200,
         padding: 8,
     },
-
-
 });

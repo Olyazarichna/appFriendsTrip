@@ -1,4 +1,4 @@
-import { View, Text, Modal, FlatList, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Modal, FlatList, StyleSheet } from 'react-native';
 import { useState, useEffect } from 'react';
 import { query, where, getDocs, doc } from 'firebase/firestore';
 import { auth, tripsRef, usersRef } from '../../firebase/config';
@@ -10,6 +10,7 @@ import MyTripItem from './MyTripItem';
 export default function MyTrips() {
     const [modalVisible, setModalVisible] = useState(false);
     const [trips, setTrips] = useState([]);
+    console.log('trips', trips)
 
     useEffect(() => {
         const getTrips = async () => {
@@ -57,7 +58,6 @@ export default function MyTrips() {
                                 contentContainerStyle={styles.list}
                                 numColumns={2}
                                 renderItem={({ item }) => <MyTripItem trip={item} handleList={setTrips} />}
-
                             />
                         )}
                     </View>

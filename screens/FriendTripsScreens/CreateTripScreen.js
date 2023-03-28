@@ -16,11 +16,13 @@ import { addTrip } from '../../services/addTrip';
 
 import Toast from 'react-native-root-toast';
 import { useSelector } from 'react-redux';
+// import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function CreateTripScreen() {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [image, setImage] = useState(null);
+  // const [date, setDate] = useState(new Date());
   const [date, setDate] = useState('');
   const [duration, setDuration] = useState('');
   const [tripDetails, setTripDetails] = useState('');
@@ -28,7 +30,20 @@ export default function CreateTripScreen() {
   const [minAge, setMinAge] = useState('');
   const [maxAge, setMaxAge] = useState('');
 
-  const user = useSelector(state => state.auth)
+  // const [showDatePicker, setShowDatePicker] = useState(false);
+
+  // const handleDateChange = (event, selectedDate) => {
+  //   const currentDate = selectedDate || date;
+  //   setShowDatePicker(Platform.OS === 'ios');
+  //   console.log('CD', currentDate)
+  //   setDate(currentDate);
+  // };
+
+  // const showDatepicker = () => {
+  //   setShowDatePicker(true);
+  // };
+
+  const user = useSelector(state => state.auth);
 
   const btnPress = () => {
     const trip = {
@@ -43,7 +58,12 @@ export default function CreateTripScreen() {
       maxAge,
       owner: user.userId,
     };
-    if (!trip.city.trim() || !trip.country.trim() || !trip.date.trim() || !trip.duration.trim()) {
+    if (
+      !trip.city.trim() ||
+      !trip.country.trim() ||
+      !trip.date.trim() ||
+      !trip.duration.trim()
+    ) {
       Toast.show('City, country, date and duration fields are required', {
         duration: Toast.durations.LONG,
         position: Toast.positions.CENTER,
@@ -79,7 +99,7 @@ export default function CreateTripScreen() {
       setImage(result.assets[0].uri);
     }
   };
-
+  // console.log('date:', date);
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
@@ -118,6 +138,18 @@ export default function CreateTripScreen() {
             </View>
             <View style={styles.formInput}>
               <Text style={styles.title}>Date</Text>
+
+              {/* <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+                <Text style={styles.input}>{date && new Date(date).toDateString()}</Text>
+              </TouchableOpacity>
+              {showDatePicker && (
+                <DateTimePicker
+                  value={date}
+                  mode={'date'}
+                  display="default"
+                  onChange={handleDateChange}
+                />
+              )} */}
               <TextInput
                 style={styles.input}
                 onChangeText={text => {
@@ -244,7 +276,7 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   input: {
-    with: "100%",
+    width: '100%',
     padding: 8,
     borderWidth: 1,
     borderColor: 'rgba(69, 124, 247, 1)',
