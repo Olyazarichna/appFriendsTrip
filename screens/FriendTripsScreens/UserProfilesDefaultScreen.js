@@ -41,7 +41,6 @@ import Toast from 'react-native-root-toast';
 
 export default function UserProfilesDefaultScreen({ navigation }) {
   const state = useSelector(state => state.auth);
-  console.log('stateUserDef', state);
 
   const [avatar, setAvatar] = useState(state.avatar);
   const [name, setName] = useState(state.name);
@@ -381,16 +380,17 @@ export default function UserProfilesDefaultScreen({ navigation }) {
             )}
             <TextInput
               value={email}
-              editable={isEditable}
-              style={isEditable ? styles.inputEditable : styles.input}
-              onFocus={() =>
-                setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
-              }
+              // editable={isEditable}
+              // style={isEditable ? styles.inputEditable : styles.input}
+              style={styles.input}
+              // onFocus={() =>
+              //   setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
+              // }
               onChangeText={value => handleInput('email', value)}
             />
           </View>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => editInput()}
             style={styles.checkButton}
           >
@@ -399,7 +399,7 @@ export default function UserProfilesDefaultScreen({ navigation }) {
               size={ScreenSettings.returnParams(15, 20)}
               color={variables.textColor}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         <View

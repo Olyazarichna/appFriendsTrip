@@ -29,6 +29,7 @@ export default function CreateTripScreen() {
   const [personDetails, setPersonDetails] = useState('');
   const [minAge, setMinAge] = useState('');
   const [maxAge, setMaxAge] = useState('');
+  const user = useSelector(state => state.auth);
 
   // const [showDatePicker, setShowDatePicker] = useState(false);
 
@@ -43,7 +44,6 @@ export default function CreateTripScreen() {
   //   setShowDatePicker(true);
   // };
 
-  const user = useSelector(state => state.auth);
 
   const btnPress = () => {
     const trip = {

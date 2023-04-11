@@ -1,23 +1,41 @@
-import { StyleSheet, View, Text, TextInput, Image, Modal } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import {
+    StyleSheet,
+    View,
+    Text,
+    TextInput,
+    Image,
+    Modal,
+    TouchableOpacity,
+} from 'react-native';
+
+import {
+    AntDesign,
+    MaterialCommunityIcons,
+    EvilIcons,
+} from '@expo/vector-icons';
+import { ScreenSettings } from '../../styles/utils/ScreenSettings';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 import variables from '../../styles/utils/variables';
 import { removeTrip } from '../../services/removeTrip';
 import { useState } from 'react';
 import ReusableModalWindow from '../ReusableModalWindow/ReusableModalWindow';
 // import TripDetails from '../TripDetails/TripDetails';
+import { updateTrip } from '../../services/updateTrip';
 
 export default function MyTripItem({ trip, handleList }) {
-    const [date, setDate] = useState('');
-    const [duration, setDuration] = useState('');
-    const [tripDetails, setTripDetails] = useState('');
-    const [personDetails, setPersonDetails] = useState('');
-    const [minAge, setMinAge] = useState('');
-    const [maxAge, setMaxAge] = useState('');
+    const [date, setDate] = useState(trip.date);
+    const [duration, setDuration] = useState(trip.duration);
+    const [tripDetails, setTripDetails] = useState(trip.detailsAboutTrip);
+    const [personDetails, setPersonDetails] = useState(
+        trip.detailsAboutCompanion
+    );
+    const [minAge, setMinAge] = useState(trip.minAge);
+    const [maxAge, setMaxAge] = useState(trip.maxAge);
 
     const [modalVisible, setModalVisible] = useState(false);
     const [modalDetailsVisible, setModalDetailsVisible] = useState(false);
     const [isEditable, setIsEditable] = useState(false);
+    const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
     const toggleModal = () => {
         setModalVisible(!modalVisible);
@@ -31,7 +49,8 @@ export default function MyTripItem({ trip, handleList }) {
         alert(`Trip ${id} deleted`);
     };
 
-    const onInputChange = (inputName, value) => {
+    const handleInput = (inputName, value) => {
+        setIsShowKeyboard(true);
         switch (inputName) {
             case 'date':
                 setDate(value);
@@ -54,6 +73,23 @@ export default function MyTripItem({ trip, handleList }) {
             default:
                 break;
         }
+    };
+
+    const editInput = async () => {
+        setIsEditable(isEditable => !isEditable);
+        const tripDate = {
+            id: trip.id,
+            image: trip.image,
+            city: trip.city,
+            country: trip.country,
+            date: date,
+            duration: duration,
+            tripDetails: tripDetails,
+            personDetails: personDetails,
+            minAge: minAge,
+            maxAge: maxAge,
+        };
+        await updateTrip(tripDate);
     };
 
     return (
@@ -96,10 +132,6 @@ export default function MyTripItem({ trip, handleList }) {
                                 <Text
                                     style={styles.description}
                                 >{`${trip.country}, ${trip.city}`}</Text>
-                                {/* <TextInput style={styles.description}>
-                                    {trip.country},{' '}
-                                </TextInput>
-                                <TextInput style={styles.description}>{trip.city}</TextInput> */}
                             </View>
                             {/* 2 */}
                             <View style={styles.containerDetails}>
@@ -109,75 +141,150 @@ export default function MyTripItem({ trip, handleList }) {
                                         value={date}
                                         editable={isEditable}
                                         style={isEditable ? styles.editableInput : styles.input}
-                                        // onChangeText={value => handleInput('date', value)}
-                                        onChangeText={onInputChange}
+                                        onFocus={() =>
+                                            setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
+                                        }
+                                        onChangeText={value => handleInput('date', value)}
+                                        maxLength={13}
+                                    />
+                                    <TouchableOpacity
+                                        onPress={() => editInput()}
+                                        style={styles.checkButton}
                                     >
-                                        {trip.date}
-                                    </TextInput>
+                                        <MaterialCommunityIcons
+                                            name="pencil-outline"
+                                            size={ScreenSettings.returnParams(15, 20)}
+                                            color={variables.textColor}
+                                        />
+                                    </TouchableOpacity>
                                 </View>
 
                                 <View style={styles.infoWrapper}>
                                     <Text style={styles.description}>Duration: </Text>
-                                    <TextInput
-                                        value={duration}
-                                        editable={isEditable}
-                                        style={isEditable ? styles.editableInput : styles.input}
-                                        onChangeText={onInputChange}
-                                        keyboardType="numeric"
+                                    <TouchableOpacity
+                                        onPress={() => editInput()}
+                                        style={styles.checkButton}
                                     >
-                                        {trip.duration}
-                                    </TextInput>
+                                        <TextInput
+                                            value={duration}
+                                            editable={isEditable}
+                                            style={isEditable ? styles.editableInput : styles.input}
+                                            onFocus={() =>
+                                                setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
+                                            }
+                                            onChangeText={value => handleInput('duration', value)}
+                                            keyboardType="numeric"
+                                            maxLength={4}
+                                        />
+                                    </TouchableOpacity>
+
                                     <Text style={styles.description}> days</Text>
+                                    <TouchableOpacity
+                                        onPress={() => editInput()}
+                                        style={styles.checkButton}
+                                    >
+                                        <MaterialCommunityIcons
+                                            name="pencil-outline"
+                                            size={ScreenSettings.returnParams(15, 20)}
+                                            color={variables.textColor}
+                                        />
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                             {/* 3 */}
                             <View style={styles.infoWrapper}>
-                                <Text style={styles.description}>More: </Text>
+                                <Text style={styles.description}>More:</Text>
+
                                 <TextInput
                                     value={tripDetails}
                                     editable={isEditable}
                                     style={isEditable ? styles.editableInput : styles.input}
-                                    onChangeText={onInputChange}
+                                    onFocus={() =>
+                                        setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
+                                    }
+                                    onChangeText={value => handleInput('tripDetails', value)}
                                     multiline={true}
+                                />
+                                <TouchableOpacity
+                                    onPress={() => editInput()}
+                                    style={styles.checkButton}
                                 >
-                                    {trip.detailsAboutTrip}
-                                </TextInput>
+                                    <MaterialCommunityIcons
+                                        name="pencil-outline"
+                                        size={ScreenSettings.returnParams(15, 20)}
+                                        color={variables.textColor}
+                                    />
+                                </TouchableOpacity>
                             </View>
                             {/* 4 */}
                             <View style={styles.infoWrapper}>
                                 <Text style={styles.description}>Age: </Text>
-                                <TextInput
-                                    value={minAge}
-                                    editable={isEditable}
-                                    style={isEditable ? styles.editableInput : styles.input}
-                                    onChangeText={onInputChange}
-                                    keyboardType="numeric"
+                                <TouchableOpacity
+                                    onPress={() => editInput()}
+                                    style={styles.checkButton}
                                 >
-                                    {trip.minAge}
-                                </TextInput>
-                                <TextInput
-                                    value={maxAge}
-                                    editable={isEditable}
-                                    style={isEditable ? styles.editableInput : styles.input}
-                                    onChangeText={onInputChange}
-                                    keyboardType="numeric"
+                                    <TextInput
+                                        value={minAge}
+                                        editable={isEditable}
+                                        style={isEditable ? styles.editableInput : styles.input}
+                                        onFocus={() =>
+                                            setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
+                                        }
+                                        onChangeText={value => handleInput('minAge', value)}
+                                        keyboardType="numeric"
+                                        maxLength={2}
+                                    />
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={() => editInput()}
+                                    style={styles.checkButton}
                                 >
-                                    -{trip.maxAge}
-                                </TextInput>
+                                    <TextInput
+                                        value={maxAge}
+                                        editable={isEditable}
+                                        style={isEditable ? styles.editableInput : styles.input}
+                                        onFocus={() =>
+                                            setIsShowKeyboard(isShowKeyboard => !isShowKeyboard)
+                                        }
+                                        onChangeText={value => handleInput('maxAge', value)}
+                                        keyboardType="numeric"
+                                        maxLength={2}
+                                    />
+                                </TouchableOpacity>
+
                                 <Text style={styles.description}>years old </Text>
+                                <TouchableOpacity
+                                    onPress={() => editInput()}
+                                    style={styles.checkButton}
+                                >
+                                    <MaterialCommunityIcons
+                                        name="pencil-outline"
+                                        size={ScreenSettings.returnParams(15, 20)}
+                                        color={variables.textColor}
+                                    />
+                                </TouchableOpacity>
                             </View>
                             {/* 5 */}
                             <View style={styles.infoWrapper}>
                                 <Text style={styles.description}>About companion: </Text>
+
                                 <TextInput
                                     value={personDetails}
                                     editable={isEditable}
                                     style={isEditable ? styles.editableInput : styles.input}
-                                    onChangeText={onInputChange}
+                                    onChangeText={value => handleInput('personDetails', value)}
                                     multiline={true}
+                                />
+                                <TouchableOpacity
+                                    onPress={() => editInput()}
+                                    style={styles.checkButton}
                                 >
-                                    {trip.detailsAboutCompanion}
-                                </TextInput>
+                                    <MaterialCommunityIcons
+                                        name="pencil-outline"
+                                        size={ScreenSettings.returnParams(15, 20)}
+                                        color={variables.textColor}
+                                    />
+                                </TouchableOpacity>
                             </View>
 
                             {/* <TripDetails trip={trip}/>*/}
@@ -292,13 +399,15 @@ const styles = StyleSheet.create({
     },
     input: {
         color: '#848689',
-        paddingRight: 5,
+        paddingHorizontal: 5,
         paddingVertical: 7,
     },
     editableInput: {
         borderWidth: 1,
         borderColor: 'rgba(69, 124, 247, 1)',
         borderRadius: 4,
+        paddingHorizontal: 5,
+        paddingVertical: 7,
     },
     detailsContainer: {
         marginVertical: 50,

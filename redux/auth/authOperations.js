@@ -22,7 +22,7 @@ export const signUp =
           email,
           password
         );
-        await sendEmailVerification(user);
+        await sendEmailVerification(auth.currentUser);
         await updateProfile(user, {
           displayName: name,
           phoneNumber: phone,
@@ -34,10 +34,11 @@ export const signUp =
           email,
           phone,
         };
+
         const userDocRef = doc(usersRef, user.uid);
         await setDoc(userDocRef, newUser);
         dispatch(updateUserProfile(newUser));
-        console.log("NU", newUser);
+        console.log('NewUser', newUser);
       } catch (error) {
         alert('error', error.code, error.message);
       }

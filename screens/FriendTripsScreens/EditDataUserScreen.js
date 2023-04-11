@@ -49,6 +49,7 @@ export default function EditDataUserScreen({ navigation }) {
     setModalVisible(!modalVisible);
   };
 
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,

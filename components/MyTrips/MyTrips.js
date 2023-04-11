@@ -5,7 +5,7 @@ import { auth, tripsRef, usersRef } from '../../firebase/config';
 import { AntDesign } from '@expo/vector-icons';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 import variables from '../../styles/utils/variables';
-import MyTripItem from './MyTripItem';
+import MyTripItem from '../MyTripItem/MyTripItem';
 
 export default function MyTrips() {
     const [modalVisible, setModalVisible] = useState(false);

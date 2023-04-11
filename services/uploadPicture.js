@@ -19,7 +19,7 @@ export const uploadPicture = async (tripId, pictureUri) => {
   try {
     // Обробка зображення локально
     const resizedPicture = await resizeImage(pictureUri, 325, 318);
-    storageRef = ref(storage, `${userId}/places/${Date.now()}.jpg`);
+    storageRef = ref(storage, `${userId}/places/${tripId}/${Date.now()}.jpg`);
     pictureBlob = await fetch(resizedPicture).then(response => response.blob());
   } catch (error) {
     console.log('Помилка з обробкою зображення');
