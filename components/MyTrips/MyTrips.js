@@ -10,7 +10,6 @@ import MyTripItem from '../MyTripItem/MyTripItem';
 export default function MyTrips() {
     const [modalVisible, setModalVisible] = useState(false);
     const [trips, setTrips] = useState([]);
-    console.log('trips', trips)
 
     useEffect(() => {
         const getTrips = async () => {
@@ -30,7 +29,6 @@ export default function MyTrips() {
         getTrips();
     }, []);
     console.log('T', trips);
-
     return (
         <View>
             <Modal animationType="slide" visible={!modalVisible}>
@@ -58,6 +56,9 @@ export default function MyTrips() {
                                 contentContainerStyle={styles.list}
                                 numColumns={2}
                                 renderItem={({ item }) => <MyTripItem trip={item} handleList={setTrips} />}
+
+                                ListFooterComponent={() => trips.length === 1 ? <View style={styles.placeholderItem} /> : null}
+
                             />
                         )}
                     </View>
@@ -71,18 +72,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    wrapper: {
+        marginTop: 100,
+        alignItems: 'center',
+    },
     list: {
         flexGrow: 1,
-        // justifyContent: "space-between",
-        // alignContent: "space-between"
     },
+
     text: {
         fontSize: 24,
         fontWeight: '800',
         marginBottom: 20,
     },
-    wrapper: {
-        marginTop: 100,
-        alignItems: 'center',
-    },
+    placeholderItem: {
+        flex: 1,
+        width: '50%',
+    }
+
 });

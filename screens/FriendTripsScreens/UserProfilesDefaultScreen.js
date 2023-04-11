@@ -102,6 +102,15 @@ export default function UserProfilesDefaultScreen({ navigation }) {
       location,
       about,
     };
+    if (name === '' || phone === '' || location === '') {
+      Toast.show('Name,phone,locationfields are required.', {
+        duration: Toast.durations.LONG,
+        position: Toast.positions.CENTER,
+        backgroundColor: 'red',
+        textColor: '#fff',
+        hideOnPress: true,
+      });
+    }
     await updateUserProfile(userData);
   };
 

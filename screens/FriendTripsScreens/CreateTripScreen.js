@@ -99,7 +99,7 @@ export default function CreateTripScreen() {
       setImage(result.assets[0].uri);
     }
   };
-  // console.log('date:', date);
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>

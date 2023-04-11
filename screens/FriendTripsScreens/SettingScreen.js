@@ -19,6 +19,7 @@ export default function SettingScreen({ navigation }) {
     const [modalVisible2, setModalVisible2] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
+    console.log('isOpen', isOpen);
     const toggleModal1 = () => {
         setModalVisible1(!modalVisible1);
     };

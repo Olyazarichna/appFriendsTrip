@@ -181,6 +181,7 @@ export default function EditDataUserScreen({ navigation }) {
             onChangeText={value =>
               setState(prevState => ({ ...prevState, name: value }))
             }
+
           />
         </View>
         <View>
