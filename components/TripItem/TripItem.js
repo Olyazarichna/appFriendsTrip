@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useMemo } from 'react';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 
 const { width } = Dimensions.get('screen');
@@ -17,6 +17,7 @@ const { width } = Dimensions.get('screen');
 export default function TripItem({ trip }) {
   const { id, owner, city, country, image, rating } = trip;
 
+  const source = useMemo(() => ({ uri: image }), [image]);
   const handleFavoriteBtn = () => {
     console.log(`Trip with id: ${id} added to favorite`);
   };
@@ -28,7 +29,7 @@ export default function TripItem({ trip }) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={image} resizeMode="cover" style={styles.image} />
+      <ImageBackground source={source} resizeMode="cover" style={styles.image} />
       <TouchableOpacity style={styles.heart} onPress={handleFavoriteBtn}>
         <Ionicons name="ios-heart" size={20} color="white" />
       </TouchableOpacity>

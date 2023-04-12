@@ -1,3 +1,4 @@
+import { configureStore } from '@reduxjs/toolkit';
 import {
     StyleSheet,
     Text,
@@ -13,18 +14,19 @@ import {
 } from 'react-native';
 
 export default function FavoriteScreen() {
+
     return (
-    <View style={styles.container}>
-         <Text>FavoriteScreen</Text>   
-    </View>
-)
+        <View style={styles.container}>
+            <Text>FavoriteScreen</Text>
+        </View>
+    )
 };
 
 const styles = StyleSheet.create({
-container: {
-flex: 1,
- backgroundColor: '#fff',
- alignItems: 'center',
- justifyContent: 'center',
- },
- });
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
