@@ -16,8 +16,6 @@ import handleToggle from '../../helpers/handleToggle';
 import CameraProfileComponents from '../../components/Profile/CameraProfileComponents';
 import GalleryProfileComponents from '../../components/Profile/GalleryProfileComponents';
 
-import { async } from '@firebase/util';
-
 const initialState = {
   avatar: '',
   name: '',
@@ -27,19 +25,14 @@ const initialState = {
 
 export default function EditDataUserScreen({ navigation }) {
   const [state, setState] = useState(initialState);
-  console.log('stateLOgIn', state);
-
   const [modalVisible, setModalVisible] = useState(false);
-
   const [add, setAdd] = useState(false);
   const [camera, setCamera] = useState(false);
   const [gallery, setGallery] = useState(false);
-
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(CameraType.back);
   const [photo, setPhoto] = useState('');
   const [snap, setSnap] = useState(null);
-
   const [image, setImage] = useState(null);
 
   const takeGallery = image => {
@@ -48,7 +41,6 @@ export default function EditDataUserScreen({ navigation }) {
     setAdd(false);
     setModalVisible(!modalVisible);
   };
-
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -181,7 +173,6 @@ export default function EditDataUserScreen({ navigation }) {
             onChangeText={value =>
               setState(prevState => ({ ...prevState, name: value }))
             }
-
           />
         </View>
         <View>
