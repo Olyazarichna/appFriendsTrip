@@ -35,9 +35,7 @@ const initialState = {
 
 export default function LoginScreen({ navigation }) {
   const userInfo = useSelector((state) => state.auth);
-  console.log('ui', userInfo);
   const [state, setState] = useState(initialState);
-
   const [togglePassword, setTogglePassword] = useState(true);
   const [emailChange, setEmailChange] = useState(false);
   const [passwordChange, setPasswordChange] = useState(false);

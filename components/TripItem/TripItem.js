@@ -9,20 +9,28 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
-import { useState } from 'react';
 const { width } = Dimensions.get('screen');
+import { addToFavorite, removeFromFavorite } from '../../services/addToFavorite';
+import { auth } from '../../firebase/config';
+
 
 export default function TripItem({ trip }) {
   const { id, owner, city, country, image, rating } = trip;
   const [isFavorite, setIsFavorite] = useState(false);
-
+  const userId = auth.currentUser.uid;
   const source = useMemo(() => ({ uri: image }), [image]);
 
   const handleFavoriteBtn = async () => {
-    setIsFavorite(isFavorite => !isFavorite);
-    console.log(`Trip with id: ${id} added to favorite`);
+    if (isFavorite) {
+      await removeFromFavorite(userId, id);
+      console.log(`Trip with id: ${id} removed from favorite`);
+    } else {
+      await addToFavorite(userId, id);
+      console.log(`Trip with id: ${id} added to favorite`);
+    }
+    setIsFavorite(!isFavorite);
   };
 
   const handleDetailsBtn = () => {

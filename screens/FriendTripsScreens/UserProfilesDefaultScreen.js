@@ -9,7 +9,7 @@ import {
   Platform,
 } from 'react-native';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import {
   AntDesign,

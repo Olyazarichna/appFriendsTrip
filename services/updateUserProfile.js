@@ -29,9 +29,6 @@ export const updateUserProfile = async ({
   }
   try {
     const userDocRef = doc(usersRef, user.uid);
-
-    console.log(" userDocRef", userDocRef);
-
     const userDB = await getDoc(userDocRef);
     const userData = userDB.data();
     const userUpdate = {
