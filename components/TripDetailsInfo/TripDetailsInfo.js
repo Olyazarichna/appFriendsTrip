@@ -1,41 +1,58 @@
 import { StyleSheet, View, Text, Image } from 'react-native';
 
-export const TripDetailsInfo = ({ trip }) => {
-    console.log('trip', trip);
+export const TripDetailsInfo = ({ trip, owner }) => {
     return (
-        <View style={styles.detailsContainer}>
+        <View style={styles.wrapper}>
             <Text style={styles.heading}>Trip Details</Text>
             <View>
                 <View style={styles.imgContainer}>
                     <Image style={styles.imgDetails} source={{ uri: trip.image }} />
                 </View>
                 <View style={styles.infoWrapper}>
-                    <Text style={styles.description}>
+                    <Text style={styles.descriptionText}>
                         {`${trip.country}, ${trip.city}`}
                     </Text>
                 </View>
                 <View style={styles.containerDetails}>
                     <View style={styles.infoWrapper}>
-                        <Text style={styles.description}>Date: {trip.date}</Text>
+                        <Text style={styles.description}>
+                            Date:<Text style={styles.text}>{trip.date}</Text>{' '}
+                        </Text>
                     </View>
                     <View style={styles.infoWrapper}>
                         <Text style={styles.description}>
-                            Duration: {trip.duration} days
+                            Duration: <Text style={styles.text}>{trip.duration} days</Text>
                         </Text>
                     </View>
                 </View>
                 <View style={styles.infoWrapper}>
-                    <Text style={styles.description}>More: {trip.detailsAboutTrip} </Text>
-                </View>
-                <View style={styles.infoWrapper}>
                     <Text style={styles.description}>
-                        Age: {trip.minAge}-{trip.maxAge}years old{' '}
+                        More: <Text style={styles.text}>{trip.detailsAboutTrip}</Text>{' '}
                     </Text>
                 </View>
                 <View style={styles.infoWrapper}>
                     <Text style={styles.description}>
-                        About companion:{trip.detailsAboutCompanion}{' '}
+                        Age:
+                        <Text style={styles.text}>
+                            {trip.minAge}-{trip.maxAge} years old
+                        </Text>
                     </Text>
+                </View>
+                <View style={styles.infoWrapper}>
+                    <Text style={styles.description}>
+                        About companion:
+                        <Text style={styles.text}>{trip.detailsAboutCompanion}</Text>
+                    </Text>
+                </View>
+            </View>
+            <View style={styles.infoContainer}>
+                <View style={styles.avatarWrapper}>
+                    <Image style={styles.avatarDetails} source={{ uri: owner.avatar }} />
+                </View>
+                <View style={styles.avatar}>
+                    <Text style={styles.mainText}>{owner.name}</Text>
+                    <Text style={styles.text}>Email: {owner.email}</Text>
+                    <Text style={styles.text}>Phone: {owner.phone}</Text>
                 </View>
             </View>
         </View>
@@ -43,7 +60,8 @@ export const TripDetailsInfo = ({ trip }) => {
 };
 
 const styles = StyleSheet.create({
-    detailsContainer: {
+    wrapper: {
+        flex: 1,
         marginVertical: 70,
         marginHorizontal: 30,
     },
@@ -75,8 +93,36 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    descriptionText: {
+        fontSize: 18,
+        fontWeight: '500',
+    },
     description: {
         fontSize: 14,
         fontWeight: '500',
+    },
+    infoContainer: {
+        flexDirection: 'row',
+        marginTop: 30,
+        alignItems: 'center',
+    },
+    avatarWrapper: {
+        borderRadius: 30,
+        overflow: 'hidden',
+        marginRight: 20,
+    },
+    avatarDetails: {
+        width: 80,
+        height: 80,
+        resizeMode: 'cover',
+    },
+    mainText: {
+        fontSize: 16,
+        fontWeight: '500',
+    },
+    text: {
+        fontSize: 12,
+        fontWeight: '400',
+        color: '#848689',
     },
 });

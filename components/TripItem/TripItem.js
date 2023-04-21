@@ -80,7 +80,7 @@ export default function TripItem({ trip }) {
               setModalVisible(!modalDetailsVisible);
             }}
           >
-            <TripDetailsInfo trip={trip} />
+            <TripDetailsInfo trip={trip} owner={owner} />
             <ButtonRoundBlue
               title={
                 <AntDesign
