@@ -68,8 +68,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingHorizontal: 25,
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     header: {
         fontWeight: '600',
@@ -79,7 +77,6 @@ const styles = StyleSheet.create({
     textWrapper: {
         alignItems: 'center',
         marginVertical: 30,
-        // justifyContent: 'center',
     },
     label: {
         marginTop: 50,

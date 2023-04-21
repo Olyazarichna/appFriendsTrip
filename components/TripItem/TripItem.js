@@ -6,6 +6,7 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,11 +15,14 @@ import ButtonRoundBlue from '../Buttons/ButtonRoundBlue';
 const { width } = Dimensions.get('screen');
 import { addToFavorite, removeFromFavorite } from '../../services/addToFavorite';
 import { auth } from '../../firebase/config';
+import variables from '../../styles/utils/variables';
 
+import { TripDetailsInfo } from '../TripDetailsInfo/TripDetailsInfo';
 
 export default function TripItem({ trip }) {
   const { id, owner, city, country, image, rating } = trip;
   const [isFavorite, setIsFavorite] = useState(false);
+  const [modalDetailsVisible, setModalDetailsVisible] = useState(false);
   const userId = auth.currentUser.uid;
   const source = useMemo(() => ({ uri: image }), [image]);
 
@@ -34,8 +38,7 @@ export default function TripItem({ trip }) {
   };
 
   const handleDetailsBtn = () => {
-    // Navigate to trip details screen
-    console.log(`Get details of the trip with id: ${id}`);
+    setModalDetailsVisible(!modalDetailsVisible);
   };
 
   return (
@@ -70,6 +73,29 @@ export default function TripItem({ trip }) {
             height={40}
             click={handleDetailsBtn}
           />
+          <Modal
+            animationType="slide"
+            visible={modalDetailsVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalDetailsVisible);
+            }}
+          >
+            <TripDetailsInfo trip={trip} />
+            <ButtonRoundBlue
+              title={
+                <AntDesign
+                  name="close"
+                  size={17}
+                  color={variables.labelButtonWhite}
+                />
+              }
+              style={{ position: 'absolute', top: 10, right: 20 }}
+              width={40}
+              height={40}
+              marginTop={37}
+              click={() => setModalDetailsVisible(!modalDetailsVisible)}
+            />
+          </Modal>
         </View>
       </View>
     </View>
